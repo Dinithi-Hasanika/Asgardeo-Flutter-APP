@@ -1,125 +1,269 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter_appauth/flutter_appauth.dart';
+
+final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
+
+const clientId = 'TzpAhjAB5YHSHHfN0zP709FVgZoa';
+const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
+const discoveryUrl =
+    'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
+const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() {
+    return _MyAppState();
+  }
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  late int _pageIndex;
+  late bool _isUserLoggedIn;
+  late String? _idToken;
+  late String? _accessToken;
+  late String? _firstName;
+  late String? _lastName;
+  late String? _dateOfBirth;
+  late String? _country;
+  late String? _mobile;
+  late String? _photo;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageIndex = 1;
+    _isUserLoggedIn = false;
+    _idToken = '';
+    _accessToken = '';
+    _firstName = '';
+    _lastName = '';
+    _dateOfBirth = '';
+    _country = '';
+    _mobile = '';
+    _photo = '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      title: 'Asgardeo Flutter Integration',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Asgardeo Flutter Integration'),
+        ),
+        body: _isUserLoggedIn
+            ? _pageIndex == 2
+            ? HomePage(retrieveUserDetails, logOutFunction)
+            : _pageIndex == 3
+            ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
+            _mobile, _photo, setPageIndex)
+            : LogInPage(loginFunction)
+            : LogInPage(loginFunction),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+
+  void setPageIndex(index) {
+    setState(() {
+      _pageIndex = index;
+    });
+  }
+
+  Future<void> loginFunction() async {
+    try {
+      final AuthorizationTokenResponse? result =
+      await flutterAppAuth.authorizeAndExchangeCode(
+        AuthorizationTokenRequest(
+          clientId,
+          redirectUrl,
+          discoveryUrl: discoveryUrl,
+          promptValues: ['login'],
+          scopes: ['openid', 'profile', 'address', 'phone'],
+        ),
+      );
+
+      setState(() {
+        _isUserLoggedIn = true;
+        _idToken = result?.idToken;
+        _accessToken = result?.accessToken;
+        _pageIndex = 2;
+      });
+    } catch (e, s) {
+      print('Error while login to the system: $e - stack: $s');
+      setState(() {
+        _isUserLoggedIn = false;
+      });
+    }
+  }
+
+  Future<void> retrieveUserDetails() async {
+    final userInfoResponse = await http.get(
+      Uri.parse( userInfoEndpoint),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+
+    if (userInfoResponse.statusCode == 200) {
+      var profile = jsonDecode(userInfoResponse.body);
+      setState(() {
+        _firstName = profile['given_name'];
+        _lastName = profile['family_name'];
+        _dateOfBirth = profile['birthdate'];
+        _country = profile['address']['country'];
+        _mobile = profile['phone_number'];
+        _photo = profile['picture'];
+        _pageIndex = 3;
+      });
+    } else {
+      throw Exception('Failed to get user profile information');
+    }
+  }
+
+  void logOutFunction() async {
+    try {
+      print('In logout');
+      final EndSessionResponse? result = await flutterAppAuth.endSession(
+        EndSessionRequest(
+          idTokenHint: _idToken,
+          postLogoutRedirectUrl: redirectUrl,
+          discoveryUrl: discoveryUrl,
+        ),
+      );
+
+      setState(() {
+        _isUserLoggedIn = false;
+        _pageIndex = 1;
+      });
+    } catch (e, s) {
+      print('Error while logout from the system: $e - stack: $s');
+    }
+  }
+}
+
+class LogInPage extends StatelessWidget {
+  final loginFunction;
+
+  const LogInPage(this.loginFunction);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () async {
+          await loginFunction();
+          // appState.userLogin();
+        },
+        child: Text('Sign In'),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomePage extends StatelessWidget {
+  final retriveProfileFunction;
+  final logOutFunction;
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  const HomePage(this.retriveProfileFunction, this.logOutFunction);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Welcome!", style: TextStyle(fontSize: 35)),
+          SizedBox(height: 100),
+          ElevatedButton(
+            onPressed: () async {
+              await retriveProfileFunction();
+            },
+            child: Text('View profile'),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () async {
+              await logOutFunction();
+            },
+            child: Text('Sign out'),
+          ),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  final firstName;
+  final LastName;
+  final dateOdBirth;
+  final country;
+  final mobile;
+  final photo;
+  final pageIndex;
+
+  const ProfilePage(this.firstName, this.LastName, this.dateOdBirth, this.country,
+      this.mobile, this.photo, this.pageIndex);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Profile Information", style: TextStyle(fontSize: 30)),
+          SizedBox(height: 50),
+          Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue, width: 3.0),
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                fit: BoxFit.fitHeight,
+                image: NetworkImage(
+                    photo ??
+                        ''),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+          Card(
+              elevation: 0,
+              color: Theme.of(context).colorScheme.surfaceVariant,
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 15),
+                    Text('First Name: $firstName',
+                        style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 10),
+                    Text('Last Name: $LastName',
+                        style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 10),
+                    Text('Date of Birth: $dateOdBirth', style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 10),
+                    Text('Mobile: $mobile', style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 10),
+                    Text('Country: $country', style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              )),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              pageIndex(2);
+            },
+            child: Text('Back to home'),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
