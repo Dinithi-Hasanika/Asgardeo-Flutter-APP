@@ -53,16 +53,22 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Asgardeo Flutter Integration',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Asgardeo Flutter Integration'),
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction)
+            ? HomePage(retrieveUserDetails, logOutFunction, setPageIndex)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
+            : _pageIndex == 4
+            ? ExternalAPIDataPage(setPageIndex)
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
       ),
@@ -103,6 +109,23 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> retrieveUserDetails() async {
+
+     http.get(
+      Uri.parse('https://dummy.restapiexample.com/api/v1/employees'),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    ).then((response) => print(response.body)).catchError((error)=> print(error));
+
+    final externalInfo = await http.get(
+      Uri.parse('http://localhost:9090/albums'),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+    if(externalInfo.statusCode == 200){
+      print(jsonDecode(externalInfo.body));
+    }else{
+      print(externalInfo.statusCode);
+    }
+
+
     final userInfoResponse = await http.get(
       Uri.parse( userInfoEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
@@ -122,6 +145,16 @@ class _MyAppState extends State<MyApp> {
     } else {
       throw Exception('Failed to get user profile information');
     }
+  }
+  
+  void callExternalAPI() async {
+    final externalInfo = await http.get(
+      Uri.parse('http://localhost:9090/albums'),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+
+    var albums = jsonDecode(externalInfo.body);
+    print(albums);
   }
 
   void logOutFunction() async {
@@ -153,12 +186,25 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        onPressed: () async {
-          await loginFunction();
-          // appState.userLogin();
-        },
-        child: Text('Sign In'),
+
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+        children: [ElevatedButton(
+          onPressed: () async {
+            await loginFunction();
+            // appState.userLogin();
+          },
+          child: Text('Sign In'),
+        ),
+          SizedBox(width: 50),
+          ElevatedButton(
+            onPressed: () async {
+              await loginFunction();
+              // appState.userLogin();
+            },
+            child: Text('Sign Up'),
+          ),
+        ]
       ),
     );
   }
@@ -167,8 +213,9 @@ class LogInPage extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final retriveProfileFunction;
   final logOutFunction;
+  final setPageIndex;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction);
+  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.setPageIndex);
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +230,13 @@ class HomePage extends StatelessWidget {
               await retriveProfileFunction();
             },
             child: Text('View profile'),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: ()  {
+               setPageIndex(4);
+            },
+            child: Text('Call External API'),
           ),
           SizedBox(height: 20),
           ElevatedButton(
@@ -266,4 +320,31 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+}
+
+class ExternalAPIDataPage extends StatelessWidget{
+  final setPageIndex;
+
+  const ExternalAPIDataPage(this.setPageIndex);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('External API Data'),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              setPageIndex(2);
+            },
+            child: Text('Back to home'),
+          ),
+        ]
+      ),
+    );
+  }
+
 }
