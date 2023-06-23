@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
   late String? _country;
   late String? _mobile;
   late String? _photo;
+  late List<Album> _albums;
 
   @override
   void initState() {
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
     _country = '';
     _mobile = '';
     _photo = '';
+    _albums = [];
   }
 
   @override
@@ -63,12 +65,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, setPageIndex)
+            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
             : _pageIndex == 4
-            ? ExternalAPIDataPage(setPageIndex)
+            ? ExternalAPIDataPage(_albums, setPageIndex)
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
       ),
@@ -110,22 +112,6 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> retrieveUserDetails() async {
 
-     http.get(
-      Uri.parse('https://dummy.restapiexample.com/api/v1/employees'),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    ).then((response) => print(response.body)).catchError((error)=> print(error));
-
-    final externalInfo = await http.get(
-      Uri.parse('http://localhost:9090/albums'),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
-    if(externalInfo.statusCode == 200){
-      print(jsonDecode(externalInfo.body));
-    }else{
-      print(externalInfo.statusCode);
-    }
-
-
     final userInfoResponse = await http.get(
       Uri.parse( userInfoEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
@@ -146,15 +132,27 @@ class _MyAppState extends State<MyApp> {
       throw Exception('Failed to get user profile information');
     }
   }
-  
-  void callExternalAPI() async {
+
+  Future<void> callExternalAPIFunction() async {
     final externalInfo = await http.get(
       Uri.parse('http://localhost:9090/albums'),
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
+    if(externalInfo.statusCode == 200){
+      List jsonList = jsonDecode(externalInfo.body);
+      List<Album> albumList = [];
+      for(var e in jsonList){
+       Album album = new Album(title: e['title'], artist: e['artist']);
+        albumList.add(album);
+      }
 
-    var albums = jsonDecode(externalInfo.body);
-    print(albums);
+      setState(() {
+        _pageIndex = 4;
+        _albums = albumList;
+      });
+    }else{
+      print(externalInfo.statusCode);
+    }
   }
 
   void logOutFunction() async {
@@ -213,9 +211,9 @@ class LogInPage extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final retriveProfileFunction;
   final logOutFunction;
-  final setPageIndex;
+  final callExternalAPIFunction;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.setPageIndex);
+  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -233,8 +231,8 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: ()  {
-               setPageIndex(4);
+            onPressed: () async {
+               await callExternalAPIFunction();
             },
             child: Text('Call External API'),
           ),
@@ -324,8 +322,9 @@ class ProfilePage extends StatelessWidget {
 
 class ExternalAPIDataPage extends StatelessWidget{
   final setPageIndex;
+  final List<Album> albums;
 
-  const ExternalAPIDataPage(this.setPageIndex);
+  const ExternalAPIDataPage(this.albums, this.setPageIndex);
 
   @override
   Widget build(BuildContext context) {
@@ -334,8 +333,18 @@ class ExternalAPIDataPage extends StatelessWidget{
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('External API Data'),
-          SizedBox(height: 20),
+          Text('External API Data', style: TextStyle(fontSize: 30)),
+          SizedBox(height: 40),
+          ListView.builder(
+            shrinkWrap: true,
+              itemCount: albums.length,
+              itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 20,
+              child: Center(child: Text('Title:${albums[index].title}   Artist: ${albums[index].artist} ', style: TextStyle(fontSize: 15))),
+            );
+          }),
+          SizedBox(height: 40),
           ElevatedButton(
             onPressed: () {
               setPageIndex(2);
@@ -347,4 +356,11 @@ class ExternalAPIDataPage extends StatelessWidget{
     );
   }
 
+}
+
+class Album{
+  String title;
+  String artist;
+
+  Album({required this.title, required this.artist});
 }
