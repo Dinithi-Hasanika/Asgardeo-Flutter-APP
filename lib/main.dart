@@ -11,6 +11,7 @@ const discoveryUrl =
     'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
 const externalAPIEndpoint = 'http://localhost:9090/albums';
+const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
 
 void main() {
   runApp(MyApp());
@@ -66,12 +67,14 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction)
+            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
             : _pageIndex == 4
             ? ExternalAPIDataPage(setPageIndex, _apiData)
+            : _pageIndex == 5
+            ? EditUserProfilePage(setPageIndex)
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
       ),
@@ -93,7 +96,7 @@ class _MyAppState extends State<MyApp> {
           redirectUrl,
           discoveryUrl: discoveryUrl,
           promptValues: ['login'],
-          scopes: ['openid', 'profile', 'address', 'phone'],
+          scopes: ['openid', 'profile', 'address', 'phone', 'internal_login'],
         ),
       );
 
@@ -117,6 +120,7 @@ class _MyAppState extends State<MyApp> {
       Uri.parse( userInfoEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
+    print(userInfoResponse.statusCode);
 
     if (userInfoResponse.statusCode == 200) {
       var profile = jsonDecode(userInfoResponse.body);
@@ -149,6 +153,30 @@ class _MyAppState extends State<MyApp> {
       });
     }else{
       print(externalInfo.statusCode);
+    }
+  }
+
+  Future<void> getUserProfileData() async {
+    final userInfo = await http.get(
+      Uri.parse(meEndpoint),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+
+    if(userInfo.statusCode == 200){
+      print(userInfo.body);
+      var profile = jsonDecode(userInfo.body);
+      print(profile['name']['givenName']);
+      setState(() {
+        _firstName = profile['name']['givenName'];
+        _lastName = profile['name']['familyName'];
+        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'];
+        _country = profile['urn:scim:wso2:schema']['country'];
+        _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'];
+        _pageIndex = 5;
+
+        //print('$_lastName $_country $_dateOfBirth $_mobile $_photo');
+      });
     }
   }
 
@@ -209,8 +237,10 @@ class HomePage extends StatelessWidget {
   final retriveProfileFunction;
   final logOutFunction;
   final callExternalAPIFunction;
+  final setPageIndex;
+  final getUserProfileData;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction);
+  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData);
 
   @override
   Widget build(BuildContext context) {
@@ -307,6 +337,13 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
+              pageIndex(5);
+            },
+            child: Text('Edit Profile'),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
               pageIndex(2);
             },
             child: Text('Back to home'),
@@ -345,6 +382,80 @@ class ExternalAPIDataPage extends StatelessWidget{
     );
   }
 
+}
+
+class EditUserProfilePage extends StatelessWidget{
+  final setPageIndex;
+
+   EditUserProfilePage(this.setPageIndex);
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController _firstNameController = new TextEditingController();
+    _firstNameController.text = 'abc';
+    final TextEditingController _lastNameController = new TextEditingController();
+    _lastNameController.text = 'pqr';
+    final TextEditingController _countryController = new TextEditingController();
+    _countryController.text = 'xyz';
+
+    return Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Edit User Profile', style: TextStyle(fontSize: 30)),
+          SizedBox(height: 40),
+          Padding(
+            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: TextField(
+              controller: _firstNameController,
+              decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
+              onChanged: (text){
+                print('value $text');
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: TextField(
+              controller: _lastNameController,
+              decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
+              onChanged: (text){
+                print('value $text');
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: TextField(
+              controller: _countryController,
+              decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
+              onChanged: (text){
+                print('value $text');
+              },
+            ),
+          ),
+          SizedBox(height: 40),
+          ElevatedButton(
+            onPressed: () {
+              setPageIndex(3);
+            },
+            child: Text('Save'),
+          ),
+          SizedBox(height: 40),
+          ElevatedButton(
+            onPressed: () {
+              setPageIndex(2);
+            },
+            child: Text('Back to home'),
+          ),
+        ]
+        )
+    );
+  }
+  
 }
 
 
