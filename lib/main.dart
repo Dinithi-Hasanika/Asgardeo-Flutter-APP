@@ -10,6 +10,7 @@ const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
 const discoveryUrl =
     'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
+const externalAPIEndpoint = 'http://localhost:9090/albums';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   late String? _country;
   late String? _mobile;
   late String? _photo;
-  late List<Album> _albums;
+  late String _apiData;
 
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     _country = '';
     _mobile = '';
     _photo = '';
-    _albums = [];
+    _apiData ='';
   }
 
   @override
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
             : _pageIndex == 4
-            ? ExternalAPIDataPage(_albums, setPageIndex)
+            ? ExternalAPIDataPage(setPageIndex, _apiData)
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
       ),
@@ -135,20 +136,16 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> callExternalAPIFunction() async {
     final externalInfo = await http.get(
-      Uri.parse('http://localhost:9090/albums'),
+      Uri.parse(externalAPIEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
     if(externalInfo.statusCode == 200){
       List jsonList = jsonDecode(externalInfo.body);
-      List<Album> albumList = [];
-      for(var e in jsonList){
-       Album album = new Album(title: e['title'], artist: e['artist']);
-        albumList.add(album);
-      }
+      print(externalInfo.body);
 
       setState(() {
         _pageIndex = 4;
-        _albums = albumList;
+        _apiData =externalInfo.body;
       });
     }else{
       print(externalInfo.statusCode);
@@ -322,9 +319,9 @@ class ProfilePage extends StatelessWidget {
 
 class ExternalAPIDataPage extends StatelessWidget{
   final setPageIndex;
-  final List<Album> albums;
+  final String bodyResponse;
 
-  const ExternalAPIDataPage(this.albums, this.setPageIndex);
+  const ExternalAPIDataPage(this.setPageIndex, this.bodyResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -335,15 +332,7 @@ class ExternalAPIDataPage extends StatelessWidget{
         children: [
           Text('External API Data', style: TextStyle(fontSize: 30)),
           SizedBox(height: 40),
-          ListView.builder(
-            shrinkWrap: true,
-              itemCount: albums.length,
-              itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 20,
-              child: Center(child: Text('Title:${albums[index].title}   Artist: ${albums[index].artist} ', style: TextStyle(fontSize: 15))),
-            );
-          }),
+          Padding(padding: EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
           SizedBox(height: 40),
           ElevatedButton(
             onPressed: () {
@@ -358,9 +347,4 @@ class ExternalAPIDataPage extends StatelessWidget{
 
 }
 
-class Album{
-  String title;
-  String artist;
 
-  Album({required this.title, required this.artist});
-}
