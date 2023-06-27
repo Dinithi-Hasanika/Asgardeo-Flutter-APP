@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'pages/editProfilePage.dart';
 import 'pages/externalAPIPage.dart';
 import 'pages/viewProfilePage.dart';
@@ -17,6 +18,8 @@ const discoveryUrl =
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
 const externalAPIEndpoint = 'http://localhost:9090/albums';
 const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
+const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=wRWZJSt2ohray2kBfIRIEORtvWAa&sp=sample-mobile';
+const testUrl = 'https://flutter.dev';
 
 void main() {
   runApp(MyApp());
@@ -80,8 +83,8 @@ class _MyAppState extends State<MyApp> {
             ? ExternalAPIDataPage(setPageIndex, _apiData)
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
-            : LogInPage(loginFunction)
-            : LogInPage(loginFunction),
+            : LogInPage(loginFunction,signUpFunction)
+            : LogInPage(loginFunction,signUpFunction),
       ),
     );
   }
@@ -116,6 +119,12 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         _isUserLoggedIn = false;
       });
+    }
+  }
+
+  Future<void> signUpFunction() async{
+    if (!await launchUrl(Uri.parse(signUpUrl))) {
+      throw Exception('Could not launch $signUpUrl');
     }
   }
 

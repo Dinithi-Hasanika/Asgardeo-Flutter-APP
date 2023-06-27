@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class LogInPage extends StatelessWidget {
   final loginFunction;
+  final signUpFunction;
 
-  const LogInPage(this.loginFunction);
+  const LogInPage(this.loginFunction, this.signUpFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class LogInPage extends StatelessWidget {
             SizedBox(width: 50),
             ElevatedButton(
               onPressed: () async {
-                await loginFunction();
+                await signUpFunction();
                 // appState.userLogin();
               },
               child: Text('Sign Up'),
