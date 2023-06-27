@@ -187,7 +187,7 @@ class _MyAppState extends State<MyApp> {
         _country = profile['urn:scim:wso2:schema']['country'];
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
         _photo = profile['urn:scim:wso2:schema']['photoUrl'];
-        _pageIndex = 5;
+        _pageIndex = 3;
       });
     }else if(userInfo.statusCode == 401){
       //call introspect and ensure whether the token is expired
@@ -231,8 +231,6 @@ class _MyAppState extends State<MyApp> {
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
         _photo = profile['urn:scim:wso2:schema']['photoUrl'];
         _pageIndex = 3;
-
-        //print('$_lastName $_country $_dateOfBirth $_mobile $_photo');
       });
     }else if(updatedInfo.statusCode == 401){
 

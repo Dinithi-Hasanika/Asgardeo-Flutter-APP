@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 100),
           ElevatedButton(
             onPressed: () async {
-              await retriveProfileFunction();
+              await getUserProfileData();
             },
             child: Text('View profile'),
           ),
