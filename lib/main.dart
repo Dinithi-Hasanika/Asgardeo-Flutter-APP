@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
+import 'pages/editProfilePage.dart';
+import 'pages/externalAPIPage.dart';
+import 'pages/viewProfilePage.dart';
+import 'pages/homePage.dart';
+import 'pages/loginPage.dart';
 
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
@@ -74,7 +79,7 @@ class _MyAppState extends State<MyApp> {
             : _pageIndex == 4
             ? ExternalAPIDataPage(setPageIndex, _apiData)
             : _pageIndex == 5
-            ? EditUserProfilePage(setPageIndex)
+            ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
       ),
@@ -174,10 +179,56 @@ class _MyAppState extends State<MyApp> {
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
         _photo = profile['urn:scim:wso2:schema']['photoUrl'];
         _pageIndex = 5;
+      });
+    }else if(userInfo.statusCode == 401){
+      //call introspect and ensure whether the token is expired
+      //use refresh token to obtain token and re-try the api
+    }
+  }
+  
+  Future<void> updateUserProfile(firstName, lastName, country) async {
+    Map data = {
+      "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+      ],
+      "Operations": [
+        {
+          "op": "replace",
+          "value": {
+            "name":{
+              "givenName": "$firstName",
+              "familyName": "$lastName"
+            },
+            "urn:scim:wso2:schema":{
+              "country":"$country"
+            }
+          }
+        }
+      ]
+    };
+    final updatedInfo = await http.patch(
+      Uri.parse(meEndpoint),
+      headers: {'Authorization': 'Bearer $_accessToken', 'Content-Type': 'application/scim+json'},
+      body: json.encode(data)
+    );
+
+    if(updatedInfo.statusCode == 200){
+      var profile = jsonDecode(updatedInfo.body);
+      setState(() {
+        _firstName = profile['name']['givenName'];
+        _lastName = profile['name']['familyName'];
+        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'];
+        _country = profile['urn:scim:wso2:schema']['country'];
+        _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'];
+        _pageIndex = 3;
 
         //print('$_lastName $_country $_dateOfBirth $_mobile $_photo');
       });
+    }else if(updatedInfo.statusCode == 401){
+
     }
+
   }
 
   void logOutFunction() async {
@@ -200,262 +251,3 @@ class _MyAppState extends State<MyApp> {
     }
   }
 }
-
-class LogInPage extends StatelessWidget {
-  final loginFunction;
-
-  const LogInPage(this.loginFunction);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-        children: [ElevatedButton(
-          onPressed: () async {
-            await loginFunction();
-            // appState.userLogin();
-          },
-          child: Text('Sign In'),
-        ),
-          SizedBox(width: 50),
-          ElevatedButton(
-            onPressed: () async {
-              await loginFunction();
-              // appState.userLogin();
-            },
-            child: Text('Sign Up'),
-          ),
-        ]
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  final retriveProfileFunction;
-  final logOutFunction;
-  final callExternalAPIFunction;
-  final setPageIndex;
-  final getUserProfileData;
-
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Welcome!", style: TextStyle(fontSize: 35)),
-          SizedBox(height: 100),
-          ElevatedButton(
-            onPressed: () async {
-              await retriveProfileFunction();
-            },
-            child: Text('View profile'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-               await callExternalAPIFunction();
-            },
-            child: Text('Call External API'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await logOutFunction();
-            },
-            child: Text('Sign out'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  final firstName;
-  final LastName;
-  final dateOdBirth;
-  final country;
-  final mobile;
-  final photo;
-  final pageIndex;
-
-  const ProfilePage(this.firstName, this.LastName, this.dateOdBirth, this.country,
-      this.mobile, this.photo, this.pageIndex);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Profile Information", style: TextStyle(fontSize: 30)),
-          SizedBox(height: 50),
-          Container(
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 3.0),
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.fitHeight,
-                image: NetworkImage(
-                    photo ??
-                        ''),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          Card(
-              elevation: 0,
-              color: Theme.of(context).colorScheme.surfaceVariant,
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 15),
-                    Text('First Name: $firstName',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 10),
-                    Text('Last Name: $LastName',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 10),
-                    Text('Date of Birth: $dateOdBirth', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 10),
-                    Text('Mobile: $mobile', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 10),
-                    Text('Country: $country', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              )),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              pageIndex(5);
-            },
-            child: Text('Edit Profile'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              pageIndex(2);
-            },
-            child: Text('Back to home'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ExternalAPIDataPage extends StatelessWidget{
-  final setPageIndex;
-  final String bodyResponse;
-
-  const ExternalAPIDataPage(this.setPageIndex, this.bodyResponse);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('External API Data', style: TextStyle(fontSize: 30)),
-          SizedBox(height: 40),
-          Padding(padding: EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
-          SizedBox(height: 40),
-          ElevatedButton(
-            onPressed: () {
-              setPageIndex(2);
-            },
-            child: Text('Back to home'),
-          ),
-        ]
-      ),
-    );
-  }
-
-}
-
-class EditUserProfilePage extends StatelessWidget{
-  final setPageIndex;
-
-   EditUserProfilePage(this.setPageIndex);
-
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController _firstNameController = new TextEditingController();
-    _firstNameController.text = 'abc';
-    final TextEditingController _lastNameController = new TextEditingController();
-    _lastNameController.text = 'pqr';
-    final TextEditingController _countryController = new TextEditingController();
-    _countryController.text = 'xyz';
-
-    return Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Edit User Profile', style: TextStyle(fontSize: 30)),
-          SizedBox(height: 40),
-          Padding(
-            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: TextField(
-              controller: _firstNameController,
-              decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
-              onChanged: (text){
-                print('value $text');
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: TextField(
-              controller: _lastNameController,
-              decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
-              onChanged: (text){
-                print('value $text');
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: TextField(
-              controller: _countryController,
-              decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
-              onChanged: (text){
-                print('value $text');
-              },
-            ),
-          ),
-          SizedBox(height: 40),
-          ElevatedButton(
-            onPressed: () {
-              setPageIndex(3);
-            },
-            child: Text('Save'),
-          ),
-          SizedBox(height: 40),
-          ElevatedButton(
-            onPressed: () {
-              setPageIndex(2);
-            },
-            child: Text('Back to home'),
-          ),
-        ]
-        )
-    );
-  }
-  
-}
-
-
