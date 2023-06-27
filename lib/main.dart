@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   late bool _isUserLoggedIn;
   late String? _idToken;
   late String? _accessToken;
+  late String? _refreshToken;
   late String? _firstName;
   late String? _lastName;
   late String? _dateOfBirth;
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
     _isUserLoggedIn = false;
     _idToken = '';
     _accessToken = '';
+    _refreshToken = '';
     _firstName = '';
     _lastName = '';
     _dateOfBirth = '';
@@ -112,6 +114,7 @@ class _MyAppState extends State<MyApp> {
         _isUserLoggedIn = true;
         _idToken = result?.idToken;
         _accessToken = result?.accessToken;
+        _refreshToken = result?.refreshToken;
         _pageIndex = 2;
       });
     } catch (e, s) {
