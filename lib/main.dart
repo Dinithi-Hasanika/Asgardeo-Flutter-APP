@@ -16,7 +16,8 @@ const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
 const discoveryUrl =
     'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
-const externalAPIEndpoint = 'http://localhost:9090/albums';
+//const externalAPIEndpoint = 'http://localhost:9090/albums';
+const externalAPIEndpoint = 'https://dummy.restapiexample.com/api/v1/employees';
 const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
 const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=TzpAhjAB5YHSHHfN0zP709FVgZoa&sp=asgardeo-flutterapp';
 
@@ -83,7 +84,7 @@ class _MyAppState extends State<MyApp> {
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
             : _pageIndex == 4
-            ? ExternalAPIDataPage(setPageIndex, _apiData)
+            ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData) ,)
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
             : LogInPage(loginFunction,signUpFunction)
@@ -163,9 +164,6 @@ class _MyAppState extends State<MyApp> {
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
     if(externalInfo.statusCode == 200){
-      List jsonList = jsonDecode(externalInfo.body);
-      print(externalInfo.body);
-
       setState(() {
         _pageIndex = 4;
         _apiData =externalInfo.body;
