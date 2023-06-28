@@ -15,7 +15,6 @@ class LogInPage extends StatelessWidget {
           children: [ElevatedButton(
             onPressed: () async {
               await loginFunction();
-              // appState.userLogin();
             },
             child: Text('Sign In'),
           ),
@@ -23,7 +22,6 @@ class LogInPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 await signUpFunction();
-                // appState.userLogin();
               },
               child: Text('Sign Up'),
             ),

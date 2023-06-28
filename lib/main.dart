@@ -167,7 +167,6 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 4;
         _apiData =externalInfo.body;
       });
-    //  await renewAccessToken();
     }else if(externalInfo.statusCode == 401){
       print('----renewing access token ----');
       await renewAccessToken();
@@ -248,7 +247,6 @@ class _MyAppState extends State<MyApp> {
 
   void logOutFunction() async {
     try {
-      print('In logout');
       final EndSessionResponse? result = await flutterAppAuth.endSession(
         EndSessionRequest(
           idTokenHint: _idToken,
