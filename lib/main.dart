@@ -140,7 +140,6 @@ class _MyAppState extends State<MyApp> {
       Uri.parse( userInfoEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
-    print(userInfoResponse.statusCode);
 
     if (userInfoResponse.statusCode == 200) {
       var profile = jsonDecode(userInfoResponse.body);
@@ -169,7 +168,6 @@ class _MyAppState extends State<MyApp> {
         _apiData =externalInfo.body;
       });
     }else if(externalInfo.statusCode == 401){
-      print('----renewing access token ----');
       await renewAccessToken();
       await callExternalAPIFunction();
     }
@@ -187,7 +185,6 @@ class _MyAppState extends State<MyApp> {
         _userName = profile['userName'].toString().split("/")[1];
       });
     }else if(userInfo.statusCode == 401){
-      print('----renewing access token ----');
       await renewAccessToken();
       await getUserName();
     }
@@ -200,9 +197,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     if(userInfo.statusCode == 200){
-      print(userInfo.body);
       var profile = jsonDecode(userInfo.body);
-      print(profile['name']['givenName']);
       setState(() {
         _firstName = profile['name']['givenName'];
         _lastName = profile['name']['familyName'];
@@ -214,7 +209,6 @@ class _MyAppState extends State<MyApp> {
        _pageIndex = 3;
       });
     }else if(userInfo.statusCode == 401){
-      print('----renewing access token ----');
       await renewAccessToken();
       await getUserProfileData();
     }
@@ -258,7 +252,6 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 3;
       });
     }else if(updatedInfo.statusCode == 401){
-      print('----renewing access token ----');
       await renewAccessToken();
       await updateUserProfile(firstName, lastName, country);
     }
@@ -285,7 +278,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> renewAccessToken() async{
-    print('before refreshing ${this._accessToken} ');
     try {
       final TokenResponse? tokenResponse = await flutterAppAuth.token(
           TokenRequest(clientId,
@@ -295,8 +287,6 @@ class _MyAppState extends State<MyApp> {
               discoveryUrl: discoveryUrl
           )
       );
-      print(tokenResponse?.refreshToken);
-      print('after refreshing ${tokenResponse?.accessToken} ');
       setState(() {
         _accessToken = tokenResponse?.accessToken;
         _refreshToken = tokenResponse?.refreshToken;
