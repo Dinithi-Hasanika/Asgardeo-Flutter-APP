@@ -18,8 +18,7 @@ const discoveryUrl =
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
 const externalAPIEndpoint = 'http://localhost:9090/albums';
 const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
-const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=wRWZJSt2ohray2kBfIRIEORtvWAa&sp=sample-mobile';
-const testUrl = 'https://flutter.dev';
+const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=TzpAhjAB5YHSHHfN0zP709FVgZoa&sp=asgardeo-flutterapp';
 
 void main() {
   runApp(MyApp());
@@ -168,8 +167,11 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 4;
         _apiData =externalInfo.body;
       });
-    }else{
-      print(externalInfo.statusCode);
+    //  await renewAccessToken();
+    }else if(externalInfo.statusCode == 401){
+      print('----renewing access token ----');
+      await renewAccessToken();
+      await callExternalAPIFunction();
     }
   }
 
@@ -193,8 +195,9 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 3;
       });
     }else if(userInfo.statusCode == 401){
-      //call introspect and ensure whether the token is expired
-      //use refresh token to obtain token and re-try the api
+      print('----renewing access token ----');
+      await renewAccessToken();
+      await getUserProfileData();
     }
   }
   
@@ -236,7 +239,9 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 3;
       });
     }else if(updatedInfo.statusCode == 401){
-
+      print('----renewing access token ----');
+      await renewAccessToken();
+      await updateUserProfile(firstName, lastName, country);
     }
 
   }
@@ -258,6 +263,29 @@ class _MyAppState extends State<MyApp> {
       });
     } catch (e, s) {
       print('Error while logout from the system: $e - stack: $s');
+    }
+  }
+
+  Future<void> renewAccessToken() async{
+    print('before refreshing ${this._accessToken} ');
+    try {
+      final TokenResponse? tokenResponse = await flutterAppAuth.token(
+          TokenRequest(clientId,
+              redirectUrl,
+              grantType: GrantType.refreshToken,
+              refreshToken: this._refreshToken,
+              discoveryUrl: discoveryUrl
+          )
+      );
+      print(tokenResponse?.refreshToken);
+      print('after refreshing ${tokenResponse?.accessToken} ');
+      setState(() {
+        _accessToken = tokenResponse?.accessToken;
+        _refreshToken = tokenResponse?.refreshToken;
+        _idToken = tokenResponse?.idToken;
+      });
+    } catch (e, s) {
+      print('Error while refreshing the token: $e - stack: $s');
     }
   }
 }
