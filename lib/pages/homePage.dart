@@ -6,8 +6,9 @@ class HomePage extends StatelessWidget {
   final callExternalAPIFunction;
   final setPageIndex;
   final getUserProfileData;
+  final username;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData);
+  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Welcome!", style: TextStyle(fontSize: 35)),
+          Text("Welcome ${this.username}!", style: TextStyle(fontSize: 20)),
           SizedBox(height: 100),
           ElevatedButton(
             onPressed: () async {

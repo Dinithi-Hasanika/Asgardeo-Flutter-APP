@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
   late String? _mobile;
   late String? _photo;
   late String _apiData;
+  late String? _userName;
 
   @override
   void initState() {
@@ -60,6 +61,7 @@ class _MyAppState extends State<MyApp> {
     _mobile = '';
     _photo = '';
     _apiData ='';
+    _userName = '';
   }
 
   @override
@@ -76,7 +78,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData)
+            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
@@ -116,6 +118,7 @@ class _MyAppState extends State<MyApp> {
         _refreshToken = result?.refreshToken;
         _pageIndex = 2;
       });
+      await getUserName();
     } catch (e, s) {
       print('Error while login to the system: $e - stack: $s');
       setState(() {
@@ -174,6 +177,24 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  Future<void> getUserName() async {
+    final userInfo = await http.get(
+      Uri.parse(meEndpoint),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+
+    if(userInfo.statusCode == 200){
+      var profile = jsonDecode(userInfo.body);
+      setState(() {
+        _userName = profile['userName'].toString().split("/")[1];
+      });
+    }else if(userInfo.statusCode == 401){
+      print('----renewing access token ----');
+      await renewAccessToken();
+      await getUserName();
+    }
+  }
+
   Future<void> getUserProfileData() async {
     final userInfo = await http.get(
       Uri.parse(meEndpoint),
@@ -191,7 +212,8 @@ class _MyAppState extends State<MyApp> {
         _country = profile['urn:scim:wso2:schema']['country'];
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
         _photo = profile['urn:scim:wso2:schema']['photoUrl'];
-        _pageIndex = 3;
+       _userName = profile['userName'].toString().split("/")[1];
+       _pageIndex = 3;
       });
     }else if(userInfo.statusCode == 401){
       print('----renewing access token ----');
