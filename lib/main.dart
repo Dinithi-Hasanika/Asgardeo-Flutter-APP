@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
   late String? _photo;
   late String _apiData;
   late String? _userName;
+  late String? _preferredMFA;
 
   @override
   void initState() {
@@ -64,6 +65,7 @@ class _MyAppState extends State<MyApp> {
     _photo = '';
     _apiData ='';
     _userName = '';
+    _preferredMFA = '';
   }
 
   @override
@@ -201,6 +203,28 @@ class _MyAppState extends State<MyApp> {
         await loginFunction();
       }
     }
+  }
+
+  Future<void> getPreferredMFAOption() async {
+    final userInfo = await http.get(
+      Uri.parse(meEndpoint),
+      headers: {'Authorization': 'Bearer $_accessToken'},
+    );
+    if(userInfo.statusCode == 200){
+      var profile = jsonDecode(userInfo.body);
+      setState(() {
+        _preferredMFA = profile['urn:scim:wso2:schema']['preferredMFAOption']?profile['urn:scim:wso2:schema']['preferredMFAOption']: '' ;
+      });
+    }else if(userInfo.statusCode == 401){
+      try {
+        await renewAccessToken();
+        await getPreferredMFAOption();
+      }catch(e,s){
+        print('Error while refreshing the token: $e - stack: $s');
+        await loginFunction();
+      }
+    }
+
   }
 
   Future<void> getUserProfileData() async {
