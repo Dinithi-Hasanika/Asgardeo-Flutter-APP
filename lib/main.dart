@@ -281,6 +281,34 @@ class _MyAppState extends State<MyApp> {
 
   }
 
+  Future<void> updatePreferredMFAOption() async{
+    Map data = {
+      "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+      ],
+      "Operations": [
+        {
+          "op": "replace",
+          "value": {
+            "urn:scim:wso2:schema":{
+              "preferredMFAOption":"mfa"
+            }
+          }
+        }
+      ]
+    };
+    final updatedInfo = await http.patch(
+        Uri.parse(meEndpoint),
+        headers: {'Authorization': 'Bearer $_accessToken', 'Content-Type': 'application/scim+json'},
+        body: json.encode(data)
+    );
+    
+    if(updatedInfo.statusCode == 200){
+      var profile = jsonDecode(updatedInfo.body);
+      print(profile['urn:scim:wso2:schema']['preferredMFAOption']);
+    }
+  }
+
   void logOutFunction() async {
     try {
       final EndSessionResponse? result = await flutterAppAuth.endSession(
