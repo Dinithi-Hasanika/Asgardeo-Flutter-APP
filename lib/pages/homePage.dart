@@ -33,6 +33,13 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           ElevatedButton(
+            onPressed: () {
+             setPageIndex(6);
+            },
+            child: Text('Set Up MFA Option'),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
             onPressed: () async {
               await logOutFunction();
             },

@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/pages/setUpMFAPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -16,8 +17,8 @@ const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
 const discoveryUrl =
     'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
 const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
-//const externalAPIEndpoint = 'http://localhost:9090/albums';
-const externalAPIEndpoint = 'https://dummy.restapiexample.com/api/v1/employees';
+const externalAPIEndpoint = 'http://localhost:9090/albums';
+//const externalAPIEndpoint = 'https://dummy.restapiexample.com/api/v1/employees';
 const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
 const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=TzpAhjAB5YHSHHfN0zP709FVgZoa&sp=asgardeo-flutterapp';
 
@@ -87,6 +88,8 @@ class _MyAppState extends State<MyApp> {
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData) ,)
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
+            : _pageIndex == 6
+            ? SetUpMFAPage(setPageIndex)
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
       ),
