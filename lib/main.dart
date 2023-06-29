@@ -1,5 +1,6 @@
 import 'package:asgardeo_flutter_app/pages/setUpMFAPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
@@ -171,8 +172,13 @@ class _MyAppState extends State<MyApp> {
         _apiData =externalInfo.body;
       });
     }else if(externalInfo.statusCode == 401){
-      await renewAccessToken();
-      await callExternalAPIFunction();
+      try {
+        await renewAccessToken();
+        await callExternalAPIFunction();
+      }catch(e,s){
+    print('Error while refreshing the token: $e - stack: $s');
+    await loginFunction();
+    }
     }
   }
 
@@ -188,8 +194,13 @@ class _MyAppState extends State<MyApp> {
         _userName = profile['userName'].toString().split("/")[1];
       });
     }else if(userInfo.statusCode == 401){
-      await renewAccessToken();
-      await getUserName();
+      try {
+        await renewAccessToken();
+        await getUserName();
+      }catch(e,s){
+        print('Error while refreshing the token: $e - stack: $s');
+        await loginFunction();
+      }
     }
   }
 
@@ -212,8 +223,13 @@ class _MyAppState extends State<MyApp> {
        _pageIndex = 3;
       });
     }else if(userInfo.statusCode == 401){
-      await renewAccessToken();
-      await getUserProfileData();
+      try {
+        await renewAccessToken();
+        await getUserProfileData();
+      }catch (e, s){
+      print('Error while refreshing the token: $e - stack: $s');
+      await loginFunction();
+    }
     }
   }
   
@@ -255,8 +271,13 @@ class _MyAppState extends State<MyApp> {
         _pageIndex = 3;
       });
     }else if(updatedInfo.statusCode == 401){
-      await renewAccessToken();
-      await updateUserProfile(firstName, lastName, country);
+      try {
+        await renewAccessToken();
+        await updateUserProfile(firstName, lastName, country);
+      } catch (e, s){
+        print('Error while refreshing the token: $e - stack: $s');
+        await loginFunction();
+      }
     }
 
   }
@@ -281,7 +302,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> renewAccessToken() async{
-    try {
+
       final TokenResponse? tokenResponse = await flutterAppAuth.token(
           TokenRequest(clientId,
               redirectUrl,
@@ -295,8 +316,5 @@ class _MyAppState extends State<MyApp> {
         _refreshToken = tokenResponse?.refreshToken;
         _idToken = tokenResponse?.idToken;
       });
-    } catch (e, s) {
-      print('Error while refreshing the token: $e - stack: $s');
-    }
   }
 }
