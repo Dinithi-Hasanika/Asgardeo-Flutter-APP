@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
+            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName, getPreferredMFAOption)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
             : _pageIndex == 6
-            ? SetUpMFAPage(setPageIndex)
+            ? SetUpMFAPage(setPageIndex, _preferredMFA)
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
       ),
@@ -213,7 +213,8 @@ class _MyAppState extends State<MyApp> {
     if(userInfo.statusCode == 200){
       var profile = jsonDecode(userInfo.body);
       setState(() {
-        _preferredMFA = profile['urn:scim:wso2:schema']['preferredMFAOption']?profile['urn:scim:wso2:schema']['preferredMFAOption']: '' ;
+        _preferredMFA = profile['urn:scim:wso2:schema']['preferredMFAOption'] ?? '' ;
+        print(_preferredMFA);
       });
     }else if(userInfo.statusCode == 401){
       try {

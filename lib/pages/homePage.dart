@@ -7,8 +7,9 @@ class HomePage extends StatelessWidget {
   final setPageIndex;
   final getUserProfileData;
   final username;
+  final getPreferredMFA;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username);
+  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username, this.getPreferredMFA);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,8 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              await getPreferredMFA();
              setPageIndex(6);
             },
             child: Text('Set Up MFA Option'),
