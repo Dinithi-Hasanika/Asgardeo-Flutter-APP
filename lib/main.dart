@@ -1,6 +1,5 @@
 import 'package:asgardeo_flutter_app/pages/setUpMFAPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
