@@ -5,11 +5,12 @@ const List<String> itemList = <String>['DEFAULT','TOTP', 'Email', 'SMS'];
 class SetUpMFAPage extends StatefulWidget{
   final setPageIndex;
   final preferredMFAOption;
+  final updatePreferredMFA;
 
-  SetUpMFAPage(this.setPageIndex, this.preferredMFAOption);
+  SetUpMFAPage(this.setPageIndex, this.preferredMFAOption,this.updatePreferredMFA);
   @override
   State<SetUpMFAPage> createState() {
-    return _SetUpMFAPage(this.setPageIndex, this.preferredMFAOption);
+    return _SetUpMFAPage(this.setPageIndex, this.preferredMFAOption, this.updatePreferredMFA);
   }
 
 }
@@ -17,8 +18,9 @@ class SetUpMFAPage extends StatefulWidget{
 class _SetUpMFAPage extends State<SetUpMFAPage>{
   final setPageIndex;
   String dropDownValue;
+  final updatePreferredMFA;
 
-  _SetUpMFAPage(this.setPageIndex, this.dropDownValue);
+  _SetUpMFAPage(this.setPageIndex, this.dropDownValue, this.updatePreferredMFA);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -52,7 +54,8 @@ class _SetUpMFAPage extends State<SetUpMFAPage>{
           ],),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              await updatePreferredMFA(this.dropDownValue);
               setPageIndex(2);
             },
             child: Text('Save'),

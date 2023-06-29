@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
             : _pageIndex == 6
-            ? SetUpMFAPage(setPageIndex, _preferredMFA)
+            ? SetUpMFAPage(setPageIndex, _preferredMFA, this.updatePreferredMFAOption)
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
       ),
@@ -306,7 +306,7 @@ class _MyAppState extends State<MyApp> {
 
   }
 
-  Future<void> updatePreferredMFAOption() async{
+  Future<void> updatePreferredMFAOption(mfa) async{
     Map data = {
       "schemas": [
         "urn:ietf:params:scim:api:messages:2.0:PatchOp"
@@ -316,7 +316,7 @@ class _MyAppState extends State<MyApp> {
           "op": "replace",
           "value": {
             "urn:scim:wso2:schema":{
-              "preferredMFAOption":"mfa"
+              "preferredMFAOption":"$mfa"
             }
           }
         }
