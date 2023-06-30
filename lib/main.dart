@@ -9,18 +9,9 @@ import 'pages/externalAPIPage.dart';
 import 'pages/viewProfilePage.dart';
 import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
+import 'configs/configs.dart';
 
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
-
-const clientId = 'TzpAhjAB5YHSHHfN0zP709FVgZoa';
-const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
-const discoveryUrl =
-    'https://api.asgardeo.io/t/dinithi/oauth2/token/.well-known/openid-configuration';
-const userInfoEndpoint = 'https://api.asgardeo.io/t/dinithi/oauth2/userinfo';
-const externalAPIEndpoint = 'http://localhost:9090/albums';
-//const externalAPIEndpoint = 'https://dummy.restapiexample.com/api/v1/employees';
-const meEndpoint = 'https://api.asgardeo.io/t/dinithi/scim2/Me';
-const signUpUrl = 'https://accounts.asgardeo.io/t/dinithi/accountrecoveryendpoint/register.do?client_id=TzpAhjAB5YHSHHfN0zP709FVgZoa&sp=asgardeo-flutterapp';
 
 void main() {
   runApp(MyApp());
