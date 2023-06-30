@@ -34,7 +34,7 @@ class _SetUpMFAPage extends State<SetUpMFAPage>{
               Text('Preferred MFA Option', style: TextStyle(fontSize: 18)),
               SizedBox(width: 25,),
               DropdownButton(
-                value: this.dropDownValue,
+                value: this.dropDownValue != ''? this.dropDownValue : itemList.first ,
                 underline: Container(
                   height: 2,
                   color: Colors.orange,

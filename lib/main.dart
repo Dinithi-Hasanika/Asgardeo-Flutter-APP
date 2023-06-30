@@ -346,6 +346,7 @@ class _MyAppState extends State<MyApp> {
 
       setState(() {
         _isUserLoggedIn = false;
+        _userName = '';
         _pageIndex = 1;
       });
     } catch (e, s) {
