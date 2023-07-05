@@ -1,4 +1,3 @@
-import 'package:asgardeo_flutter_app/pages/setUpMFAPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -81,8 +80,6 @@ class _MyAppState extends State<MyApp> {
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData) ,)
             : _pageIndex == 5
             ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
-            : _pageIndex == 6
-            ? SetUpMFAPage(setPageIndex, _preferredMFA, this.updatePreferredMFAOption)
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
       ),
