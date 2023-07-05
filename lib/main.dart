@@ -37,7 +37,6 @@ class _MyAppState extends State<MyApp> {
   late String? _photo;
   late String _apiData;
   late String? _userName;
-  late String? _preferredMFA;
 
   @override
   void initState() {
@@ -55,7 +54,6 @@ class _MyAppState extends State<MyApp> {
     _photo = '';
     _apiData ='';
     _userName = '';
-    _preferredMFA = '';
   }
 
   @override
@@ -72,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName, getPreferredMFAOption)
+            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
             : _pageIndex == 3
             ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
             _mobile, _photo, setPageIndex)
@@ -193,29 +191,6 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future<void> getPreferredMFAOption() async {
-    final userInfo = await http.get(
-      Uri.parse(meEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
-    if(userInfo.statusCode == 200){
-      var profile = jsonDecode(userInfo.body);
-      setState(() {
-        _preferredMFA = profile['urn:scim:wso2:schema']['preferredMFAOption'] ?? '' ;
-        print(_preferredMFA);
-      });
-    }else if(userInfo.statusCode == 401){
-      try {
-        await renewAccessToken();
-        await getPreferredMFAOption();
-      }catch(e,s){
-        print('Error while refreshing the token: $e - stack: $s');
-        await loginFunction();
-      }
-    }
-
-  }
-
   Future<void> getUserProfileData() async {
     final userInfo = await http.get(
       Uri.parse(meEndpoint),
@@ -292,34 +267,6 @@ class _MyAppState extends State<MyApp> {
       }
     }
 
-  }
-
-  Future<void> updatePreferredMFAOption(mfa) async{
-    Map data = {
-      "schemas": [
-        "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-      ],
-      "Operations": [
-        {
-          "op": "replace",
-          "value": {
-            "urn:scim:wso2:schema":{
-              "preferredMFAOption":"$mfa"
-            }
-          }
-        }
-      ]
-    };
-    final updatedInfo = await http.patch(
-        Uri.parse(meEndpoint),
-        headers: {'Authorization': 'Bearer $_accessToken', 'Content-Type': 'application/scim+json'},
-        body: json.encode(data)
-    );
-    
-    if(updatedInfo.statusCode == 200){
-      var profile = jsonDecode(updatedInfo.body);
-      print(profile['urn:scim:wso2:schema']['preferredMFAOption']);
-    }
   }
 
   void logOutFunction() async {
