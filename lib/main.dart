@@ -10,6 +10,12 @@ import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
 import 'configs/configs.dart';
 
+const discoveryUrl =
+    'https://api.asgardeo.io/t/$organizationName/oauth2/token/.well-known/openid-configuration';
+const userInfoEndpoint = 'https://api.asgardeo.io/t/$organizationName/oauth2/userinfo';
+const meEndpoint = 'https://api.asgardeo.io/t/$organizationName/scim2/Me';
+const signUpUrl = 'https://accounts.asgardeo.io/t/$organizationName/accountrecoveryendpoint/register.do?client_id=$clientId&sp=$spName';
+
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 void main() {
@@ -200,12 +206,12 @@ class _MyAppState extends State<MyApp> {
     if(userInfo.statusCode == 200){
       var profile = jsonDecode(userInfo.body);
       setState(() {
-        _firstName = profile['name']['givenName'];
-        _lastName = profile['name']['familyName'];
-        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'];
-        _country = profile['urn:scim:wso2:schema']['country'];
+        _firstName = profile['name']['givenName'] ?? '';
+        _lastName = profile['name']['familyName'] ?? '';
+        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
+        _country = profile['urn:scim:wso2:schema']['country'] ?? '';
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'];
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? '';
        _userName = profile['userName'].toString().split("/")[1];
        _pageIndex = 3;
       });
@@ -249,12 +255,12 @@ class _MyAppState extends State<MyApp> {
     if(updatedInfo.statusCode == 200){
       var profile = jsonDecode(updatedInfo.body);
       setState(() {
-        _firstName = profile['name']['givenName'];
-        _lastName = profile['name']['familyName'];
-        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'];
-        _country = profile['urn:scim:wso2:schema']['country'];
+        _firstName = profile['name']['givenName'] ?? '';
+        _lastName = profile['name']['familyName'] ?? '';
+        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
+        _country = profile['urn:scim:wso2:schema']['country'] ?? '';
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'];
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? '';
         _pageIndex = 3;
       });
     }else if(updatedInfo.statusCode == 401){
