@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
               _mobile, _photo, setPageIndex),
             )
             : _pageIndex == 4
-            ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData) ,)
+            ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData))
             : _pageIndex == 5
             ? SingleChildScrollView(child: EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile))
             : LogInPage(loginFunction,signUpFunction)
@@ -213,7 +213,7 @@ class _MyAppState extends State<MyApp> {
         _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
         _country = profile['urn:scim:wso2:schema']['country'] ?? '';
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? '';
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=';
        _userName = profile['userName'].toString().split("/")[1];
        _pageIndex = 3;
       });
@@ -262,7 +262,7 @@ class _MyAppState extends State<MyApp> {
         _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
         _country = profile['urn:scim:wso2:schema']['country'] ?? '';
         _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? '';
+        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=';
         _pageIndex = 3;
       });
     }else if(updatedInfo.statusCode == 401){
