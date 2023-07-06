@@ -37,7 +37,7 @@ class _EditProfilePage extends State<EditProfilePage>{
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Edit User Profiles', style: TextStyle(fontSize: 30)),
+              Text('Edit User Profile', style: TextStyle(fontSize: 30)),
               SizedBox(height: 40),
               Padding(
                 padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),

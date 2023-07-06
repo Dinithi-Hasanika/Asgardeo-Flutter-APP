@@ -78,12 +78,14 @@ class _MyAppState extends State<MyApp> {
             ? _pageIndex == 2
             ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
             : _pageIndex == 3
-            ? ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
-            _mobile, _photo, setPageIndex)
+            ? SingleChildScrollView(
+              child: ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
+              _mobile, _photo, setPageIndex),
+            )
             : _pageIndex == 4
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData) ,)
             : _pageIndex == 5
-            ? EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile)
+            ? SingleChildScrollView(child: EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile))
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
       ),
