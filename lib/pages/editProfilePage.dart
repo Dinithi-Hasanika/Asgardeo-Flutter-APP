@@ -70,19 +70,23 @@ class _EditProfilePage extends State<EditProfilePage>{
                 ),
               ),
               SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () async {
-                  setPageIndex(3);
-                },
-                child: Text('Cancel'),
-              ),
-              SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () async {
-                  await updateUserProfile(this._firstName, this._lastName,this._country);
-                },
-                child: Text('Save'),
-              ),
+              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                SizedBox(width: 60),
+                ElevatedButton(
+                  onPressed: () async {
+                    setPageIndex(3);
+                  },
+                  child: Text('Cancel'),
+                ),
+                SizedBox(width: 40),
+                ElevatedButton(
+                  onPressed: () async {
+                    await updateUserProfile(this._firstName, this._lastName,this._country);
+                  },
+                  child: Text('Save'),
+                ),
+              ]),
+
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
