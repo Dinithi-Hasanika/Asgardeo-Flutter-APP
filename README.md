@@ -38,4 +38,4 @@ You can use one of the following options to try out the mobile application
 
 openid address phone profile
 
-<img src="resources/images/scopes.png"  width="40%" height="50%">
+<img src="resources/images/scopes.png"  width="60%" height="50%">
