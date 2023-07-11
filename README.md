@@ -19,7 +19,7 @@ You can use one of the following options to try out the mobile application
 - Use Android Studio Emulator - If you have Android Studio installed then you can use this. 
 - Use iPhone emulator in MacOS - If you have a Macbook, then you can install XCODE and use this emulator
 
-### Setup the Asgardeo Application
+## Setup the Asgardeo Application
 1. Login to your [Asgardeo account](https://console.asgardeo.io/) . If you do not have a Asgardeo account, you can create one following the [documentation](https://wso2.com/asgardeo/docs/get-started/create-asgardeo-account/#sign-up).
 2. Create a new Mobile Application in Asgardeo Console. You can follow the [documentation](https://wso2.com/asgardeo/docs/guides/applications/register-mobile-app/#register-the-app) for registering mobile app. Make sure to put the *wso2.asgardeo.flutterapp://login-callback* as the redirect uri as showed in the screenshot.
 
@@ -39,3 +39,16 @@ You can use one of the following options to try out the mobile application
 openid address phone profile
 
 <img src="resources/images/scopes.png"  width="60%" height="50%">
+
+## Setup the Mobile Application
+
+1. Clone the Git repository.
+2. Update configurations in the file <project>/lib/configs/configs.dart in the flutter project 
+
+```
+const clientId = '<client_id>';
+const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
+const organizationName = '<organization-name>';
+const spName = '<sp-name>';
+const externalAPIEndpoint = '<external-api-url>';
+```
