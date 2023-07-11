@@ -18,3 +18,5 @@ You can use one of the following options to try out the mobile application
 - Connect your mobile device to the computer via USB and your OS will detect the plugged-in device. Make sure to enable development mode on your mobile device.
 - Use Android Studio Emulator - If you have Android Studio installed then you can use this. 
 - Use iPhone emulator in MacOS - If you have a Macbook, then you can install XCODE and use this emulator
+
+### Setup the Asgardeo Application
