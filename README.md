@@ -52,3 +52,6 @@ const organizationName = '<organization-name>';
 const spName = '<sp-name>';
 const externalAPIEndpoint = '<external-api-url>';
 ```
+
+3. Run the flutter application with the following command in flutter terminal
+`flutter run`
