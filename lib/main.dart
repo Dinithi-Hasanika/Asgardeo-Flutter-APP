@@ -127,7 +127,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future<void> signUpFunction() async{
+  Future<void> signUpFunction() async {
     if (!await launchUrl(Uri.parse(signUpUrl))) {
       throw Exception('Could not launch $signUpUrl');
     }
@@ -161,18 +161,18 @@ class _MyAppState extends State<MyApp> {
       Uri.parse(externalAPIEndpoint),
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
-    if(externalInfo.statusCode == 200){
+    if (externalInfo.statusCode == 200) {
       setState(() {
         _pageIndex = 4;
         _apiData =externalInfo.body;
       });
-    }else if(externalInfo.statusCode == 401){
+    }else if (externalInfo.statusCode == 401) {
       try {
         await renewAccessToken();
         await callExternalAPIFunction();
-      }catch(e,s){
-    print('Error while refreshing the token: $e - stack: $s');
-    await loginFunction();
+      } catch(e,s) {
+        print('Error while refreshing the token: $e - stack: $s');
+        await loginFunction();
     }
     }
   }
@@ -183,16 +183,16 @@ class _MyAppState extends State<MyApp> {
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
 
-    if(userInfo.statusCode == 200){
+    if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
         _userName = profile['userName'].toString().split("/")[1];
       });
-    }else if(userInfo.statusCode == 401){
+    }else if (userInfo.statusCode == 401) {
       try {
         await renewAccessToken();
         await getUserName();
-      }catch(e,s){
+      } catch(e,s) {
         print('Error while refreshing the token: $e - stack: $s');
         await loginFunction();
       }
@@ -205,7 +205,7 @@ class _MyAppState extends State<MyApp> {
       headers: {'Authorization': 'Bearer $_accessToken'},
     );
 
-    if(userInfo.statusCode == 200){
+    if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
         _firstName = profile['name']['givenName'] ?? '';
@@ -217,13 +217,13 @@ class _MyAppState extends State<MyApp> {
        _userName = profile['userName'].toString().split("/")[1];
        _pageIndex = 3;
       });
-    }else if(userInfo.statusCode == 401){
+    }else if (userInfo.statusCode == 401) {
       try {
         await renewAccessToken();
         await getUserProfileData();
-      }catch (e, s){
-      print('Error while refreshing the token: $e - stack: $s');
-      await loginFunction();
+      } catch (e, s) {
+        print('Error while refreshing the token: $e - stack: $s');
+        await loginFunction();
     }
     }
   }
@@ -254,7 +254,7 @@ class _MyAppState extends State<MyApp> {
       body: json.encode(data)
     );
 
-    if(updatedInfo.statusCode == 200){
+    if (updatedInfo.statusCode == 200) {
       var profile = jsonDecode(updatedInfo.body);
       setState(() {
         _firstName = profile['name']['givenName'] ?? '';
@@ -265,11 +265,11 @@ class _MyAppState extends State<MyApp> {
         _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=';
         _pageIndex = 3;
       });
-    }else if(updatedInfo.statusCode == 401){
+    }else if (updatedInfo.statusCode == 401) {
       try {
         await renewAccessToken();
         await updateUserProfile(firstName, lastName, country);
-      } catch (e, s){
+      } catch (e, s) {
         print('Error while refreshing the token: $e - stack: $s');
         await loginFunction();
       }
@@ -297,7 +297,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future<void> renewAccessToken() async{
+  Future<void> renewAccessToken() async {
 
       final TokenResponse? tokenResponse = await flutterAppAuth.token(
           TokenRequest(clientId,

@@ -44,7 +44,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 child: TextField(
                   controller: _firstNameController,
                   decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text){
+                  onChanged: (text) {
                     this._firstName = text;
                   },
                 ),
@@ -54,7 +54,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 child: TextField(
                   controller: _lastNameController,
                   decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text){
+                  onChanged: (text) {
                     this._lastName = text;
                   },
                 ),
@@ -64,7 +64,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 child: TextField(
                   controller: _countryController,
                   decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text){
+                  onChanged: (text) {
                     this._country = text;
                   },
                 ),
