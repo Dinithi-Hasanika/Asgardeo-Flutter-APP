@@ -74,16 +74,16 @@ class _EditProfilePage extends State<EditProfilePage>{
                 SizedBox(width: 60),
                 ElevatedButton(
                   onPressed: () async {
-                    setPageIndex(3);
+                    await updateUserProfile(this._firstName, this._lastName,this._country);
                   },
-                  child: Text('Cancel'),
+                  child: Text('Save'),
                 ),
                 SizedBox(width: 40),
                 ElevatedButton(
                   onPressed: () async {
-                    await updateUserProfile(this._firstName, this._lastName,this._country);
+                    setPageIndex(3);
                   },
-                  child: Text('Save'),
+                  child: Text('Cancel'),
                 ),
               ]),
 
