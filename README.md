@@ -5,14 +5,14 @@
 ### Install Flutter
 Follow Flutter Installation [Documentation](https://docs.flutter.dev/get-started/install) to Install flutter
 
-### Set Up IDE for Development
+### Setup IDE for Development
 You can use one of the following IDEs for development
 
 - Android Studio
 - Intellij IDEA
 - Visual Studio
 
-### Set Up Mobile Device or an Emulator
+### Setup Mobile Device or an Emulator
 You can use one of the following options to try out the mobile application
 
 - Connect your mobile device to the computer via USB and your OS will detect the plugged-in device. Make sure to enable development mode on your mobile device.
@@ -40,7 +40,7 @@ openid address phone profile
 
 <img src="resources/images/scopes.png"  width="60%" height="50%">
 
-## Setup the Mobile Application
+## Getting started with the Mobile Application
 
 1. Clone the Git repository.
 2. Update configurations in the file `<project>/lib/configs/configs.dart` in the flutter project 
