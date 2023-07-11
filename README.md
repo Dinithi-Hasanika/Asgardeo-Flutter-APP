@@ -32,3 +32,10 @@ You can use one of the following options to try out the mobile application
 - First Name, Last Name, and Photo Url attributes in Profile
 
 <img src="resources/images/user_attributes.png"  width="60%" height="50%">
+
+4. Add following scopes as the required scopes in the Application’s User Attributes tab.
+   Required scopes:
+
+openid address phone profile
+
+<img src="resources/images/scopes.png"  width="40%" height="50%">
