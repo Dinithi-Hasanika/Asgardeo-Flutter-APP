@@ -43,7 +43,7 @@ openid address phone profile
 ## Setup the Mobile Application
 
 1. Clone the Git repository.
-2. Update configurations in the file <project>/lib/configs/configs.dart in the flutter project 
+2. Update configurations in the file `<project>/lib/configs/configs.dart` in the flutter project 
 
 ```
 const clientId = '<client_id>';
