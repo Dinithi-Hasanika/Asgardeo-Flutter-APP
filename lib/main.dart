@@ -1,7 +1,6 @@
 import 'package:asgardeo_flutter_app/utils/APIClient.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'pages/editProfilePage.dart';
@@ -218,11 +217,8 @@ class _MyAppState extends State<MyApp> {
         }
       ]
     };
-    final updatedInfo = await http.patch(
-      Uri.parse(meEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken', 'Content-Type': 'application/scim+json'},
-      body: json.encode(data)
-    );
+
+    final updatedInfo = await APIClient().httPatch(meEndpoint, _accessToken, data);
 
     if (updatedInfo.statusCode == 200) {
       var profile = jsonDecode(updatedInfo.body);
