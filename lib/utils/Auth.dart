@@ -1,8 +1,7 @@
 import 'package:flutter_appauth/flutter_appauth.dart';
 import '../configs/configs.dart';
+import '../configs/endPointUrls.dart';
 
-const discoveryUrl =
-    'https://api.asgardeo.io/t/$organizationName/oauth2/token/.well-known/openid-configuration';
 class Auth{
 
 Future<AuthorizationTokenResponse?> authorize(flutterAppAuth) async {
@@ -32,7 +31,7 @@ Future<TokenResponse?> refreshToken(flutterAppAuth, refreshToken) async{
 }
 
 logOutUser(flutterAppAuth, idToken) async{
-  final EndSessionResponse? result = await flutterAppAuth.endSession(
+  await flutterAppAuth.endSession(
     EndSessionRequest(
       idTokenHint: idToken,
       postLogoutRedirectUrl: redirectUrl,
