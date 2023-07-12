@@ -30,4 +30,14 @@ Future<TokenResponse?> refreshToken(flutterAppAuth, refreshToken) async{
   );
   return tokenResponse;
 }
+
+logOutUser(flutterAppAuth, idToken) async{
+  final EndSessionResponse? result = await flutterAppAuth.endSession(
+    EndSessionRequest(
+      idTokenHint: idToken,
+      postLogoutRedirectUrl: redirectUrl,
+      discoveryUrl: discoveryUrl,
+    ),
+  );
+}
 }

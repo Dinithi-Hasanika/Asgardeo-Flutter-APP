@@ -237,14 +237,7 @@ class _MyAppState extends State<MyApp> {
 
   void logOutFunction() async {
     try {
-      final EndSessionResponse? result = await flutterAppAuth.endSession(
-        EndSessionRequest(
-          idTokenHint: _idToken,
-          postLogoutRedirectUrl: redirectUrl,
-          discoveryUrl: discoveryUrl,
-        ),
-      );
-
+      await Auth().logOutUser(flutterAppAuth, _idToken);
       setState(() {
         _isUserLoggedIn = false;
         _userName = '';
