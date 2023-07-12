@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
-            ? HomePage(retrieveUserDetails, logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
+            ? HomePage(logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
             : _pageIndex == 3
             ? SingleChildScrollView(
               child: ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
@@ -130,29 +130,6 @@ class _MyAppState extends State<MyApp> {
   Future<void> signUpFunction() async {
     if (!await launchUrl(Uri.parse(signUpUrl))) {
       throw Exception('Could not launch $signUpUrl');
-    }
-  }
-
-  Future<void> retrieveUserDetails() async {
-
-    final userInfoResponse = await http.get(
-      Uri.parse( userInfoEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
-
-    if (userInfoResponse.statusCode == 200) {
-      var profile = jsonDecode(userInfoResponse.body);
-      setState(() {
-        _firstName = profile['given_name'];
-        _lastName = profile['family_name'];
-        _dateOfBirth = profile['birthdate'];
-        _country = profile['address']['country'];
-        _mobile = profile['phone_number'];
-        _photo = profile['picture'];
-        _pageIndex = 3;
-      });
-    } else {
-      throw Exception('Failed to get user profile information');
     }
   }
 

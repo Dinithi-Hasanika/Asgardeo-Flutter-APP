@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final retriveProfileFunction;
   final logOutFunction;
   final callExternalAPIFunction;
   final setPageIndex;
   final getUserProfileData;
   final username;
 
-  const HomePage(this.retriveProfileFunction, this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username);
+  const HomePage(this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username);
 
   @override
   Widget build(BuildContext context) {
