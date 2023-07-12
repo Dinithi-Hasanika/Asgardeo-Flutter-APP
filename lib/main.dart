@@ -12,6 +12,7 @@ import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
 import 'configs/configs.dart';
 import 'configs/endPointUrls.dart';
+import 'constants.dart' as Constants;
 
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
@@ -62,14 +63,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Asgardeo Flutter Integration',
+      title: Constants.appTitle,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Asgardeo Flutter Integration'),
+          title: Text(Constants.appTitle),
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
