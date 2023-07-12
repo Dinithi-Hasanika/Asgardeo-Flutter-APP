@@ -256,15 +256,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> renewAccessToken() async {
-
-      final TokenResponse? tokenResponse = await flutterAppAuth.token(
-          TokenRequest(clientId,
-              redirectUrl,
-              grantType: GrantType.refreshToken,
-              refreshToken: this._refreshToken,
-              discoveryUrl: discoveryUrl
-          )
-      );
+    final TokenResponse? tokenResponse = await Auth().refreshToken(flutterAppAuth, _refreshToken);
       setState(() {
         _accessToken = tokenResponse?.accessToken;
         _refreshToken = tokenResponse?.refreshToken;

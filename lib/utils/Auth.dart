@@ -19,4 +19,15 @@ Future<AuthorizationTokenResponse?> authorize(flutterAppAuth) async {
   return result;
 }
 
+Future<TokenResponse?> refreshToken(flutterAppAuth, refreshToken) async{
+  final TokenResponse? tokenResponse = await flutterAppAuth.token(
+      TokenRequest(clientId,
+          redirectUrl,
+          grantType: GrantType.refreshToken,
+          refreshToken: refreshToken,
+          discoveryUrl: discoveryUrl
+      )
+  );
+  return tokenResponse;
+}
 }
