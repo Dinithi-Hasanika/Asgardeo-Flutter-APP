@@ -1,5 +1,6 @@
 import 'package:asgardeo_flutter_app/utils/APIClient.dart';
 import 'package:asgardeo_flutter_app/utils/Auth.dart';
+import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_appauth/flutter_appauth.dart';
@@ -95,6 +96,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> loginFunction() async {
+
     try {
       final AuthorizationTokenResponse? result = await Auth().authorize(flutterAppAuth);
 
@@ -115,12 +117,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> signUpFunction() async {
+
     if (!await launchUrl(Uri.parse(signUpUrl))) {
       throw Exception('Could not launch $signUpUrl');
     }
   }
 
   Future<void> callExternalAPIFunction() async {
+
     final externalInfo = await APIClient().httpGet(externalAPIEndpoint, _accessToken);
 
     if (externalInfo.statusCode == 200) {
@@ -140,6 +144,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> getUserName() async {
+
     final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == 200) {
@@ -159,6 +164,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> getUserProfileData() async {
+
     final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == 200) {
@@ -185,26 +191,8 @@ class _MyAppState extends State<MyApp> {
   }
   
   Future<void> updateUserProfile(firstName, lastName, country) async {
-    Map data = {
-      "schemas": [
-        "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-      ],
-      "Operations": [
-        {
-          "op": "replace",
-          "value": {
-            "name":{
-              "givenName": "$firstName",
-              "familyName": "$lastName"
-            },
-            "urn:scim:wso2:schema":{
-              "country":"$country"
-            }
-          }
-        }
-      ]
-    };
 
+    Map data = Util().generateUpdateRequestBody(firstName, lastName, country);
     final updatedInfo = await APIClient().httPatch(meEndpoint, _accessToken, data);
 
     if (updatedInfo.statusCode == 200) {
@@ -231,6 +219,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void logOutFunction() async {
+
     try {
       await Auth().logOutUser(flutterAppAuth, _idToken);
       setState(() {
@@ -244,6 +233,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> renewAccessToken() async {
+
     final TokenResponse? tokenResponse = await Auth().refreshToken(flutterAppAuth, _refreshToken);
       setState(() {
         _accessToken = tokenResponse?.accessToken;
