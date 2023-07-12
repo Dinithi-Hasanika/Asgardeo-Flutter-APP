@@ -1,6 +1,7 @@
 import 'package:flutter_appauth/flutter_appauth.dart';
 import '../configs/configs.dart';
 import '../configs/endPointUrls.dart';
+import 'AuthConstants.dart' as Constants;
 
 class Auth{
 
@@ -11,8 +12,8 @@ Future<AuthorizationTokenResponse?> authorize(flutterAppAuth) async {
       clientId,
       redirectUrl,
       discoveryUrl: discoveryUrl,
-      promptValues: ['login'],
-      scopes: ['openid', 'profile', 'address', 'phone', 'internal_login'],
+      promptValues: [Constants.login],
+      scopes: [Constants.openidScope, Constants.profile, Constants.address, Constants.phone, Constants.internalLoginScope],
     ),
   );
   return result;
