@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/utils/APIClient.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -134,10 +135,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> callExternalAPIFunction() async {
-    final externalInfo = await http.get(
-      Uri.parse(externalAPIEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
+    final externalInfo = await APIClient().httpGet(externalAPIEndpoint, _accessToken);
+
     if (externalInfo.statusCode == 200) {
       setState(() {
         _pageIndex = 4;
@@ -155,10 +154,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> getUserName() async {
-    final userInfo = await http.get(
-      Uri.parse(meEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
+    final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
@@ -177,10 +173,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> getUserProfileData() async {
-    final userInfo = await http.get(
-      Uri.parse(meEndpoint),
-      headers: {'Authorization': 'Bearer $_accessToken'},
-    );
+    final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
