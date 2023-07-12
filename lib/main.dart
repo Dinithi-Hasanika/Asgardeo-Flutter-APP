@@ -1,4 +1,5 @@
 import 'package:asgardeo_flutter_app/utils/APIClient.dart';
+import 'package:asgardeo_flutter_app/utils/Auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_appauth/flutter_appauth.dart';
@@ -100,16 +101,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> loginFunction() async {
     try {
-      final AuthorizationTokenResponse? result =
-      await flutterAppAuth.authorizeAndExchangeCode(
-        AuthorizationTokenRequest(
-          clientId,
-          redirectUrl,
-          discoveryUrl: discoveryUrl,
-          promptValues: ['login'],
-          scopes: ['openid', 'profile', 'address', 'phone', 'internal_login'],
-        ),
-      );
+      final AuthorizationTokenResponse? result = await Auth().authorize(flutterAppAuth);
 
       setState(() {
         _isUserLoggedIn = true;
