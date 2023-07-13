@@ -12,7 +12,7 @@ import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
 import 'configs/configs.dart';
 import 'configs/endPointUrls.dart';
-import 'constants.dart' as Constants;
+import 'constants.dart' as constants;
 
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
@@ -63,14 +63,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: Constants.appTitle,
+      title: constants.appTitle,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(Constants.appTitle),
+          title: Text(constants.appTitle),
         ),
         body: _isUserLoggedIn
             ? _pageIndex == 2
@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
     if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
-        _userName = profile['userName'].toString().split("/")[1];
+        _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
       });
     }else if (userInfo.statusCode == 401) {
       try {
@@ -171,13 +171,13 @@ class _MyAppState extends State<MyApp> {
     if (userInfo.statusCode == 200) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
-        _firstName = profile['name']['givenName'] ?? '';
-        _lastName = profile['name']['familyName'] ?? '';
-        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
-        _country = profile['urn:scim:wso2:schema']['country'] ?? '';
-        _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=';
-       _userName = profile['userName'].toString().split("/")[1];
+        _firstName = profile[constants.name][constants.givenName] ?? '';
+        _lastName = profile[constants.name][constants.familyName] ?? '';
+        _dateOfBirth = profile[constants.wso2Schema][constants.dob] ?? '';
+        _country = profile[constants.wso2Schema][constants.country] ?? '';
+        _mobile = profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
+        _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
+       _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
        _pageIndex = 3;
       });
     }else if (userInfo.statusCode == 401) {
@@ -199,12 +199,12 @@ class _MyAppState extends State<MyApp> {
     if (updatedInfo.statusCode == 200) {
       var profile = jsonDecode(updatedInfo.body);
       setState(() {
-        _firstName = profile['name']['givenName'] ?? '';
-        _lastName = profile['name']['familyName'] ?? '';
-        _dateOfBirth = profile['urn:scim:wso2:schema']['dateOfBirth'] ?? '';
-        _country = profile['urn:scim:wso2:schema']['country'] ?? '';
-        _mobile = profile['phoneNumbers'][0]['type'] == 'mobile'? profile['phoneNumbers'][0]['value']:'';
-        _photo = profile['urn:scim:wso2:schema']['photoUrl'] ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=';
+        _firstName = profile[constants.name][constants.givenName] ?? '';
+        _lastName = profile[constants.name][constants.familyName] ?? '';
+        _dateOfBirth = profile[constants.wso2Schema][constants.dob] ?? '';
+        _country = profile[constants.wso2Schema][constants.country] ?? '';
+        _mobile =  profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
+        _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
         _pageIndex = 3;
       });
     }else if (updatedInfo.statusCode == 401) {
