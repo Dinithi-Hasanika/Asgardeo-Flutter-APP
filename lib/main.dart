@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _pageIndex = 1;
+    _pageIndex = constants.firstPage;
     _isUserLoggedIn = false;
     _idToken = '';
     _accessToken = '';
@@ -73,16 +73,16 @@ class _MyAppState extends State<MyApp> {
           title: Text(constants.appTitle),
         ),
         body: _isUserLoggedIn
-            ? _pageIndex == 2
+            ? _pageIndex == constants.homePage
             ? HomePage(logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
-            : _pageIndex == 3
+            : _pageIndex == constants.profilePage
             ? SingleChildScrollView(
               child: ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
               _mobile, _photo, setPageIndex),
             )
-            : _pageIndex == 4
+            : _pageIndex == constants.externalAPIResponsePage
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData))
-            : _pageIndex == 5
+            : _pageIndex == constants.editProfilePage
             ? SingleChildScrollView(child: EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile))
             : LogInPage(loginFunction,signUpFunction)
             : LogInPage(loginFunction,signUpFunction),
@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
         _idToken = result?.idToken;
         _accessToken = result?.accessToken;
         _refreshToken = result?.refreshToken;
-        _pageIndex = 2;
+        _pageIndex = constants.homePage;
       });
       await getUserName();
     } catch (e, s) {
@@ -130,7 +130,7 @@ class _MyAppState extends State<MyApp> {
 
     if (externalInfo.statusCode == constants.httpSuccessCode) {
       setState(() {
-        _pageIndex = 4;
+        _pageIndex = constants.externalAPIResponsePage;
         _apiData =externalInfo.body;
       });
     }else if (externalInfo.statusCode == constants.httpUnauthorizedCode) {
@@ -178,7 +178,7 @@ class _MyAppState extends State<MyApp> {
         _mobile = profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
         _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
        _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
-       _pageIndex = 3;
+       _pageIndex = constants.profilePage;
       });
     }else if (userInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
@@ -205,7 +205,7 @@ class _MyAppState extends State<MyApp> {
         _country = profile[constants.wso2Schema][constants.country] ?? '';
         _mobile =  profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
         _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
-        _pageIndex = 3;
+        _pageIndex = constants.profilePage;
       });
     }else if (updatedInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
@@ -226,7 +226,7 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         _isUserLoggedIn = false;
         _userName = '';
-        _pageIndex = 1;
+        _pageIndex = constants.firstPage;
       });
     } catch (e, s) {
       print('Error while logout from the system: $e - stack: $s');

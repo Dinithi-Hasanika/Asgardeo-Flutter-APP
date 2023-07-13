@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class ProfilePage extends StatelessWidget {
   final firstName;
@@ -61,14 +62,14 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              pageIndex(5);
+              pageIndex(constants.editProfilePage);
             },
             child: Text('Edit Profile'),
           ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              pageIndex(2);
+              pageIndex(constants.homePage);
             },
             child: Text('Back to home'),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class ExternalAPIDataPage extends StatelessWidget{
   final setPageIndex;
@@ -19,7 +20,7 @@ class ExternalAPIDataPage extends StatelessWidget{
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                setPageIndex(2);
+                setPageIndex(constants.homePage);
               },
               child: Text('Back to home'),
             ),

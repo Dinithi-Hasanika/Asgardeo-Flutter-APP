@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class EditProfilePage extends StatefulWidget {
   final firstName;
@@ -81,7 +82,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 SizedBox(width: 40),
                 ElevatedButton(
                   onPressed: () async {
-                    setPageIndex(3);
+                    setPageIndex(constants.profilePage);
                   },
                   child: Text('Cancel'),
                 ),
@@ -90,7 +91,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  setPageIndex(2);
+                  setPageIndex(constants.homePage);
                 },
                 child: Text('Back to home'),
               ),
