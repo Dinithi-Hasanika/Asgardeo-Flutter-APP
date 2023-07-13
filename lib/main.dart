@@ -128,12 +128,12 @@ class _MyAppState extends State<MyApp> {
 
     final externalInfo = await APIClient().httpGet(externalAPIEndpoint, _accessToken);
 
-    if (externalInfo.statusCode == 200) {
+    if (externalInfo.statusCode == constants.httpSuccessCode) {
       setState(() {
         _pageIndex = 4;
         _apiData =externalInfo.body;
       });
-    }else if (externalInfo.statusCode == 401) {
+    }else if (externalInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
         await callExternalAPIFunction();
@@ -148,12 +148,12 @@ class _MyAppState extends State<MyApp> {
 
     final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
-    if (userInfo.statusCode == 200) {
+    if (userInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
         _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
       });
-    }else if (userInfo.statusCode == 401) {
+    }else if (userInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
         await getUserName();
@@ -168,7 +168,7 @@ class _MyAppState extends State<MyApp> {
 
     final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
 
-    if (userInfo.statusCode == 200) {
+    if (userInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(userInfo.body);
       setState(() {
         _firstName = profile[constants.name][constants.givenName] ?? '';
@@ -180,7 +180,7 @@ class _MyAppState extends State<MyApp> {
        _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
        _pageIndex = 3;
       });
-    }else if (userInfo.statusCode == 401) {
+    }else if (userInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
         await getUserProfileData();
@@ -196,7 +196,7 @@ class _MyAppState extends State<MyApp> {
     Map data = Util().generateUpdateRequestBody(firstName, lastName, country);
     final updatedInfo = await APIClient().httPatch(meEndpoint, _accessToken, data);
 
-    if (updatedInfo.statusCode == 200) {
+    if (updatedInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(updatedInfo.body);
       setState(() {
         _firstName = profile[constants.name][constants.givenName] ?? '';
@@ -207,7 +207,7 @@ class _MyAppState extends State<MyApp> {
         _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
         _pageIndex = 3;
       });
-    }else if (updatedInfo.statusCode == 401) {
+    }else if (updatedInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
         await updateUserProfile(firstName, lastName, country);

@@ -13,3 +13,6 @@ const type = 'type';
 const mobile = 'mobile';
 const value = 'value';
 const photo = 'photoUrl';
+
+const httpSuccessCode = 200;
+const httpUnauthorizedCode = 401;
