@@ -24,11 +24,24 @@ class HomePage extends StatelessWidget {
             child: Text('View profile'),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await callExternalAPIFunction();
-            },
-            child: Text('Call External API'),
+          Container(
+            height: 44.0,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[
+                  Color(0xffeb4f63), Color(0xfffa7b3f)
+                ]
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await callExternalAPIFunction();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('Call External API', style: TextStyle(color: Colors.white),),
+            ),
           ),
           SizedBox(height: 20),
           ElevatedButton(
