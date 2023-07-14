@@ -10,20 +10,42 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
 
-      child: Row(
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ElevatedButton(
-            onPressed: () async {
-              await loginFunction();
-            },
-            child: Text('Sign In'),
-          ),
-            SizedBox(width: 50),
-            ElevatedButton(
+          children: [Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[Color(0xffeb4f63), Color(0xfffa7b3f)]
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
               onPressed: () async {
-                await signUpFunction();
+                await loginFunction();
               },
-              child: Text('Sign Up'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+            ),
+          ),
+            SizedBox(height: 20),
+            Container(
+              height: 44.0,
+              width: 185.0,
+              decoration: BoxDecoration(
+                  color: Color(0xffe0e1e2),
+                  borderRadius: BorderRadius.circular(20)),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await signUpFunction();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent),
+                child: Text('Create an account', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+              ),
             ),
           ]
       ),
