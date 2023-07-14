@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
             width: 150,
             height: 150,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 3.0),
+              border: Border.all(color: Color(0xffeb4f63), width: 2.0),
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
@@ -38,7 +38,6 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 20),
           Card(
               elevation: 0,
-              color: Theme.of(context).colorScheme.surfaceVariant,
               child: Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
