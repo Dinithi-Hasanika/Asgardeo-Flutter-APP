@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('View profile', style: TextStyle(color: Colors.white),),
+              child: Text('View profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
           SizedBox(height: 20),
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('Call External API', style: TextStyle(color: Colors.white),),
+              child: Text('Call External API', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
           SizedBox(height: 20),
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('Sign out', style: TextStyle(color: Colors.white),),
+              child: Text('Sign out', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
         ],
