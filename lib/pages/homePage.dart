@@ -17,15 +17,30 @@ class HomePage extends StatelessWidget {
         children: [
           Text("Welcome ${this.username}!", style: TextStyle(fontSize: 20)),
           SizedBox(height: 100),
-          ElevatedButton(
-            onPressed: () async {
-              await getUserProfileData();
-            },
-            child: Text('View profile'),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xffeb4f63), Color(0xfffa7b3f)
+                    ]
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await getUserProfileData();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('View profile', style: TextStyle(color: Colors.white),),
+            ),
           ),
           SizedBox(height: 20),
           Container(
             height: 44.0,
+            width: 170.0,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: <Color>[
@@ -44,11 +59,25 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await logOutFunction();
-            },
-            child: Text('Sign out'),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xffeb4f63), Color(0xfffa7b3f)
+                    ]
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await logOutFunction();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('Sign out', style: TextStyle(color: Colors.white),),
+            ),
           ),
         ],
       ),
