@@ -72,28 +72,58 @@ class _EditProfilePage extends State<EditProfilePage>{
               ),
               SizedBox(height: 40),
               Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                SizedBox(width: 60),
-                ElevatedButton(
-                  onPressed: () async {
-                    await updateUserProfile(this._firstName, this._lastName,this._country);
-                  },
-                  child: Text('Save'),
+                SizedBox(width: 40),
+                Container(
+                  height: 44.0,
+                  width: 150.0,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xffeb4f63), Color(0xfffa7b3f)
+                          ]
+                      ),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await updateUserProfile(this._firstName, this._lastName,this._country);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent),
+                    child: Text('Save', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+                  ),
                 ),
                 SizedBox(width: 40),
-                ElevatedButton(
-                  onPressed: () async {
-                    setPageIndex(constants.profilePage);
-                  },
-                  child: Text('Cancel'),
+                Container(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      setPageIndex(constants.profilePage);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent),
+                    child: Text('Cancel'),
+                  ),
                 ),
               ]),
 
               SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () {
-                  setPageIndex(constants.homePage);
-                },
-                child: Text('Back to home'),
+              Container(
+                height: 44.0,
+                width: 170.0,
+                decoration: BoxDecoration(
+                    color: Color(0xffe0e1e2),
+                    borderRadius: BorderRadius.circular(20)),
+                child: ElevatedButton(
+                  onPressed: () {
+                    setPageIndex(constants.homePage);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent),
+                  child: Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+                ),
               ),
             ]
         )

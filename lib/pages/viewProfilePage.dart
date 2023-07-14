@@ -60,18 +60,42 @@ class ProfilePage extends StatelessWidget {
                 ),
               )),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              pageIndex(constants.editProfilePage);
-            },
-            child: Text('Edit Profile'),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xffeb4f63), Color(0xfffa7b3f)
+                    ]
+                ),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
+              onPressed: () {
+                pageIndex(constants.editProfilePage);
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('Edit Profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+            ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              pageIndex(constants.homePage);
-            },
-            child: Text('Back to home'),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                color: Color(0xffe0e1e2),
+                borderRadius: BorderRadius.circular(20)),
+            child: ElevatedButton(
+              onPressed: () {
+                pageIndex(constants.homePage);
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+            ),
           ),
         ],
       ),
