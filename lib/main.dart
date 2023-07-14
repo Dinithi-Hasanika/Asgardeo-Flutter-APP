@@ -70,7 +70,16 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(constants.appTitle),
+             leadingWidth: 200,
+            leading:  Padding(
+              padding: EdgeInsets.only(left: 40, right: 2,),
+              child: Image.asset(
+                  "assets/images/asgardeo-logo-transparent.png",
+                  scale:0.1,
+                ),
+            ),
+
+          //title: Text(constants.appTitle),
         ),
         body: _isUserLoggedIn
             ? _pageIndex == constants.homePage
