@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
             leading:  Padding(
               padding: const EdgeInsets.only(left: 40, right: 2,),
               child: Image.asset(
-                  "assets/images/asgardeo-logo-transparent.png",
+                  constants.asgardeoLogo,
                   scale:0.1,
                 ),
             ),

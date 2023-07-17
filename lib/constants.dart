@@ -48,3 +48,6 @@ const lastNameLabel = 'Last Name';
 const countryLabel = 'Country';
 const dOBLabel = 'Date of Birth';
 const mobileLabel = 'Mobile';
+
+//Resources
+const asgardeoLogo = "assets/images/asgardeo-logo-transparent.png";
