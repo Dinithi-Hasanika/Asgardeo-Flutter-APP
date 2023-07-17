@@ -15,13 +15,13 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Welcome ${this.username}!", style: TextStyle(fontSize: 20)),
-          SizedBox(height: 100),
+          Text("Welcome ${this.username}!", style: const TextStyle(fontSize: 20)),
+          const SizedBox(height: 100),
           Container(
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: <Color>[
                       Color(0xffeb4f63), Color(0xfffa7b3f)
                     ]
@@ -34,15 +34,15 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('View profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+              child: const Text('View profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: <Color>[
                   Color(0xffeb4f63), Color(0xfffa7b3f)
                 ]
@@ -55,15 +55,15 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('Call External API', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              child: const Text('Call External API', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: <Color>[
                       Color(0xffeb4f63), Color(0xfffa7b3f)
                     ]
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('Sign out', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+              child: const Text('Sign out', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
         ],

@@ -16,7 +16,7 @@ class LogInPage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: <Color>[Color(0xffeb4f63), Color(0xfffa7b3f)]
                 ),
                 borderRadius: BorderRadius.circular(20)),
@@ -27,15 +27,15 @@ class LogInPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              child: const Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               height: 44.0,
               width: 185.0,
               decoration: BoxDecoration(
-                  color: Color(0xffe0e1e2),
+                  color: const Color(0xffe0e1e2),
                   borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () async {
@@ -44,7 +44,7 @@ class LogInPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent),
-                child: Text('Create an account', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                child: const Text('Create an account', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
               ),
             ),
           ]

@@ -38,10 +38,10 @@ class _EditProfilePage extends State<EditProfilePage>{
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Edit User Profile', style: TextStyle(fontSize: 30)),
-              SizedBox(height: 40),
+              const Text('Edit User Profile', style: TextStyle(fontSize: 30)),
+              const SizedBox(height: 40),
               Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+                padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _firstNameController,
                   decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
@@ -51,7 +51,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+                padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _lastNameController,
                   decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
@@ -61,7 +61,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+                padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _countryController,
                   decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
@@ -70,14 +70,14 @@ class _EditProfilePage extends State<EditProfilePage>{
                   },
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                SizedBox(width: 40),
+                const SizedBox(width: 40),
                 Container(
                   height: 44.0,
                   width: 150.0,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           colors: <Color>[
                             Color(0xffeb4f63), Color(0xfffa7b3f)
                           ]
@@ -90,10 +90,10 @@ class _EditProfilePage extends State<EditProfilePage>{
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: Text('Save', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+                    child: const Text('Save', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
                   ),
                 ),
-                SizedBox(width: 40),
+                const SizedBox(width: 40),
                 Container(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: ElevatedButton(
@@ -103,17 +103,17 @@ class _EditProfilePage extends State<EditProfilePage>{
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: Text('Cancel'),
+                    child: const Text('Cancel'),
                   ),
                 ),
               ]),
 
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Container(
                 height: 44.0,
                 width: 170.0,
                 decoration: BoxDecoration(
-                    color: Color(0xffe0e1e2),
+                    color: const Color(0xffe0e1e2),
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
                   onPressed: () {
@@ -122,7 +122,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent),
-                  child: Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+                  child: const Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
                 ),
               ),
             ]

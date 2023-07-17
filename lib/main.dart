@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
              leadingWidth: 200,
             leading:  Padding(
-              padding: EdgeInsets.only(left: 40, right: 2,),
+              padding: const EdgeInsets.only(left: 40, right: 2,),
               child: Image.asset(
                   "assets/images/asgardeo-logo-transparent.png",
                   scale:0.1,
