@@ -41,3 +41,10 @@ const viewProfile = 'View profile';
 const callExternalAPI = 'Call External API';
 const logOut = 'Sign out';
 const editProfile = 'Edit Profile';
+
+//labels
+const firstNameLabel ='First Name';
+const lastNameLabel = 'Last Name';
+const countryLabel = 'Country';
+const dOBLabel = 'Date of Birth';
+const mobileLabel = 'Mobile';

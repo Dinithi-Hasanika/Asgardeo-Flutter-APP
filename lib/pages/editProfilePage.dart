@@ -44,7 +44,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _firstNameController,
-                  decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
+                  decoration: const InputDecoration(labelText:constants.firstNameLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._firstName = text;
                   },
@@ -54,7 +54,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _lastNameController,
-                  decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
+                  decoration: const InputDecoration(labelText:constants.lastNameLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._lastName = text;
                   },
@@ -64,7 +64,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
                   controller: _countryController,
-                  decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
+                  decoration: const InputDecoration(labelText: constants.countryLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._country = text;
                   },
