@@ -1,5 +1,11 @@
+//Page Titles
 const appTitle = 'Asgardeo Flutter Integration';
+const editProfileTitle = 'Edit User Profile';
+const viewProfileTitle = 'Profile Information';
+const externalAPIPageTitle = 'External API Data';
+const welcome = 'Welcome';
 
+//API Params
 const userName = 'userName';
 const domainSplit = "/";
 const name = 'name';
@@ -24,3 +30,14 @@ const homePage = 2;
 const profilePage = 3;
 const externalAPIResponsePage = 4;
 const editProfilePage = 5;
+
+//buttons
+const signIn = 'Sign In';
+const signUp = 'Create an account';
+const back = 'Back to home';
+const cancel = 'Cancel';
+const save = 'Save';
+const viewProfile = 'View profile';
+const callExternalAPI = 'Call External API';
+const logOut = 'Sign out';
+const editProfile = 'Edit Profile';

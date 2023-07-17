@@ -38,7 +38,7 @@ class _EditProfilePage extends State<EditProfilePage>{
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Edit User Profile', style: TextStyle(fontSize: 30)),
+              const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30)),
               const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
@@ -90,7 +90,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: const Text('Save', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+                    child: const Text(constants.save, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
                   ),
                 ),
                 const SizedBox(width: 40),
@@ -103,7 +103,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: const Text('Cancel'),
+                    child: const Text(constants.cancel),
                   ),
                 ),
               ]),
@@ -122,7 +122,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent),
-                  child: const Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+                  child: const Text(constants.back, style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
                 ),
               ),
             ]

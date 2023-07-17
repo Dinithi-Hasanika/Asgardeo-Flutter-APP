@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class LogInPage extends StatelessWidget {
   final loginFunction;
@@ -27,7 +28,7 @@ class LogInPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('Sign In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              child: const Text(constants.signIn, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
             const SizedBox(height: 20),
@@ -44,7 +45,7 @@ class LogInPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent),
-                child: const Text('Create an account', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                child: const Text(constants.signUp, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
               ),
             ),
           ]

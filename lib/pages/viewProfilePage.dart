@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("Profile Information", style: TextStyle(fontSize: 30)),
+          const Text(constants.viewProfileTitle, style: TextStyle(fontSize: 30)),
           const SizedBox(height: 50),
           Container(
             width: 150,
@@ -77,7 +77,7 @@ class ProfilePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('Edit Profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+              child: const Text(constants.editProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
             ),
           ),
           const SizedBox(height: 20),
@@ -94,7 +94,7 @@ class ProfilePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+              child: const Text(constants.back, style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
             ),
           ),
         ],

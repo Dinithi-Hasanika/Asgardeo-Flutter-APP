@@ -14,7 +14,7 @@ class ExternalAPIDataPage extends StatelessWidget{
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('External API Data', style: TextStyle(fontSize: 30)),
+            const Text(constants.externalAPIPageTitle, style: TextStyle(fontSize: 30)),
             const SizedBox(height: 40),
             Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
             const SizedBox(height: 40),
@@ -31,7 +31,7 @@ class ExternalAPIDataPage extends StatelessWidget{
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent),
-                child: const Text('Back to home', style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+                child: const Text(constants.back, style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
               ),
             ),
           ]

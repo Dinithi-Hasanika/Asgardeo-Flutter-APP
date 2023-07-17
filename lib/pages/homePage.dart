@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {
   final logOutFunction;
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Welcome ${this.username}!", style: const TextStyle(fontSize: 20)),
+          Text("${constants.welcome} ${this.username}!", style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 100),
           Container(
             height: 44.0,
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('View profile', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+              child: const Text(constants.viewProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
           const SizedBox(height: 20),
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('Call External API', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              child: const Text(constants.callExternalAPI, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
           const SizedBox(height: 20),
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text('Sign out', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+              child: const Text(constants.logOut, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
             ),
           ),
         ],
