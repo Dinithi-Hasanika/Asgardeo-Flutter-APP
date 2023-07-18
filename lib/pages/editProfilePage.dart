@@ -27,12 +27,12 @@ class _EditProfilePage extends State<EditProfilePage>{
    _EditProfilePage(this.setPageIndex, this._firstName, this._lastName, this._country, this.updateUserProfile);
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _firstNameController = new TextEditingController();
-    _firstNameController.text = this._firstName;
-    final TextEditingController _lastNameController = new TextEditingController();
-    _lastNameController.text = this._lastName;
-    final TextEditingController _countryController = new TextEditingController();
-    _countryController.text = this._country;
+    final TextEditingController firstNameController = TextEditingController();
+    firstNameController.text = this._firstName;
+    final TextEditingController lastNameController = TextEditingController();
+    lastNameController.text = this._lastName;
+    final TextEditingController countryController = TextEditingController();
+    countryController.text = this._country;
 
     return Center(
         child: Column(
@@ -43,7 +43,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               Padding(
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
-                  controller: _firstNameController,
+                  controller: firstNameController,
                   decoration: const InputDecoration(labelText:constants.firstNameLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._firstName = text;
@@ -53,7 +53,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               Padding(
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
-                  controller: _lastNameController,
+                  controller: lastNameController,
                   decoration: const InputDecoration(labelText:constants.lastNameLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._lastName = text;
@@ -63,7 +63,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               Padding(
                 padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
                 child: TextField(
-                  controller: _countryController,
+                  controller: countryController,
                   decoration: const InputDecoration(labelText: constants.countryLabel, labelStyle: TextStyle(fontSize: 20)),
                   onChanged: (text) {
                     this._country = text;
