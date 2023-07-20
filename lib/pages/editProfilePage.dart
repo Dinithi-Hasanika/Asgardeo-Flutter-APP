@@ -110,11 +110,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               height: 44.0,
               width: 150.0,
               decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                      colors: <Color>[
-                        Color(0xffeb4f63), Color(0xfffa7b3f)
-                      ]
-                  ),
+                  color: Color(constants.primaryColor),
                   borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () async {

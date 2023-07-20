@@ -1,9 +1,12 @@
+//styles
+const primaryColor = 0xff1591EB;
+
 //Page Titles
 const appTitle = 'Asgardeo Flutter Integration';
 const editProfileTitle = 'Edit User Profile';
 const viewProfileTitle = 'Profile Information';
 const externalAPIPageTitle = 'External API Data';
-const welcome = 'Welcome';
+const welcome = 'Hello';
 
 //API Params
 const userName = 'userName';

@@ -17,9 +17,7 @@ class LogInPage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: <Color>[Color(0xffeb4f63), Color(0xfffa7b3f)]
-                ),
+                color: Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () async {
@@ -36,7 +34,7 @@ class LogInPage extends StatelessWidget {
               height: 44.0,
               width: 185.0,
               decoration: BoxDecoration(
-                  color: const Color(0xffe0e1e2),
+                  color: Color(constants.primaryColor),
                   borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () async {
@@ -45,7 +43,7 @@ class LogInPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent),
-                child: const Text(constants.signUp, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                child: const Text(constants.signUp, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
               ),
             ),
           ]

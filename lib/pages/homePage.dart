@@ -22,11 +22,7 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: <Color>[
-                      Color(0xffeb4f63), Color(0xfffa7b3f)
-                    ]
-                ),
+                color: Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () async {
@@ -43,11 +39,7 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: <Color>[
-                  Color(0xffeb4f63), Color(0xfffa7b3f)
-                ]
-                ),
+               color: Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () async {
@@ -64,11 +56,7 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: <Color>[
-                      Color(0xffeb4f63), Color(0xfffa7b3f)
-                    ]
-                ),
+                color: Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () async {

@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
             width: 150,
             height: 150,
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xffeb4f63), width: 2.0),
+              border: Border.all(color: const Color(constants.primaryColor), width: 2.0),
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
@@ -64,11 +64,7 @@ class ProfilePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: <Color>[
-                      Color(0xffeb4f63), Color(0xfffa7b3f)
-                    ]
-                ),
+                color: Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () {
