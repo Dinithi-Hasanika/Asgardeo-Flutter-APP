@@ -15,10 +15,10 @@ class LogInPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [Container(
             height: 44.0,
-            width: 170.0,
+            width: 180.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(5)),
             child: ElevatedButton(
               onPressed: () async {
                 await loginFunction();
@@ -32,10 +32,10 @@ class LogInPage extends StatelessWidget {
             const SizedBox(height: 20),
             Container(
               height: 44.0,
-              width: 185.0,
+              width: 180.0,
               decoration: BoxDecoration(
                   color: Color(constants.primaryColor),
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(5)),
               child: ElevatedButton(
                 onPressed: () async {
                   await signUpFunction();

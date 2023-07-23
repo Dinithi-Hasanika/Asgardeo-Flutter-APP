@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             width: 170.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(5)),
             child: ElevatedButton(
               onPressed: () async {
                 await getUserProfileData();
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
             width: 170.0,
             decoration: BoxDecoration(
                color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(5)),
             child: ElevatedButton(
               onPressed: () async {
                 await callExternalAPIFunction();
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
             width: 170.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(5)),
             child: ElevatedButton(
               onPressed: () async {
                 await logOutFunction();

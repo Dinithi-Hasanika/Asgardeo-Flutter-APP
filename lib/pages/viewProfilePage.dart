@@ -65,14 +65,15 @@ class ProfilePage extends StatelessWidget {
             width: 170.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(5)),
             child: ElevatedButton(
               onPressed: () {
                 pageIndex(constants.editProfilePage);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent),
+                  shadowColor: Colors.transparent,
+              ),
               child: const Text(constants.editProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
             ),
           ),
@@ -80,17 +81,20 @@ class ProfilePage extends StatelessWidget {
           Container(
             height: 44.0,
             width: 170.0,
-            decoration: BoxDecoration(
-                color: const Color(0xffe0e1e2),
-                borderRadius: BorderRadius.circular(20)),
             child: ElevatedButton(
               onPressed: () {
                 pageIndex(constants.homePage);
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent),
-              child: const Text(constants.back, style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold)),
+                  side: const BorderSide(
+                    width: 1.0,
+                    color: Color(constants.primaryColor),
+                  ),
+                  shape:RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  )
+              ),
+              child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
             ),
           ),
         ],
