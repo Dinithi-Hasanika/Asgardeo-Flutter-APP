@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class LogInPage extends StatelessWidget {
   final loginFunction;
@@ -10,20 +11,40 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
 
-      child: Row(
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ElevatedButton(
-            onPressed: () async {
-              await loginFunction();
-            },
-            child: Text('Sign In'),
-          ),
-            SizedBox(width: 50),
-            ElevatedButton(
+          children: [Container(
+            height: 44.0,
+            width: 180.0,
+            decoration: BoxDecoration(
+                color: Color(constants.primaryColor),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+            child: ElevatedButton(
               onPressed: () async {
-                await signUpFunction();
+                await loginFunction();
               },
-              child: Text('Sign Up'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: const Text(constants.signIn, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+            ),
+          ),
+            const SizedBox(height: 20),
+            Container(
+              height: 44.0,
+              width: 180.0,
+              decoration: BoxDecoration(
+                  color: Color(constants.primaryColor),
+                  borderRadius: BorderRadius.circular(constants.buttonRadius)),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await signUpFunction();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent),
+                child: const Text(constants.signUp, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              ),
             ),
           ]
       ),

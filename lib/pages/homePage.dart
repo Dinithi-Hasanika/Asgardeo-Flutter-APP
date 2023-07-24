@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {
   final logOutFunction;
@@ -15,27 +16,57 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Welcome ${this.username}!", style: TextStyle(fontSize: 20)),
-          SizedBox(height: 100),
-          ElevatedButton(
-            onPressed: () async {
-              await getUserProfileData();
-            },
-            child: Text('View profile'),
+          Text("${constants.welcome} ${this.username}!", style: const TextStyle(fontSize: 20)),
+          const SizedBox(height: 100),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                color: Color(constants.primaryColor),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await getUserProfileData();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: const Text(constants.viewProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+            ),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await callExternalAPIFunction();
-            },
-            child: Text('Call External API'),
+          const SizedBox(height: 20),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+               color: Color(constants.primaryColor),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await callExternalAPIFunction();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: const Text(constants.callExternalAPI, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+            ),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await logOutFunction();
-            },
-            child: Text('Sign out'),
+          const SizedBox(height: 20),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            decoration: BoxDecoration(
+                color: Color(constants.primaryColor),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+            child: ElevatedButton(
+              onPressed: () async {
+                await logOutFunction();
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent),
+              child: const Text(constants.logOut, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+            ),
           ),
         ],
       ),

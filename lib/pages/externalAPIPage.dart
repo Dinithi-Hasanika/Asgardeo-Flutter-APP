@@ -9,20 +9,32 @@ class ExternalAPIDataPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Center(
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('External API Data', style: TextStyle(fontSize: 30)),
-            SizedBox(height: 40),
-            Padding(padding: EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
-            SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                setPageIndex(constants.homePage);
-              },
-              child: Text('Back to home'),
+            const Text(constants.externalAPIPageTitle, style: TextStyle(fontSize: 30)),
+            const SizedBox(height: 40),
+            Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
+            const SizedBox(height: 40),
+            Container(
+              height: 44.0,
+              width: 170.0,
+              child: ElevatedButton(
+                onPressed: () {
+                  setPageIndex(constants.homePage);
+                },
+                style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      width: 1.0,
+                      color: Color(constants.primaryColor),
+                    ),
+                    shape:RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(constants.buttonRadius),
+                    )
+                ),
+                child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
+              ),
             ),
           ]
       ),

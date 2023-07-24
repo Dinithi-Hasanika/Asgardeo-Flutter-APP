@@ -66,11 +66,20 @@ class _MyAppState extends State<MyApp> {
       title: constants.appTitle,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(constants.primaryColor)),
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(constants.appTitle),
+             leadingWidth: 200,
+            leading:  Padding(
+              padding: const EdgeInsets.only(left: 40, right: 2,),
+              child: Image.asset(
+                  constants.asgardeoLogo,
+                  scale:0.1,
+                ),
+            ),
+
+          //title: Text(constants.appTitle),
         ),
         body: _isUserLoggedIn
             ? _pageIndex == constants.homePage

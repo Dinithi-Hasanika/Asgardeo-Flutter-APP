@@ -27,76 +27,142 @@ class _EditProfilePage extends State<EditProfilePage>{
    _EditProfilePage(this.setPageIndex, this._firstName, this._lastName, this._country, this.updateUserProfile);
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _firstNameController = new TextEditingController();
-    _firstNameController.text = this._firstName;
-    final TextEditingController _lastNameController = new TextEditingController();
-    _lastNameController.text = this._lastName;
-    final TextEditingController _countryController = new TextEditingController();
-    _countryController.text = this._country;
+    final TextEditingController firstNameController = TextEditingController();
+    firstNameController.text = this._firstName;
+    final TextEditingController lastNameController = TextEditingController();
+    lastNameController.text = this._lastName;
+    final TextEditingController countryController = TextEditingController();
+    countryController.text = this._country;
 
-    return Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Edit User Profile', style: TextStyle(fontSize: 30)),
-              SizedBox(height: 40),
-              Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-                child: TextField(
-                  controller: _firstNameController,
-                  decoration: const InputDecoration(labelText: "First Name", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text) {
-                    this._firstName = text;
-                  },
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30)),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(constants.firstNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const SizedBox(height: 8),
+                TextField(
+                controller: firstNameController,
+                decoration: InputDecoration(
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                    )
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-                child: TextField(
-                  controller: _lastNameController,
-                  decoration: const InputDecoration(labelText: "Last Name", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text) {
-                    this._lastName = text;
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-                child: TextField(
-                  controller: _countryController,
-                  decoration: const InputDecoration(labelText: "Country", labelStyle: TextStyle(fontSize: 20)),
-                  onChanged: (text) {
-                    this._country = text;
-                  },
-                ),
-              ),
-              SizedBox(height: 40),
-              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                SizedBox(width: 60),
-                ElevatedButton(
-                  onPressed: () async {
-                    await updateUserProfile(this._firstName, this._lastName,this._country);
-                  },
-                  child: Text('Save'),
-                ),
-                SizedBox(width: 40),
-                ElevatedButton(
-                  onPressed: () async {
-                    setPageIndex(constants.profilePage);
-                  },
-                  child: Text('Cancel'),
-                ),
-              ]),
-
-              SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () {
-                  setPageIndex(constants.homePage);
+                onChanged: (text) {
+                  this._firstName = text;
                 },
-                child: Text('Back to home'),
               ),
             ]
-        )
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                Text(constants.lastNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const SizedBox(height: 8),
+                TextField(
+                controller: lastNameController,
+                decoration: InputDecoration(
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                    )
+                ),
+                onChanged: (text) {
+                  this._lastName = text;
+                },
+              ),
+              ]
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(constants.countryLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const SizedBox(height: 8),
+                TextField(
+                controller: countryController,
+                decoration: InputDecoration(isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                    )),
+                onChanged: (text) {
+                  this._country = text;
+                },
+              ),
+              ]
+            ),
+          ),
+          const SizedBox(height: 40),
+          Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            const SizedBox(width: 40),
+            Container(
+              height: 44.0,
+              width: 150.0,
+              decoration: BoxDecoration(
+                  color: Color(constants.primaryColor),
+                  borderRadius: BorderRadius.circular(constants.buttonRadius)),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await updateUserProfile(this._firstName, this._lastName,this._country);
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent),
+                child: const Text(constants.save, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+              ),
+            ),
+            const SizedBox(width: 40),
+            Container(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: ElevatedButton(
+                onPressed: () async {
+                  setPageIndex(constants.profilePage);
+                },
+                style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      width: 1.0,
+                      color: Color(constants.primaryColor),
+                    ),
+                    shape:RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(constants.buttonRadius),
+                    )),
+                child: const Text(constants.cancel),
+              ),
+            ),
+          ]),
+
+          const SizedBox(height: 40),
+          Container(
+            height: 44.0,
+            width: 170.0,
+            child: ElevatedButton(
+              onPressed: () {
+                setPageIndex(constants.homePage);
+              },
+              style: ElevatedButton.styleFrom(
+                  side: const BorderSide(
+                    width: 1.0,
+                    color: Color(constants.primaryColor),
+                  ),
+                  shape:RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(constants.buttonRadius),
+                  )
+              ),
+              child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ]
     );
   }
 }
