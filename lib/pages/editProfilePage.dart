@@ -111,7 +111,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               width: 150.0,
               decoration: BoxDecoration(
                   color: Color(constants.primaryColor),
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.circular(constants.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
                   await updateUserProfile(this._firstName, this._lastName,this._country);
@@ -135,7 +135,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                       color: Color(constants.primaryColor),
                     ),
                     shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(constants.buttonRadius),
                     )),
                 child: const Text(constants.cancel),
               ),
@@ -156,7 +156,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     color: Color(constants.primaryColor),
                   ),
                   shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(constants.buttonRadius),
                   )
               ),
               child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),

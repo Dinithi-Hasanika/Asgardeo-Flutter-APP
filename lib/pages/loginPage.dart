@@ -18,7 +18,7 @@ class LogInPage extends StatelessWidget {
             width: 180.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(5)),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
                 await loginFunction();
@@ -35,7 +35,7 @@ class LogInPage extends StatelessWidget {
               width: 180.0,
               decoration: BoxDecoration(
                   color: Color(constants.primaryColor),
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.circular(constants.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
                   await signUpFunction();

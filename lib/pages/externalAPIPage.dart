@@ -30,7 +30,7 @@ class ExternalAPIDataPage extends StatelessWidget{
                       color: Color(constants.primaryColor),
                     ),
                     shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(constants.buttonRadius),
                     )
                 ),
                 child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),

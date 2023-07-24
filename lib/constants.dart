@@ -1,5 +1,6 @@
 //styles
 const primaryColor = 0xff1591EB;
+const buttonRadius = 18.0;
 
 //Page Titles
 const appTitle = 'Asgardeo Flutter Integration';
@@ -34,7 +35,7 @@ const profilePage = 3;
 const externalAPIResponsePage = 4;
 const editProfilePage = 5;
 
-//buttons
+//button names
 const signIn = 'Sign In';
 const signUp = 'Create an account';
 const back = 'Back to home';

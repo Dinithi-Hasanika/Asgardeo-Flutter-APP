@@ -37,27 +37,81 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Card(
-              elevation: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 15),
-                    Text('${constants.firstNameLabel}: $firstName',
-                        style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 10),
-                    Text('${constants.lastNameLabel}: $LastName',
-                        style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 10),
-                    Text('${constants.dOBLabel}: $dateOdBirth', style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 10),
-                    Text('${constants.mobileLabel}: $mobile', style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 10),
-                    Text('${constants.countryLabel}: $country', style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 20),
-                  ],
+            elevation: 0,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('First Name', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Text('Last Name', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Text('Date of Birth', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Text('Mobile', style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Text('Country', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
                 ),
-              )),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          '$firstName',
+                          maxLines: 2,
+                          softWrap: true,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          '$LastName',
+                          maxLines: 2,
+                          softWrap: true,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          '$dateOdBirth',
+                          maxLines: 2,
+                          softWrap: true,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          '$mobile',
+                          maxLines: 2,
+                          softWrap: true,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          '$country',
+                          maxLines: 2,
+                          softWrap: true,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
 
           const SizedBox(height: 20),
           Container(
@@ -65,7 +119,7 @@ class ProfilePage extends StatelessWidget {
             width: 170.0,
             decoration: BoxDecoration(
                 color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(5)),
+                borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () {
                 pageIndex(constants.editProfilePage);
@@ -91,7 +145,7 @@ class ProfilePage extends StatelessWidget {
                     color: Color(constants.primaryColor),
                   ),
                   shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(constants.buttonRadius),
                   )
               ),
               child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
