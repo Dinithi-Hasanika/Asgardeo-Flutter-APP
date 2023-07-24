@@ -42,7 +42,10 @@ openid address phone profile
 
 ## Getting started with the Mobile Application
 
-1. Clone the Git repository.
+1. Clone this Git repository.
+
+`git clone https://github.com/Dinithi-Hasanika/Asgardeo-Flutter-APP.git`
+
 2. Update configurations in the file `<project>/lib/configs/configs.dart` in the flutter project 
 
 ```
