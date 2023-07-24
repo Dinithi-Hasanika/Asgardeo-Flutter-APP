@@ -49,10 +49,10 @@ openid address phone profile
 2. Update configurations in the file `<project>/lib/configs/configs.dart` in the flutter project 
 
 ```
-const clientId = '<client_id>';
+const clientId = '<Application-client_id>';
 const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
-const organizationName = '<organization-name>';
-const spName = '<sp-name>';
+const organizationName = '<Asgardeo-organization-name>';
+const spName = '<Application-name>';
 const externalAPIEndpoint = '<external-api-url>';
 ```
 
