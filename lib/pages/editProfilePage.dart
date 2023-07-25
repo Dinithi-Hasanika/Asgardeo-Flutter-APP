@@ -112,7 +112,7 @@ class _EditProfilePage extends State<EditProfilePage>{
           ),
           const SizedBox(height: 40),
           Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const SizedBox(width: 40),
+            const SizedBox(width: 35),
             Container(
               height: 44.0,
               width: 150.0,
@@ -129,8 +129,10 @@ class _EditProfilePage extends State<EditProfilePage>{
                 child: const Text(constants.save, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 30),
             Container(
+              height: 42.0,
+              width: 148.0,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
