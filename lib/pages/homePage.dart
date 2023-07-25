@@ -53,19 +53,22 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Container(
-            height: 44.0,
+            height: 43.0,
             width: 170.0,
-            decoration: BoxDecoration(
-                color: Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: ElevatedButton(
               onPressed: () async {
                 await logOutFunction();
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent),
-              child: const Text(constants.logOut, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold),),
+                  side: const BorderSide(
+                    width: 1.0,
+                    color: Color(constants.primaryColor),
+                  ),
+                  shape:RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(constants.buttonRadius),
+                  )),
+              child: const Text(constants.logOut, style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ),
         ],
