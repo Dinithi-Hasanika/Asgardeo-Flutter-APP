@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
              leadingWidth: 200,
             leading:  Padding(
-              padding: const EdgeInsets.only(left: 40, right: 2,),
+              padding: const EdgeInsets.only(left: 50, right: 2,),
               child: Image.asset(
                   constants.asgardeoLogo,
                   scale:0.1,
