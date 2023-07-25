@@ -37,7 +37,14 @@ class _EditProfilePage extends State<EditProfilePage>{
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30)),
+          Row(children: [
+            IconButton(
+              onPressed: () {
+                setPageIndex(constants.profilePage);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new),
+            ),
+            const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30))]),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
@@ -105,7 +112,7 @@ class _EditProfilePage extends State<EditProfilePage>{
           ),
           const SizedBox(height: 40),
           Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const SizedBox(width: 40),
+            const SizedBox(width: 35),
             Container(
               height: 44.0,
               width: 150.0,
@@ -122,8 +129,10 @@ class _EditProfilePage extends State<EditProfilePage>{
                 child: const Text(constants.save, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 30),
             Container(
+              height: 42.0,
+              width: 148.0,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
@@ -141,27 +150,6 @@ class _EditProfilePage extends State<EditProfilePage>{
               ),
             ),
           ]),
-
-          const SizedBox(height: 40),
-          Container(
-            height: 44.0,
-            width: 170.0,
-            child: ElevatedButton(
-              onPressed: () {
-                setPageIndex(constants.homePage);
-              },
-              style: ElevatedButton.styleFrom(
-                  side: const BorderSide(
-                    width: 1.0,
-                    color: Color(constants.primaryColor),
-                  ),
-                  shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(constants.buttonRadius),
-                  )
-              ),
-              child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
-            ),
-          ),
         ]
     );
   }
