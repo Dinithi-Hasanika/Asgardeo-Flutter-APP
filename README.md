@@ -1,4 +1,13 @@
 # Asgardeo Mobile Flutter Application
+A Flutter mobile application integrated with Asgardeo. This can be used as a reference implementation to build a mobile application with Flutter. 
+Developers can use this as a boilerplate to build an app from scratch or as a reference to find the respective code snippets
+
+### Features
+- User sign-up
+- User sign-in
+- Sign-out
+- Secured External API calling
+- Edit and view the user profile
 
 ## Prerequisites
 
@@ -59,3 +68,5 @@ const externalAPIEndpoint = '<external-api-url>';
 3. Run the flutter application with the following command in flutter terminal
 
 `flutter run`
+
+## Getting started with the Mobile Application
