@@ -19,7 +19,15 @@ class ProfilePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(constants.viewProfileTitle, style: TextStyle(fontSize: 30)),
+          Row(children: [
+            IconButton(
+              onPressed: () {
+                pageIndex(constants.homePage);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new),
+            ),
+            const Text(constants.viewProfileTitle, style: TextStyle(fontSize: 30))
+          ]),
           const SizedBox(height: 50),
           Container(
             width: 150,
@@ -129,26 +137,6 @@ class ProfilePage extends StatelessWidget {
                   shadowColor: Colors.transparent,
               ),
               child: const Text(constants.editProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            height: 44.0,
-            width: 170.0,
-            child: ElevatedButton(
-              onPressed: () {
-                pageIndex(constants.homePage);
-              },
-              style: ElevatedButton.styleFrom(
-                  side: const BorderSide(
-                    width: 1.0,
-                    color: Color(constants.primaryColor),
-                  ),
-                  shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(constants.buttonRadius),
-                  )
-              ),
-              child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
             ),
           ),
         ],

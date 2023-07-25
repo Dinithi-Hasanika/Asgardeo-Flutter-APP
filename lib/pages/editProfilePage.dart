@@ -37,7 +37,14 @@ class _EditProfilePage extends State<EditProfilePage>{
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30)),
+          Row(children: [
+            IconButton(
+              onPressed: () {
+                setPageIndex(constants.profilePage);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new),
+            ),
+            const Text(constants.editProfileTitle, style: TextStyle(fontSize: 30))]),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
@@ -141,27 +148,6 @@ class _EditProfilePage extends State<EditProfilePage>{
               ),
             ),
           ]),
-
-          const SizedBox(height: 40),
-          Container(
-            height: 44.0,
-            width: 170.0,
-            child: ElevatedButton(
-              onPressed: () {
-                setPageIndex(constants.homePage);
-              },
-              style: ElevatedButton.styleFrom(
-                  side: const BorderSide(
-                    width: 1.0,
-                    color: Color(constants.primaryColor),
-                  ),
-                  shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(constants.buttonRadius),
-                  )
-              ),
-              child: const Text(constants.back, style: TextStyle(color: Color(constants.primaryColor) , fontWeight: FontWeight.bold)),
-            ),
-          ),
         ]
     );
   }
