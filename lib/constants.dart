@@ -1,6 +1,6 @@
 //styles
 const primaryColor = 0xff1591EB;
-const buttonRadius = 18.0;
+const buttonRadius = 50.0;
 
 //Page Titles
 const appTitle = 'Asgardeo Flutter Integration';
