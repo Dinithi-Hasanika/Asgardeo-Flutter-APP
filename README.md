@@ -68,5 +68,3 @@ const externalAPIEndpoint = '<external-api-url>';
 3. Run the flutter application with the following command in flutter terminal
 
 `flutter run`
-
-## Getting started with the Mobile Application
