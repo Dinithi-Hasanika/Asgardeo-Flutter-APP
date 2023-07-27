@@ -1,14 +1,14 @@
 import 'package:asgardeo_flutter_app/configs/endPointUrls.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
+import '../constants.dart' as constants;
 
 class signUpWebView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: const Text('Flutter WebView'),
+        title: const Text(constants.newAccount),
     ),
     body: WebViewWidget(controller: WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
