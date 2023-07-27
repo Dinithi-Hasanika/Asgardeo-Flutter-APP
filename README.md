@@ -76,6 +76,10 @@ const defaultPhotoURL = '<default-photo-url>'
 
 The specified default photo in the above configs will be shown in the user profile if the user has not added any photo URL.
 
-3. Run the flutter application with the following command in flutter terminal
+3. Run following command to download the dependencies
+
+`flutter pub get`
+
+4. Run the flutter application with the following command in flutter terminal
 
 `flutter run`
