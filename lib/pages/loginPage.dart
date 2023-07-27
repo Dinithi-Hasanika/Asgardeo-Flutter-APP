@@ -17,16 +17,16 @@ class LogInPage extends StatelessWidget {
            height: 100,
              width: 100,
            ),
-            SizedBox(height: 25),
-            Text(constants.startPack, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-            SizedBox(height: 20),
-            Text(constants.description, style: const TextStyle(fontSize: 16)),
-            SizedBox(height: 80),
+            const SizedBox(height: 25),
+            const Text(constants.startPack, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 20),
+            const Text(constants.description, style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 80),
             Container(
             height: 44.0,
             width: 180.0,
             decoration: BoxDecoration(
-                color: Color(constants.primaryColor),
+                color: const Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {

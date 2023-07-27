@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                color: Color(constants.primaryColor),
+                color: const Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-               color: Color(constants.primaryColor),
+               color: const Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {

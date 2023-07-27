@@ -24,7 +24,7 @@ class ExternalAPIDataPage extends StatelessWidget{
             ]
             ),
             const SizedBox(height: 40),
-            Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text('$bodyResponse')),
+            Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text(bodyResponse)),
           ]
       ),
     );

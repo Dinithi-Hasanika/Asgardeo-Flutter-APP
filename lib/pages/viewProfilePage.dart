@@ -85,28 +85,28 @@ class ProfilePage extends StatelessWidget {
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           '$LastName',
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           '$dateOdBirth',
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           '$mobile',
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           '$country',
                           maxLines: 2,
@@ -126,7 +126,7 @@ class ProfilePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                color: Color(constants.primaryColor),
+                color: const Color(constants.primaryColor),
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () {

@@ -51,7 +51,7 @@ class _EditProfilePage extends State<EditProfilePage>{
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(constants.firstNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const Text(constants.firstNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
                 const SizedBox(height: 8),
                 TextField(
                 controller: firstNameController,
@@ -73,7 +73,7 @@ class _EditProfilePage extends State<EditProfilePage>{
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
               children:[
-                Text(constants.lastNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const Text(constants.lastNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
                 const SizedBox(height: 8),
                 TextField(
                 controller: lastNameController,
@@ -95,7 +95,7 @@ class _EditProfilePage extends State<EditProfilePage>{
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(constants.countryLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
+                const Text(constants.countryLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
                 const SizedBox(height: 8),
                 TextField(
                 controller: countryController,
@@ -117,7 +117,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               height: 44.0,
               width: 150.0,
               decoration: BoxDecoration(
-                  color: Color(constants.primaryColor),
+                  color: const Color(constants.primaryColor),
                   borderRadius: BorderRadius.circular(constants.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
