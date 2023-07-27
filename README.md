@@ -69,7 +69,12 @@ const organizationName = '<Asgardeo-organization-name>';
 const spName = '<Application-name>';
 const externalAPIEndpoint = '<external-api-url>';
 const accessURL = 'wso2.asgardeo.flutterapp://signup'; // configured access URL
+
+//optional
+const defaultPhotoURL = '<default-photo-url>'
 ```
+
+The specified default photo in the above configs will be shown in the user profile if the user has not added any photo URL.
 
 3. Run the flutter application with the following command in flutter terminal
 
