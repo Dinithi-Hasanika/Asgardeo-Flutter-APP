@@ -4,7 +4,6 @@ import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_appauth/flutter_appauth.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'pages/editProfilePage.dart';
 import 'pages/externalAPIPage.dart';
 import 'pages/viewProfilePage.dart';
@@ -93,8 +92,8 @@ class _MyAppState extends State<MyApp> {
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData))
             : _pageIndex == constants.editProfilePage
             ? SingleChildScrollView(child: EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile))
-            : LogInPage(loginFunction,signUpFunction)
-            : LogInPage(loginFunction,signUpFunction),
+            : LogInPage(loginFunction)
+            : LogInPage(loginFunction),
       ),
     );
   }
@@ -123,13 +122,6 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         _isUserLoggedIn = false;
       });
-    }
-  }
-
-  Future<void> signUpFunction() async {
-
-    if (!await launchUrl(Uri.parse(signUpUrl))) {
-      throw Exception('Could not launch $signUpUrl');
     }
   }
 

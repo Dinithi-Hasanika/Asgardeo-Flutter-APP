@@ -1,11 +1,11 @@
+import 'package:asgardeo_flutter_app/pages/signUpPage.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
 
 class LogInPage extends StatelessWidget {
   final loginFunction;
-  final signUpFunction;
 
-  const LogInPage(this.loginFunction, this.signUpFunction);
+  const LogInPage(this.loginFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class LogInPage extends StatelessWidget {
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
-                  await signUpFunction();
+               //   await signUpFunction();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => signUpWebView()));
                 },
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(

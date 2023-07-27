@@ -8,6 +8,7 @@ const editProfileTitle = 'Edit User Profile';
 const viewProfileTitle = 'Profile Information';
 const externalAPIPageTitle = 'External API Data';
 const welcome = 'Hello';
+const newAccount = 'Create New Account';
 
 //API Params
 const userName = 'userName';
