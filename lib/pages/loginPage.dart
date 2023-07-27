@@ -10,10 +10,19 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Container(
+          children: [
+           Image.asset("assets/images/flutter5786.jpg",
+           height: 100,
+             width: 100,
+           ),
+            SizedBox(height: 15),
+            Text("Quick Start Pack", style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            SizedBox(height: 25),
+            Text("Flutter and Asgardeo Integration Demo App", style: const TextStyle(fontSize: 16)),
+            SizedBox(height: 40),
+            Container(
             height: 44.0,
             width: 180.0,
             decoration: BoxDecoration(
