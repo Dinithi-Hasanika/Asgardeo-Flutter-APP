@@ -30,7 +30,8 @@ You can use one of the following options to try out the mobile application
 
 ## Setup the Asgardeo Application
 1. Login to your [Asgardeo account](https://console.asgardeo.io/) . If you do not have a Asgardeo account, you can create one following the [documentation](https://wso2.com/asgardeo/docs/get-started/create-asgardeo-account/#sign-up).
-2. Create a new Mobile Application in Asgardeo Console. You can follow the [documentation](https://wso2.com/asgardeo/docs/guides/applications/register-mobile-app/#register-the-app) for registering mobile app. Make sure to put the *wso2.asgardeo.flutterapp://login-callback* as the redirect uri as showed in the screenshot.
+2. Create a new Mobile Application in Asgardeo Console. You can follow the [documentation](https://wso2.com/asgardeo/docs/guides/applications/register-mobile-app/#register-the-app) for registering mobile app.
+Make sure to put the *wso2.asgardeo.flutterapp://login-callback* as the redirect uri as showed in the screenshot.
 
 <img src="resources/images/mobile_app_creation.png"  width="60%" height="50%">
 
@@ -49,6 +50,10 @@ openid address phone profile
 
 <img src="resources/images/scopes.png"  width="60%" height="50%">
 
+5. In Application configuration's General tab add *wso2.asgardeo.flutterapp://signup* as the Access URL. 
+
+<img src="resources/images/accessURL.png"  width="60%" height="50%">
+
 ## Getting started with the Mobile Application
 
 1. Clone this Git repository.
@@ -63,6 +68,7 @@ const redirectUrl = 'wso2.asgardeo.flutterapp://login-callback';
 const organizationName = '<Asgardeo-organization-name>';
 const spName = '<Application-name>';
 const externalAPIEndpoint = '<external-api-url>';
+const accessURL = 'wso2.asgardeo.flutterapp://signup'; // configured access URL
 ```
 
 3. Run the flutter application with the following command in flutter terminal
