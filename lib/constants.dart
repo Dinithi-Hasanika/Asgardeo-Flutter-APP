@@ -9,6 +9,8 @@ const viewProfileTitle = 'Profile Information';
 const externalAPIPageTitle = 'External API Data';
 const welcome = 'Hello';
 const newAccount = 'Create New Account';
+const startPack = 'Quick Start Pack';
+const description = 'Flutter and Asgardeo Integration Demo App';
 
 //API Params
 const userName = 'userName';
@@ -56,3 +58,4 @@ const mobileLabel = 'Mobile';
 
 //Resources
 const asgardeoLogo = "assets/images/asgardeo-logo-transparent.png";
+const flutterLogo = "assets/images/flutter5786.jpg";

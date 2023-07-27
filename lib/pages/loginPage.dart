@@ -13,15 +13,15 @@ class LogInPage extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           Image.asset("assets/images/flutter5786.jpg",
+           Image.asset(constants.flutterLogo,
            height: 100,
              width: 100,
            ),
-            SizedBox(height: 15),
-            Text("Quick Start Pack", style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
             SizedBox(height: 25),
-            Text("Flutter and Asgardeo Integration Demo App", style: const TextStyle(fontSize: 16)),
-            SizedBox(height: 40),
+            Text(constants.startPack, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            Text(constants.description, style: const TextStyle(fontSize: 16)),
+            SizedBox(height: 80),
             Container(
             height: 44.0,
             width: 180.0,
