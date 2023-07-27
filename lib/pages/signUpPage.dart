@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/configs/configs.dart';
 import 'package:asgardeo_flutter_app/configs/endPointUrls.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,7 +22,7 @@ class signUpWebView extends StatelessWidget{
             onPageFinished: (String url) {},
             onWebResourceError: (WebResourceError error) {},
             onNavigationRequest: (NavigationRequest request) {
-              if(request.url.startsWith('wso2.asgardeo.flutterapp://signup')){
+              if(request.url.startsWith(accessURL)){
                 Navigator.pop(context);
                 return NavigationDecision.navigate;
               }
