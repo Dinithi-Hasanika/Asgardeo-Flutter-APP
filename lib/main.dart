@@ -72,10 +72,10 @@ class _MyAppState extends State<MyApp> {
              leadingWidth: 200,
             leading:  Padding(
               padding: const EdgeInsets.only(left: 50, right: 2,),
-              child: Image.asset(
+              child: _isUserLoggedIn ? Image.asset(
                   constants.asgardeoLogo,
                   scale:0.1,
-                ),
+                ): const Text(''),
             ),
 
           //title: Text(constants.appTitle),
