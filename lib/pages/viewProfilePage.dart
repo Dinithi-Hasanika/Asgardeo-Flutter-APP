@@ -142,7 +142,7 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 100),
           const Align(
             alignment: Alignment.bottomCenter,
-            child: Text('© 2023 Copyright: WSO2.LLC'),
+            child: Text(constants.license),
           )
         ],
       ),

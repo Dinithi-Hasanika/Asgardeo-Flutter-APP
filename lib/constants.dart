@@ -11,6 +11,7 @@ const welcome = 'Hello';
 const newAccount = 'Create New Account';
 const startPack = 'Quick Start Pack';
 const description = 'Flutter and Asgardeo Integration Demo App';
+const license = '© 2023 WSO2 LLC.';
 
 //API Params
 const userName = 'userName';

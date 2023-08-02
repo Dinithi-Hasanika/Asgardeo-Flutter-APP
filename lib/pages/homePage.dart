@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 165),
           const Align(
             alignment: Alignment.bottomCenter,
-            child: Text('© 2023 Copyright: WSO2.LLC'),
+            child: Text(constants.license),
           )
         ],
       ),
