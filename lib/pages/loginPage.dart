@@ -1,4 +1,5 @@
 import 'package:asgardeo_flutter_app/pages/signUpPage.dart';
+import 'package:asgardeo_flutter_app/pages/viewSourceCode.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
 
@@ -11,7 +12,7 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +68,39 @@ class LogInPage extends StatelessWidget {
                 child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold)),
               ),
             ),
-            const SizedBox(height: 190),
+            const SizedBox(height: 60),
+            Card(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: Colors.blue,
+                  width: 1,
+                ),
+              ),
+              child: Container(
+                  height: 120,
+                  width: 260,
+                  child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Column(children:[
+                        Text('Github Repository', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.blue),),
+                        const SizedBox(height: 5),
+                        Text('Lets go through the application codebase'),
+                        const SizedBox(height: 5),
+                        InkWell(
+                          onTap: () async {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => viewSourceCode()));
+                          },
+                          child: Text('View Source', style: TextStyle( fontWeight: FontWeight.w400,color: Colors.blue)),
+                        )
+                      ]
+                      )
+                  )
+              ),
+            ),
+            const SizedBox(height: 90),
             const Align(
               alignment: Alignment.bottomCenter,
               child: Text(constants.license),

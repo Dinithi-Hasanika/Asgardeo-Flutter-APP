@@ -150,7 +150,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               ),
             ),
           ]),
-          const SizedBox(height: 170),
+          const SizedBox(height: 175),
           const Align(
             alignment: Alignment.bottomCenter,
             child: Text(constants.license),
