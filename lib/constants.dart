@@ -9,7 +9,7 @@ const viewProfileTitle = 'Profile Information';
 const externalAPIPageTitle = 'External API Data';
 const welcome = 'Hello';
 const newAccount = 'Create New Account';
-const startPack = 'Quick Start Pack';
+const startPack = 'Integration Demo App';
 const description = 'Flutter and Asgardeo Integration Demo App';
 const license = '© 2023 WSO2 LLC.';
 

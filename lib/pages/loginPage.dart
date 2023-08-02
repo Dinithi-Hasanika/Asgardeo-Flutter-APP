@@ -13,15 +13,22 @@ class LogInPage extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           Image.asset(constants.flutterLogo,
-           height: 100,
-             width: 100,
-           ),
-            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Image.asset(constants.asgardeoLogo,
+                height: 100,
+                width: 160,
+              ),
+                const SizedBox(width: 10,),
+              const Text('+',style: TextStyle(fontSize: 25)),
+              Image.asset(constants.flutterLogo,
+                height: 100,
+                width: 100,
+              ),
+            ],),
             const Text(constants.startPack, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20),
-            const Text(constants.description, style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 80),
+            const SizedBox(height: 120),
             Container(
             height: 44.0,
             width: 180.0,
@@ -60,7 +67,7 @@ class LogInPage extends StatelessWidget {
                 child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold)),
               ),
             ),
-            const SizedBox(height: 150),
+            const SizedBox(height: 190),
             const Align(
               alignment: Alignment.bottomCenter,
               child: Text(constants.license),
