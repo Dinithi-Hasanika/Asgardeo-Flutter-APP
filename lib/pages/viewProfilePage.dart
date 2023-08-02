@@ -139,6 +139,11 @@ class ProfilePage extends StatelessWidget {
               child: const Text(constants.editProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
             ),
           ),
+          const SizedBox(height: 100),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Text('© 2023 Copyright: WSO2.LLC'),
+          )
         ],
       ),
     );

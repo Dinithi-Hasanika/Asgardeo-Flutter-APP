@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 100),
           Text("${constants.welcome} ${this.username}!", style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 100),
           Container(
@@ -71,6 +72,11 @@ class HomePage extends StatelessWidget {
               child: const Text(constants.logOut, style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ),
+          const SizedBox(height: 165),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Text('© 2023 Copyright: WSO2.LLC'),
+          )
         ],
       ),
     );

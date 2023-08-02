@@ -150,6 +150,11 @@ class _EditProfilePage extends State<EditProfilePage>{
               ),
             ),
           ]),
+          const SizedBox(height: 170),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Text('© 2023 Copyright: WSO2.LLC'),
+          )
         ]
     );
   }

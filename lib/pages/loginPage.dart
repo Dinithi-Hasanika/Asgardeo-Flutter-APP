@@ -60,6 +60,11 @@ class LogInPage extends StatelessWidget {
                 child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold)),
               ),
             ),
+            const SizedBox(height: 150),
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: Text('© 2023 Copyright: WSO2.LLC'),
+            )
           ]
       ),
     );
