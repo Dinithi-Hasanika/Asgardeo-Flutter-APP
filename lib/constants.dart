@@ -12,6 +12,10 @@ const newAccount = 'Create New Account';
 const startPack = 'Integration Demo App';
 const description = 'Flutter and Asgardeo Integration Demo App';
 const license = '© 2023 WSO2 LLC.';
+const viewSource = 'View Source';
+const gitRepo = 'Github Repository';
+const viewSourceDescription = 'Lets go through the application codebase';
+const plus = '+';
 
 //API Params
 const userName = 'userName';
@@ -60,3 +64,4 @@ const mobileLabel = 'Mobile';
 //Resources
 const asgardeoLogo = "assets/images/asgardeo-logo-transparent.png";
 const flutterLogo = "assets/images/flutter5786.jpg";
+const repoURL = "https://github.com/Dinithi-Hasanika/Asgardeo-Flutter-APP";

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../constants.dart' as constants;
 
 class viewSourceCode extends StatelessWidget{
   @override
@@ -10,7 +11,7 @@ class viewSourceCode extends StatelessWidget{
         body: WebViewWidget(controller: WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..loadRequest(
-            Uri.parse('https://github.com/Dinithi-Hasanika/Asgardeo-Flutter-APP'),
+            Uri.parse(constants.repoURL),
           ))
     );
   }

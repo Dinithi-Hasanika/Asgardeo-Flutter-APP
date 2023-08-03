@@ -22,7 +22,7 @@ class LogInPage extends StatelessWidget {
                 width: 160,
               ),
                 const SizedBox(width: 10,),
-              const Text('+',style: TextStyle(fontSize: 25)),
+              const Text(constants.plus, style: TextStyle(fontSize: 25)),
               Image.asset(constants.flutterLogo,
                 height: 100,
                 width: 100,
@@ -53,7 +53,6 @@ class LogInPage extends StatelessWidget {
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
-               //   await signUpFunction();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => signUpWebView()));
                 },
@@ -84,16 +83,16 @@ class LogInPage extends StatelessWidget {
                   child: Padding(
                       padding: EdgeInsets.all(15.0),
                       child: Column(children:[
-                        Text('Github Repository', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.blue),),
+                        Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.blue),),
                         const SizedBox(height: 5),
-                        Text('Lets go through the application codebase'),
+                        Text(constants.viewSourceDescription),
                         const SizedBox(height: 5),
                         InkWell(
                           onTap: () async {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => viewSourceCode()));
                           },
-                          child: Text('View Source', style: TextStyle( fontWeight: FontWeight.w400,color: Colors.blue)),
+                          child: Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Colors.blue)),
                         )
                       ]
                       )
