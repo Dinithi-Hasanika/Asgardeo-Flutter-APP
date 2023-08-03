@@ -71,7 +71,7 @@ class LogInPage extends StatelessWidget {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color(constants.primaryColor),
                   width: 1,
                 ),
@@ -80,18 +80,18 @@ class LogInPage extends StatelessWidget {
                   height: 120,
                   width: 260,
                   child: Padding(
-                      padding: EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Column(children:[
-                        Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Color(constants.primaryColor)),),
+                        const Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Color(constants.primaryColor)),),
                         const SizedBox(height: 5),
-                        Text(constants.viewSourceDescription),
+                        const Text(constants.viewSourceDescription),
                         const SizedBox(height: 5),
                         InkWell(
                           onTap: () async {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => viewSourceCode()));
                           },
-                          child: Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Color(constants.primaryColor))),
+                          child: const Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Color(constants.primaryColor))),
                         )
                       ]
                       )
