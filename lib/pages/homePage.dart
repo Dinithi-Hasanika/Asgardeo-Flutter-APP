@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                   shape:RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(constants.buttonRadius),
                   )),
-              child: const Text(constants.logOut, style: TextStyle(fontWeight: FontWeight.bold)),
+              child: const Text(constants.logOut, style: TextStyle(fontWeight: FontWeight.bold, color: Color(constants.primaryColor))),
             ),
           ),
           const SizedBox(height: 165),

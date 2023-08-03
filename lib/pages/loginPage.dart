@@ -64,7 +64,7 @@ class LogInPage extends StatelessWidget {
                     shape:RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(constants.buttonRadius),
                     )),
-                child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold)),
+                child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold, color: Color(constants.primaryColor))),
               ),
             ),
             const SizedBox(height: 60),
@@ -73,7 +73,7 @@ class LogInPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
                 side: BorderSide(
-                  color: Colors.blue,
+                  color: Color(constants.primaryColor),
                   width: 1,
                 ),
               ),
@@ -83,7 +83,7 @@ class LogInPage extends StatelessWidget {
                   child: Padding(
                       padding: EdgeInsets.all(15.0),
                       child: Column(children:[
-                        Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.blue),),
+                        Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Color(constants.primaryColor)),),
                         const SizedBox(height: 5),
                         Text(constants.viewSourceDescription),
                         const SizedBox(height: 5),
@@ -92,7 +92,7 @@ class LogInPage extends StatelessWidget {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => viewSourceCode()));
                           },
-                          child: Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Colors.blue)),
+                          child: Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Color(constants.primaryColor))),
                         )
                       ]
                       )

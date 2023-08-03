@@ -146,7 +146,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     shape:RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(constants.buttonRadius),
                     )),
-                child: const Text(constants.cancel),
+                child: const Text(constants.cancel, style: TextStyle(color: Color(constants.primaryColor)),),
               ),
             ),
           ]),
