@@ -12,7 +12,7 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +28,7 @@ class LogInPage extends StatelessWidget {
               ),
             ],),
             const Text(constants.startPack, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 120),
+            const SizedBox(height: 90),
             Container(
             height: 44.0,
             width: 180.0,
