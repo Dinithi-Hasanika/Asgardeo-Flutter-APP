@@ -69,9 +69,9 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-             leadingWidth: 200,
+             leadingWidth: 280,
             leading:  Padding(
-              padding: const EdgeInsets.only(left: 50, right: 2,),
+              padding: const EdgeInsets.only(left: 116, right: 2,),
               child: _isUserLoggedIn ? Image.asset(
                   constants.asgardeoLogo,
                   scale:0.1,
