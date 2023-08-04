@@ -22,7 +22,7 @@ This application is tested with Flutter version **3.10.4** and following version
 
 `webview_flutter` 4.2.2
 
-These dependencies and the versions are available at asgardeo-flutter-boilerplate-app/pubspec.yaml file.
+These dependencies and the versions are available at *asgardeo-flutter-boilerplate-app/pubspec.yaml* file.
 
 Compatible versions of the above dependencies may change with the Flutter version
 
