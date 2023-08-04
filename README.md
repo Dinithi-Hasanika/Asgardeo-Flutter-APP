@@ -12,7 +12,19 @@ Developers can use this as a boilerplate to build an app from scratch or as a re
 ## Prerequisites
 
 ### Install Flutter
-Follow Flutter Installation [Documentation](https://docs.flutter.dev/get-started/install) to Install flutter
+Follow Flutter Installation [Documentation](https://docs.flutter.dev/get-started/install) to Install flutter.
+
+This application is tested with Flutter version **3.10.4** and following versions of the dependencies
+
+`http` 0.13.5
+
+`flutter_appauth` 4.2.1
+
+`webview_flutter` 4.2.2
+
+These dependencies and the versions are available at asgardeo-flutter-boilerplate-app/pubspec.yaml file.
+
+Compatible versions of the above dependencies may change with the Flutter version
 
 ### Setup IDE for Development
 You can use one of the following IDEs for development
