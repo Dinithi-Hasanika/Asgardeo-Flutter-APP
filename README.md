@@ -16,11 +16,11 @@ Follow Flutter Installation [Documentation](https://docs.flutter.dev/get-started
 
 This application is tested with Flutter version **3.10.4** and following versions of the dependencies
 
-`http` 0.13.5
+`http` - 0.13.5
 
-`flutter_appauth` 4.2.1
+`flutter_appauth` - 4.2.1
 
-`webview_flutter` 4.2.2
+`webview_flutter` - 4.2.2
 
 These dependencies and the versions are available at *asgardeo-flutter-boilerplate-app/pubspec.yaml* file.
 
