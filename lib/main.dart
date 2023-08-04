@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
       title: constants.appTitle,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(constants.primaryColor)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(constants.primaryColor)),
       ),
       home: Scaffold(
         appBar: AppBar(

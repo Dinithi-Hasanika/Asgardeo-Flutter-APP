@@ -62,7 +62,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     )
                 ),
                 onChanged: (text) {
-                  this._firstName = text;
+                  _firstName = text;
                 },
               ),
             ]
@@ -84,7 +84,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     )
                 ),
                 onChanged: (text) {
-                  this._lastName = text;
+                  _lastName = text;
                 },
               ),
               ]
@@ -104,7 +104,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                       borderRadius: BorderRadius.circular(6.0),
                     )),
                 onChanged: (text) {
-                  this._country = text;
+                  _country = text;
                 },
               ),
               ]
@@ -121,7 +121,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                   borderRadius: BorderRadius.circular(constants.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
-                  await updateUserProfile(this._firstName, this._lastName,this._country);
+                  await updateUserProfile(_firstName, _lastName,_country);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
