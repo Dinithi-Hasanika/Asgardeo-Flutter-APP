@@ -132,7 +132,7 @@ class _MyAppState extends State<MyApp> {
     if (externalInfo.statusCode == constants.httpSuccessCode) {
       setState(() {
         _pageIndex = constants.externalAPIResponsePage;
-        _apiData =externalInfo.body;
+        _apiData =externalInfo.body.toString().replaceAll(",", ",\n");
       });
     }else if (externalInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
