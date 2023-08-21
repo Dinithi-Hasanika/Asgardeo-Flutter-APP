@@ -12,7 +12,7 @@ class APIClient {
     return result;
   }
 
-  Future<http.Response> httPatch(String url, String? accessToken, data){
+  Future<http.Response> httpPatch(String url, String? accessToken, data){
     final result = http.patch(
       Uri.parse(url),
         headers: {Constants.authorization: '${Constants.bearer} $accessToken',

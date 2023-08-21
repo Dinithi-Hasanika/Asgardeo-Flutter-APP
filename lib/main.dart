@@ -195,7 +195,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> updateUserProfile(firstName, lastName, country) async {
 
     Map data = Util().generateUpdateRequestBody(firstName, lastName, country);
-    final updatedInfo = await APIClient().httPatch(meEndpoint, _accessToken, data);
+    final updatedInfo = await APIClient().httpPatch(meEndpoint, _accessToken, data);
 
     if (updatedInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(updatedInfo.body);
