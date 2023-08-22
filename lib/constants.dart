@@ -1,5 +1,5 @@
 //styles
-const primaryColor = 0xff1591EB;
+const primaryColor = 0xffFF7300;
 const buttonRadius = 50.0;
 
 //Page Titles
@@ -12,7 +12,7 @@ const newAccount = 'Create New Account';
 const startPack = 'Integration Demo App';
 const description = 'Flutter and Asgardeo Integration Demo App';
 const license = '© 2023 WSO2 LLC.';
-const viewSource = 'View Source >>';
+const viewSource = 'Explore the source code';
 const gitRepo = 'Github Repository';
 const viewSourceDescription = 'Lets go through the application codebase';
 const plus = '+';
@@ -65,3 +65,4 @@ const mobileLabel = 'Mobile';
 const asgardeoLogo = "assets/images/asgardeo-logo-transparent.png";
 const flutterLogo = "assets/images/flutter5786.jpg";
 const repoURL = "https://github.com/Dinithi-Hasanika/Asgardeo-Flutter-APP";
+const gitHubLogo = "assets/images/GitHub-Mark.png";

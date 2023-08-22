@@ -67,38 +67,24 @@ class LogInPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: const BorderSide(
-                  color: Color(constants.primaryColor),
-                  width: 1,
-                ),
-              ),
-              child: Container(
-                  height: 120,
-                  width: 260,
-                  child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(children:[
-                        const Text(constants.gitRepo, style: TextStyle(fontWeight: FontWeight.w600, color: Color(constants.primaryColor)),),
-                        const SizedBox(height: 5),
-                        const Text(constants.viewSourceDescription),
-                        const SizedBox(height: 5),
-                        InkWell(
-                          onTap: () async {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => viewSourceCode()));
-                          },
-                          child: const Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400,color: Color(constants.primaryColor))),
-                        )
-                      ]
-                      )
-                  )
+            InkWell(
+              onTap: () async {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => viewSourceCode()));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(constants.gitHubLogo,
+                    height: 25,
+                    width: 25,
+                  ),
+                  const SizedBox(width: 5),
+                  const Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400)),
+                ],
               ),
             ),
-            const SizedBox(height: 90),
+            const SizedBox(height: 160),
             const Align(
               alignment: Alignment.bottomCenter,
               child: Text(constants.license),

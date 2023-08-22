@@ -69,6 +69,7 @@ flutter:
   assets:
     - assets/images/asgardeo-logo-transparent.png
     - assets/images/flutter5786.jpg
+    - assets/images/GitHub-Mark.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
