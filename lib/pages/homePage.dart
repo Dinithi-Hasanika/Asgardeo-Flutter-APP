@@ -1,3 +1,5 @@
+import 'package:asgardeo_flutter_app/utils/Auth.dart';
+import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
 
@@ -27,7 +29,8 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-                await getUserProfileData();
+                //await getUserProfileData();
+                await APIClient().getUserProfileData(context);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
@@ -44,7 +47,8 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-                await callExternalAPIFunction();
+               // await callExternalAPIFunction();
+                await APIClient().callExternalAPIFunction(context);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
@@ -59,7 +63,7 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
             child: ElevatedButton(
               onPressed: () async {
-                await logOutFunction();
+                await AuthClient().logOutUser2(context);
               },
               style: ElevatedButton.styleFrom(
                   side: const BorderSide(

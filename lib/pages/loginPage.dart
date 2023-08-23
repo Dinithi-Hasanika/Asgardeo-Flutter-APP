@@ -2,6 +2,7 @@ import 'package:asgardeo_flutter_app/pages/signUpPage.dart';
 import 'package:asgardeo_flutter_app/pages/viewSourceCode.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
+import '../utils/Auth.dart';
 
 class LogInPage extends StatelessWidget {
   final loginFunction;
@@ -39,7 +40,9 @@ class LogInPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-                await loginFunction();
+             //await loginFunction();
+                //await loginFunction2(context);
+                await AuthClient().loginFunction(context);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,

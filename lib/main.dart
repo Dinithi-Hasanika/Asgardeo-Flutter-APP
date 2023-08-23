@@ -1,4 +1,7 @@
-import 'package:asgardeo_flutter_app/utils/APIClient.dart';
+import 'package:asgardeo_flutter_app/providers/page.dart';
+import 'package:asgardeo_flutter_app/providers/user.dart';
+import 'package:asgardeo_flutter_app/providers/user_session.dart';
+import 'package:asgardeo_flutter_app/utils/http_client.dart';
 import 'package:asgardeo_flutter_app/utils/Auth.dart';
 import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +15,22 @@ import 'pages/loginPage.dart';
 import 'configs/configs.dart';
 import 'configs/endPointUrls.dart';
 import 'constants.dart' as constants;
+import 'package:provider/provider.dart';
 
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 void main() {
-  runApp(MyApp());
+  // runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => User()),
+        ChangeNotifierProvider(create: (_) => UserSession()),
+        ChangeNotifierProvider(create: (_) => CurrentPage()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -61,6 +75,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    bool isUserLoggedIn = context.watch<CurrentPage>().isUserLoggedIn;
+    int pageIndex = context.watch<CurrentPage>().pageIndex;
     return MaterialApp(
       title: constants.appTitle,
       theme: ThemeData(
@@ -72,7 +88,7 @@ class _MyAppState extends State<MyApp> {
              leadingWidth: 280,
             leading:  Padding(
               padding: const EdgeInsets.only(left: 116, right: 2,),
-              child: _isUserLoggedIn ? Image.asset(
+              child: isUserLoggedIn ? Image.asset(
                   constants.asgardeoLogo,
                   scale:0.1,
                 ): const Text(''),
@@ -80,17 +96,17 @@ class _MyAppState extends State<MyApp> {
 
           //title: Text(constants.appTitle),
         ),
-        body: _isUserLoggedIn
-            ? _pageIndex == constants.homePage
+        body: isUserLoggedIn
+            ? pageIndex == constants.homePage
             ? HomePage(logOutFunction, callExternalAPIFunction, setPageIndex, getUserProfileData, _userName)
-            : _pageIndex == constants.profilePage
+            : pageIndex == constants.profilePage
             ? SingleChildScrollView(
               child: ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
               _mobile, _photo, setPageIndex),
             )
-            : _pageIndex == constants.externalAPIResponsePage
+            : pageIndex == constants.externalAPIResponsePage
             ? SingleChildScrollView(child: ExternalAPIDataPage(setPageIndex, _apiData))
-            : _pageIndex == constants.editProfilePage
+            : pageIndex == constants.editProfilePage
             ? SingleChildScrollView(child: EditProfilePage(setPageIndex, _firstName, _lastName, _country, updateUserProfile))
             : LogInPage(loginFunction)
             : LogInPage(loginFunction),
@@ -107,15 +123,19 @@ class _MyAppState extends State<MyApp> {
   Future<void> loginFunction() async {
 
     try {
-      final AuthorizationTokenResponse? result = await Auth().authorize(flutterAppAuth);
+      final AuthorizationTokenResponse? result = await AuthClient().authorize(flutterAppAuth);
 
       setState(() {
         _isUserLoggedIn = true;
         _idToken = result?.idToken;
         _accessToken = result?.accessToken;
         _refreshToken = result?.refreshToken;
-        _pageIndex = constants.homePage;
       });
+
+      if(context.mounted) {
+        context.read<CurrentPage>().setPageAndUserStatus(constants.homePage, true);
+        context.read<UserSession>().loginSuccessfulFunction(result?.accessToken, result?.idToken, result?.accessToken);
+      }
       await getUserName();
     } catch (e, s) {
       print('Error while login to the system: $e - stack: $s');
@@ -127,13 +147,15 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> callExternalAPIFunction() async {
 
-    final externalInfo = await APIClient().httpGet(externalAPIEndpoint, _accessToken);
+    final externalInfo = await HTTPClient().httpGet(externalAPIEndpoint, _accessToken);
 
     if (externalInfo.statusCode == constants.httpSuccessCode) {
       setState(() {
-        _pageIndex = constants.externalAPIResponsePage;
         _apiData =externalInfo.body.toString().replaceAll(",", ",\n");
       });
+      if(context.mounted) {
+        context.read<CurrentPage>().setPageIndex(constants.externalAPIResponsePage);
+      }
     }else if (externalInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
@@ -147,7 +169,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> getUserName() async {
 
-    final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
+    final userInfo = await HTTPClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(userInfo.body);
@@ -167,7 +189,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> getUserProfileData() async {
 
-    final userInfo = await APIClient().httpGet(meEndpoint, _accessToken);
+    final userInfo = await HTTPClient().httpGet(meEndpoint, _accessToken);
 
     if (userInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(userInfo.body);
@@ -179,8 +201,10 @@ class _MyAppState extends State<MyApp> {
         _mobile = profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
         _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
        _userName = profile[constants.userName].toString().split(constants.domainSplit)[1];
-       _pageIndex = constants.profilePage;
       });
+      if(context.mounted) {
+        context.read<CurrentPage>().setPageIndex(constants.profilePage);
+      }
     }else if (userInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
@@ -195,7 +219,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> updateUserProfile(firstName, lastName, country) async {
 
     Map data = Util().generateUpdateRequestBody(firstName, lastName, country);
-    final updatedInfo = await APIClient().httpPatch(meEndpoint, _accessToken, data);
+    final updatedInfo = await HTTPClient().httpPatch(meEndpoint, _accessToken, data);
 
     if (updatedInfo.statusCode == constants.httpSuccessCode) {
       var profile = jsonDecode(updatedInfo.body);
@@ -206,8 +230,10 @@ class _MyAppState extends State<MyApp> {
         _country = profile[constants.wso2Schema][constants.country] ?? '';
         _mobile =  profile[constants.phoneNumbers][0][constants.type] == constants.mobile? profile[constants.phoneNumbers][0][constants.value]:'';
         _photo = profile[constants.wso2Schema][constants.photo] ?? defaultPhotoURL;
-        _pageIndex = constants.profilePage;
       });
+      if(context.mounted) {
+        context.read<CurrentPage>().setPageIndex(constants.profilePage);
+      }
     }else if (updatedInfo.statusCode == constants.httpUnauthorizedCode) {
       try {
         await renewAccessToken();
@@ -223,12 +249,13 @@ class _MyAppState extends State<MyApp> {
   void logOutFunction() async {
 
     try {
-      await Auth().logOutUser(flutterAppAuth, _idToken);
+      await AuthClient().logOutUser(flutterAppAuth, _idToken);
       setState(() {
-        _isUserLoggedIn = false;
         _userName = '';
-        _pageIndex = constants.firstPage;
       });
+      if(context.mounted) {
+        context.read<CurrentPage>().setPageAndUserStatus(constants.firstPage,false);
+      }
     } catch (e, s) {
       print('Error while logout from the system: $e - stack: $s');
     }
@@ -236,7 +263,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> renewAccessToken() async {
 
-    final TokenResponse? tokenResponse = await Auth().refreshToken(flutterAppAuth, _refreshToken);
+    final TokenResponse? tokenResponse = await AuthClient().refreshToken(flutterAppAuth, _refreshToken);
       setState(() {
         _accessToken = tokenResponse?.accessToken;
         _refreshToken = tokenResponse?.refreshToken;

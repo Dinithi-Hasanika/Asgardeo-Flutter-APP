@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
+import '../providers/page.dart';
+import '../providers/user.dart';
 
 class ProfilePage extends StatelessWidget {
   final firstName;
@@ -22,7 +25,7 @@ class ProfilePage extends StatelessWidget {
           Row(children: [
             IconButton(
               onPressed: () {
-                pageIndex(constants.homePage);
+                context.read<CurrentPage>().setPageIndex(constants.homePage);
               },
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
@@ -38,7 +41,7 @@ class ProfilePage extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
                 image: NetworkImage(
-                    photo ??
+                    context.read<User>().photo ??
                         ''),
               ),
             ),
@@ -80,35 +83,35 @@ class ProfilePage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          '$firstName',
+                          context.read<User>().firstName,
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '$LastName',
+                          context.read<User>().lastName,
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '$dateOdBirth',
+                          context.read<User>().dateOfBirth,
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '$mobile',
+                          context.read<User>().mobile,
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '$country',
+                          context.read<User>().country,
                           maxLines: 2,
                           softWrap: true,
                           style: const TextStyle(fontSize: 18),
@@ -130,7 +133,7 @@ class ProfilePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () {
-                pageIndex(constants.editProfilePage);
+                context.read<CurrentPage>().setPageIndex(constants.editProfilePage);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,

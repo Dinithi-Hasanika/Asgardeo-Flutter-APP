@@ -1,5 +1,9 @@
+import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
+import '../providers/page.dart';
+import '../providers/user.dart';
 
 class EditProfilePage extends StatefulWidget {
   final firstName;
@@ -28,11 +32,11 @@ class _EditProfilePage extends State<EditProfilePage>{
   @override
   Widget build(BuildContext context) {
     final TextEditingController firstNameController = TextEditingController();
-    firstNameController.text = this._firstName;
+    firstNameController.text = context.read<User>().firstName;
     final TextEditingController lastNameController = TextEditingController();
-    lastNameController.text = this._lastName;
+    lastNameController.text = context.read<User>().lastName;
     final TextEditingController countryController = TextEditingController();
-    countryController.text = this._country;
+    countryController.text = context.read<User>().country;
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +44,7 @@ class _EditProfilePage extends State<EditProfilePage>{
           Row(children: [
             IconButton(
               onPressed: () {
-                setPageIndex(constants.profilePage);
+                context.read<CurrentPage>().setPageIndex(constants.profilePage);
               },
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
@@ -121,7 +125,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                   borderRadius: BorderRadius.circular(constants.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
-                  await updateUserProfile(_firstName, _lastName,_country);
+                  await APIClient().updateUserProfile(firstNameController.text, lastNameController.text, countryController.text, context);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -136,7 +140,7 @@ class _EditProfilePage extends State<EditProfilePage>{
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
-                  setPageIndex(constants.profilePage);
+                  context.read<CurrentPage>().setPageIndex(constants.profilePage);
                 },
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(

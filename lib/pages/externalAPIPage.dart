@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
+import 'package:provider/provider.dart';
+import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{
   final setPageIndex;
@@ -16,15 +18,15 @@ class ExternalAPIDataPage extends StatelessWidget{
             Row(children: [
               IconButton(
                 onPressed: () {
-                setPageIndex(constants.homePage);
+                  context.read<CurrentPage>().setPageIndex(constants.homePage);
                 },
                 icon: const Icon(Icons.arrow_back_ios_new),
               ),
-              const Text(constants.externalAPIPageTitle, style: TextStyle(fontSize: 30))
+              const Text(constants.externalAPIPageTitle, style: TextStyle(fontSize: 30)),
             ]
             ),
             const SizedBox(height: 40),
-            Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text(bodyResponse)),
+            Padding(padding: const EdgeInsets.only(left:35, bottom: 0, right: 10, top:0), child: Text(context.watch<CurrentPage>().apiData)),
           ]
       ),
     );

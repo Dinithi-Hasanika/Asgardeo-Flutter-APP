@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'APIClientConstants.dart' as Constants;
 
-class APIClient {
+class HTTPClient {
 
   Future<http.Response> httpGet(String url, String? accessToken) {
     final result = http.get(
