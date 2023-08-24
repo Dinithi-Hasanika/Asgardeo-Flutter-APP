@@ -5,15 +5,8 @@ import '../providers/page.dart';
 import '../providers/user.dart';
 
 class ProfilePage extends StatelessWidget {
-  final firstName;
-  final LastName;
-  final dateOdBirth;
-  final country;
-  final mobile;
-  final photo;
 
-  const ProfilePage(this.firstName, this.LastName, this.dateOdBirth, this.country,
-      this.mobile, this.photo);
+  const ProfilePage();
 
   @override
   Widget build(BuildContext context) {

@@ -89,18 +89,25 @@ renewAccessToken(BuildContext context) async {
 }
 
   logOutUser2(BuildContext context) async{
+  try {
     await flutterAppAuth.endSession(
       EndSessionRequest(
-        idTokenHint: context.read<UserSession>().idToken,
+        idTokenHint: context
+            .read<UserSession>()
+            .idToken,
         postLogoutRedirectUrl: redirectUrl,
         discoveryUrl: discoveryUrl,
       ),
     );
 
-    if(context.mounted) {
-      context.read<CurrentPage>().setPageAndUserStatus(firstPage,false);
+    if (context.mounted) {
+      context.read<CurrentPage>().setPageAndUserStatus(firstPage, false);
       //TODO: clear user sessions
     }
+  }catch(e){
+    print(e);
+    loginFunction(context);
+  }
   }
 
 }

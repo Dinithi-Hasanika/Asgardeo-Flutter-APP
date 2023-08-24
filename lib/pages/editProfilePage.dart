@@ -6,26 +6,19 @@ import '../providers/page.dart';
 import '../providers/user.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final firstName;
-  final lastName;
-  final country;
 
-  EditProfilePage( this.firstName, this.lastName, this.country);
+  EditProfilePage();
 
   @override
   State<EditProfilePage> createState() {
-    return _EditProfilePage( this.firstName, this.lastName, this.country);
+    return _EditProfilePage();
   }
 
 }
 
 class _EditProfilePage extends State<EditProfilePage>{
-  var _firstName;
-  var _lastName;
-  var _country;
 
-
-   _EditProfilePage( this._firstName, this._lastName, this._country);
+   _EditProfilePage();
   @override
   Widget build(BuildContext context) {
     final TextEditingController firstNameController = TextEditingController();
@@ -63,7 +56,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     )
                 ),
                 onChanged: (text) {
-                  _firstName = text;
+                 // _firstName = text;
                 },
               ),
             ]
@@ -85,7 +78,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                     )
                 ),
                 onChanged: (text) {
-                  _lastName = text;
+                 // _lastName = text;
                 },
               ),
               ]
@@ -105,7 +98,7 @@ class _EditProfilePage extends State<EditProfilePage>{
                       borderRadius: BorderRadius.circular(6.0),
                     )),
                 onChanged: (text) {
-                  _country = text;
+                  //_country = text;
                 },
               ),
               ]

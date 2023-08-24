@@ -7,9 +7,8 @@ import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {
-  final username;
 
-  const HomePage( this.username);
+  const HomePage();
 
   @override
   Widget build(BuildContext context) {

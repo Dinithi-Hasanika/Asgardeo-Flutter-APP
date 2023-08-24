@@ -20,7 +20,6 @@ import 'package:provider/provider.dart';
 final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 void main() {
-  // runApp(MyApp());
   runApp(
     MultiProvider(
       providers: [
@@ -41,37 +40,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late int _pageIndex;
-  late bool _isUserLoggedIn;
-  late String? _idToken;
-  late String? _accessToken;
-  late String? _refreshToken;
-  late String? _firstName;
-  late String? _lastName;
-  late String? _dateOfBirth;
-  late String? _country;
-  late String? _mobile;
-  late String? _photo;
-  late String _apiData;
-  late String? _userName;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageIndex = constants.firstPage;
-    _isUserLoggedIn = false;
-    _idToken = '';
-    _accessToken = '';
-    _refreshToken = '';
-    _firstName = '';
-    _lastName = '';
-    _dateOfBirth = '';
-    _country = '';
-    _mobile = '';
-    _photo = '';
-    _apiData ='';
-    _userName = '';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +66,15 @@ class _MyAppState extends State<MyApp> {
         ),
         body: isUserLoggedIn
             ? pageIndex == constants.homePage
-            ? HomePage( _userName)
+            ? HomePage()
             : pageIndex == constants.profilePage
             ? SingleChildScrollView(
-              child: ProfilePage(_firstName, _lastName, _dateOfBirth, _country,
-              _mobile, _photo),
+              child: ProfilePage(),
             )
             : pageIndex == constants.externalAPIResponsePage
-            ? SingleChildScrollView(child: ExternalAPIDataPage( _apiData))
+            ? SingleChildScrollView(child: ExternalAPIDataPage())
             : pageIndex == constants.editProfilePage
-            ? SingleChildScrollView(child: EditProfilePage( _firstName, _lastName, _country))
+            ? SingleChildScrollView(child: EditProfilePage())
             : LogInPage()
             : LogInPage(),
       ),

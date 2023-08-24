@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{
-  final String bodyResponse;
 
-  const ExternalAPIDataPage( this.bodyResponse);
+  const ExternalAPIDataPage();
 
   @override
   Widget build(BuildContext context) {
