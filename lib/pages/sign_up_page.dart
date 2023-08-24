@@ -18,7 +18,6 @@ class SignUpWebView extends StatelessWidget{
       ..setNavigationDelegate(
           NavigationDelegate(
             onProgress: (int progress) {
-
             },
             onPageStarted: (String url) {},
             onPageFinished: (String url) {},

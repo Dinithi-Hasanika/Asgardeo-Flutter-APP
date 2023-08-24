@@ -25,7 +25,6 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-                //await getUserProfileData();
                 await APIClient().getUserProfileData(context);
               },
               style: ElevatedButton.styleFrom(
@@ -58,7 +57,7 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
             child: ElevatedButton(
               onPressed: () async {
-                await AuthClient().logOutUser2(context);
+                await AuthClient().logOutUser(context);
               },
               style: ElevatedButton.styleFrom(
                   side: const BorderSide(

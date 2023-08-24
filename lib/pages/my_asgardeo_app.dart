@@ -32,8 +32,6 @@ class MyApp extends StatelessWidget {
               scale:0.1,
             ): const Text(''),
           ),
-
-          //title: Text(constants.appTitle),
         ),
         body: isUserLoggedIn
             ? pageIndex == constants.homePage

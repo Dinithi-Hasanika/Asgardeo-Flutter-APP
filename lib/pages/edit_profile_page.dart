@@ -44,9 +44,6 @@ class EditProfilePage extends StatelessWidget{
                       borderRadius: BorderRadius.circular(6.0),
                     )
                 ),
-                onChanged: (text) {
-                 // _firstName = text;
-                },
               ),
             ]
             ),
@@ -66,9 +63,6 @@ class EditProfilePage extends StatelessWidget{
                       borderRadius: BorderRadius.circular(6.0),
                     )
                 ),
-                onChanged: (text) {
-                 // _lastName = text;
-                },
               ),
               ]
             ),
@@ -86,9 +80,6 @@ class EditProfilePage extends StatelessWidget{
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6.0),
                     )),
-                onChanged: (text) {
-                  //_country = text;
-                },
               ),
               ]
             ),

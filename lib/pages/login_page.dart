@@ -39,8 +39,6 @@ class LogInPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-             //await loginFunction();
-                //await loginFunction2(context);
                 await AuthClient().loginFunction(context);
               },
               style: ElevatedButton.styleFrom(

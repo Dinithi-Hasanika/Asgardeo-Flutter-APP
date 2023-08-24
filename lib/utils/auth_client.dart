@@ -12,42 +12,6 @@ const FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 class AuthClient{
 
-Future<AuthorizationTokenResponse?> authorize(flutterAppAuth) async {
-
-  final AuthorizationTokenResponse? result = await flutterAppAuth.authorizeAndExchangeCode(
-    AuthorizationTokenRequest(
-      clientId,
-      redirectUrl,
-      discoveryUrl: discoveryUrl,
-      promptValues: [Constants.login],
-      scopes: [Constants.openidScope, Constants.profile, Constants.address, Constants.phone, Constants.internalLoginScope],
-    ),
-  );
-  return result;
-}
-
-Future<TokenResponse?> refreshToken(flutterAppAuth, refreshToken) async{
-  final TokenResponse? tokenResponse = await flutterAppAuth.token(
-      TokenRequest(clientId,
-          redirectUrl,
-          grantType: GrantType.refreshToken,
-          refreshToken: refreshToken,
-          discoveryUrl: discoveryUrl
-      )
-  );
-  return tokenResponse;
-}
-
-logOutUser(flutterAppAuth, idToken) async{
-  await flutterAppAuth.endSession(
-    EndSessionRequest(
-      idTokenHint: idToken,
-      postLogoutRedirectUrl: redirectUrl,
-      discoveryUrl: discoveryUrl,
-    ),
-  );
-}
-
 loginFunction(BuildContext context) async{
   try{
     final AuthorizationTokenResponse? result = await flutterAppAuth.authorizeAndExchangeCode(
@@ -88,7 +52,7 @@ renewAccessToken(BuildContext context) async {
   }
 }
 
-  logOutUser2(BuildContext context) async{
+  logOutUser(BuildContext context) async{
   try {
     await flutterAppAuth.endSession(
       EndSessionRequest(
