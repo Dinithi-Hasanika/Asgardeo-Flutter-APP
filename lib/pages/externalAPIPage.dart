@@ -5,7 +5,7 @@ import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{
 
-  const ExternalAPIDataPage();
+  const ExternalAPIDataPage({super.key});
 
   @override
   Widget build(BuildContext context) {

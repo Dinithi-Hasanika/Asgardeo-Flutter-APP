@@ -7,7 +7,7 @@ import '../providers/user.dart';
 
 class EditProfilePage extends StatelessWidget{
 
-   EditProfilePage();
+   const EditProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
     final TextEditingController firstNameController = TextEditingController();

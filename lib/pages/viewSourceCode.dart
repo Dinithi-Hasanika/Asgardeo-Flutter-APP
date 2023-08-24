@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../constants.dart' as constants;
 
-class viewSourceCode extends StatelessWidget{
+class ViewSourceCode extends StatelessWidget{
+  const ViewSourceCode({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

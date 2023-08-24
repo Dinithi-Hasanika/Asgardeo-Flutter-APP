@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../constants.dart' as constants;
 
-class signUpWebView extends StatelessWidget{
+class SignUpWebView extends StatelessWidget{
+  const SignUpWebView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

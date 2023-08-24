@@ -6,7 +6,7 @@ import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {
 
-  const HomePage();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

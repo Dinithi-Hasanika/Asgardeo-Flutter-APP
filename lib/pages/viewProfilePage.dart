@@ -6,7 +6,7 @@ import '../providers/user.dart';
 
 class ProfilePage extends StatelessWidget {
 
-  const ProfilePage();
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {

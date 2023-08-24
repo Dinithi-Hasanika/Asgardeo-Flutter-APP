@@ -8,7 +8,7 @@ import '../providers/user_session.dart';
 import 'AuthConstants.dart' as Constants;
 import 'package:asgardeo_flutter_app/constants.dart';
 
-final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
+const FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 class AuthClient{
 

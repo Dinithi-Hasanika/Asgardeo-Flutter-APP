@@ -6,7 +6,7 @@ import '../utils/Auth.dart';
 
 class LogInPage extends StatelessWidget {
 
-  const LogInPage();
+  const LogInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class LogInPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => signUpWebView()));
+                      MaterialPageRoute(builder: (context) => const SignUpWebView()));
                 },
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(
@@ -74,7 +74,7 @@ class LogInPage extends StatelessWidget {
             InkWell(
               onTap: () async {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => viewSourceCode()));
+                    MaterialPageRoute(builder: (context) => const ViewSourceCode()));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
