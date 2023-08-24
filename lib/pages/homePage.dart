@@ -1,9 +1,7 @@
-import 'package:asgardeo_flutter_app/providers/user_session.dart';
 import 'package:asgardeo_flutter_app/utils/Auth.dart';
 import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {

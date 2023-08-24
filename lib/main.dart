@@ -1,23 +1,14 @@
 import 'package:asgardeo_flutter_app/providers/page.dart';
 import 'package:asgardeo_flutter_app/providers/user.dart';
 import 'package:asgardeo_flutter_app/providers/user_session.dart';
-import 'package:asgardeo_flutter_app/utils/http_client.dart';
-import 'package:asgardeo_flutter_app/utils/Auth.dart';
-import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter_appauth/flutter_appauth.dart';
 import 'pages/editProfilePage.dart';
 import 'pages/externalAPIPage.dart';
 import 'pages/viewProfilePage.dart';
 import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
-import 'configs/configs.dart';
-import 'configs/endPointUrls.dart';
 import 'constants.dart' as constants;
 import 'package:provider/provider.dart';
-
-final FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
 void main() {
   runApp(
