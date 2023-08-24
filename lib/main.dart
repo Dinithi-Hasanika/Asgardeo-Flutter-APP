@@ -32,14 +32,9 @@ void main() {
   );
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() {
-    return _MyAppState();
-  }
-}
+class MyApp extends StatelessWidget {
 
-class _MyAppState extends State<MyApp> {
+  const MyApp();
 
   @override
   Widget build(BuildContext context) {

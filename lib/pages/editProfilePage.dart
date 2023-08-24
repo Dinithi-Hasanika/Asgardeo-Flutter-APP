@@ -5,20 +5,9 @@ import '../constants.dart' as constants;
 import '../providers/page.dart';
 import '../providers/user.dart';
 
-class EditProfilePage extends StatefulWidget {
+class EditProfilePage extends StatelessWidget{
 
-  EditProfilePage();
-
-  @override
-  State<EditProfilePage> createState() {
-    return _EditProfilePage();
-  }
-
-}
-
-class _EditProfilePage extends State<EditProfilePage>{
-
-   _EditProfilePage();
+   EditProfilePage();
   @override
   Widget build(BuildContext context) {
     final TextEditingController firstNameController = TextEditingController();
