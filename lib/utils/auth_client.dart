@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:provider/provider.dart';
 import '../configs/configs.dart';
-import '../configs/endPointUrls.dart';
+import '../configs/end_point_urls.dart';
 import '../providers/page.dart';
 import '../providers/user_session.dart';
-import 'AuthConstants.dart' as Constants;
+import 'auth_constants.dart' as Constants;
 import 'package:asgardeo_flutter_app/constants.dart';
 
 const FlutterAppAuth flutterAppAuth = FlutterAppAuth();

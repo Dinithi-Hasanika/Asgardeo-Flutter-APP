@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'APIClientConstants.dart' as Constants;
+import 'api_client_constants.dart' as Constants;
 
 class HTTPClient {
 

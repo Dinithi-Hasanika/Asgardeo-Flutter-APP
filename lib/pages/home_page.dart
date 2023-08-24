@@ -1,4 +1,4 @@
-import 'package:asgardeo_flutter_app/utils/Auth.dart';
+import 'package:asgardeo_flutter_app/utils/auth_client.dart';
 import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';

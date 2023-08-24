@@ -1,5 +1,5 @@
 import 'package:asgardeo_flutter_app/configs/configs.dart';
-import 'package:asgardeo_flutter_app/configs/endPointUrls.dart';
+import 'package:asgardeo_flutter_app/configs/end_point_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../constants.dart' as constants;

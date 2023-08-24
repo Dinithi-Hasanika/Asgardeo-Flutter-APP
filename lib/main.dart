@@ -2,12 +2,7 @@ import 'package:asgardeo_flutter_app/providers/page.dart';
 import 'package:asgardeo_flutter_app/providers/user.dart';
 import 'package:asgardeo_flutter_app/providers/user_session.dart';
 import 'package:flutter/material.dart';
-import 'pages/editProfilePage.dart';
-import 'pages/externalAPIPage.dart';
-import 'pages/viewProfilePage.dart';
-import 'pages/homePage.dart';
-import 'pages/loginPage.dart';
-import 'constants.dart' as constants;
+import 'pages/my_asgardeo_app.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,53 +13,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UserSession()),
         ChangeNotifierProvider(create: (_) => CurrentPage()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-
-  const MyApp();
-
-  @override
-  Widget build(BuildContext context) {
-    bool isUserLoggedIn = context.watch<CurrentPage>().isUserLoggedIn;
-    int pageIndex = context.watch<CurrentPage>().pageIndex;
-    return MaterialApp(
-      title: constants.appTitle,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(constants.primaryColor)),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-             leadingWidth: 280,
-            leading:  Padding(
-              padding: const EdgeInsets.only(left: 116, right: 2,),
-              child: isUserLoggedIn ? Image.asset(
-                  constants.asgardeoLogo,
-                  scale:0.1,
-                ): const Text(''),
-            ),
-
-          //title: Text(constants.appTitle),
-        ),
-        body: isUserLoggedIn
-            ? pageIndex == constants.homePage
-            ? HomePage()
-            : pageIndex == constants.profilePage
-            ? SingleChildScrollView(
-              child: ProfilePage(),
-            )
-            : pageIndex == constants.externalAPIResponsePage
-            ? SingleChildScrollView(child: ExternalAPIDataPage())
-            : pageIndex == constants.editProfilePage
-            ? SingleChildScrollView(child: EditProfilePage())
-            : LogInPage()
-            : LogInPage(),
-      ),
-    );
-  }
-
 }
