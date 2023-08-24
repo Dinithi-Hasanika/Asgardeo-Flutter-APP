@@ -1,8 +1,10 @@
-import 'package:asgardeo_flutter_app/configs/configs.dart';
-import 'package:asgardeo_flutter_app/configs/end_point_urls.dart';
-import 'package:asgardeo_flutter_app/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../configs/configs.dart';
+import '../configs/end_point_urls.dart';
+import '../constants/strings.dart';
+
 
 class SignUpWebView extends StatelessWidget{
   const SignUpWebView({super.key});

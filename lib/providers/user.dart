@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:asgardeo_flutter_app/configs/configs.dart';
+
+import '../configs/configs.dart';
 import '../constants/app_constants.dart';
 
 class User with ChangeNotifier, DiagnosticableTreeMixin{

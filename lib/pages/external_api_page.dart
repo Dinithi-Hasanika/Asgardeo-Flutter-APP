@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../constants/strings.dart';
+
 import '../constants/app_constants.dart';
+import '../constants/strings.dart';
 import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{

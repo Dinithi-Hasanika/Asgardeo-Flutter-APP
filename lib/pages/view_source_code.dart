@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
+
+import '../configs/configs.dart' as configs;
 
 class ViewSourceCode extends StatelessWidget{
   const ViewSourceCode({super.key});

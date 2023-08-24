@@ -1,16 +1,17 @@
 import 'dart:convert';
 
-import 'package:asgardeo_flutter_app/providers/user.dart';
-import 'package:asgardeo_flutter_app/utils/auth_client.dart';
-import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
-import '../providers/page.dart';
-import '../providers/user_session.dart';
-import 'http_client.dart';
 import '../constants/app_constants.dart';
+import 'http_client.dart';
+import '../providers/page.dart';
+import '../providers/user.dart';
+import '../providers/user_session.dart';
+import '../utils/auth_client.dart';
+import '../utils/util.dart';
 
 class APIClient{
 

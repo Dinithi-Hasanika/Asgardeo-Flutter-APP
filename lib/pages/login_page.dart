@@ -1,9 +1,10 @@
-import 'package:asgardeo_flutter_app/constants/strings.dart';
-import 'package:asgardeo_flutter_app/pages/sign_up_page.dart';
-import 'package:asgardeo_flutter_app/pages/view_source_code.dart';
 import 'package:flutter/material.dart';
+
+import '../configs/configs.dart' as configs;
+import '../constants/strings.dart';
+import '../pages/sign_up_page.dart';
+import '../pages/view_source_code.dart';
 import '../utils/auth_client.dart';
-import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class LogInPage extends StatelessWidget {
 

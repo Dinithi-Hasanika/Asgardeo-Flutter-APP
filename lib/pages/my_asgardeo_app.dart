@@ -1,14 +1,15 @@
-import 'package:asgardeo_flutter_app/constants/strings.dart';
-import 'package:asgardeo_flutter_app/providers/page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../configs/configs.dart' as configs;
+import '../constants/app_constants.dart';
+import '../constants/strings.dart';
 import 'edit_profile_page.dart';
 import 'external_api_page.dart';
-import 'view_profile_page.dart';
 import 'home_page.dart';
 import 'login_page.dart';
-import 'package:provider/provider.dart';
-import '../constants/app_constants.dart';
-import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
+import '../providers/page.dart';
+import 'view_profile_page.dart';
 
 class MyApp extends StatelessWidget {
 

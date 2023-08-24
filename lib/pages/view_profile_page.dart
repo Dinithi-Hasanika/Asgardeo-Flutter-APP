@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../configs/configs.dart' as configs;
+import '../constants/app_constants.dart';
 import '../constants/strings.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
-import '../constants/app_constants.dart';
-import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
+
+
 
 class ProfilePage extends StatelessWidget {
 

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+
 import '../constants/app_constants.dart';
 
 class CurrentPage with ChangeNotifier, DiagnosticableTreeMixin{
