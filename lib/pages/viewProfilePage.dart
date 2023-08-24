@@ -11,10 +11,9 @@ class ProfilePage extends StatelessWidget {
   final country;
   final mobile;
   final photo;
-  final pageIndex;
 
   const ProfilePage(this.firstName, this.LastName, this.dateOdBirth, this.country,
-      this.mobile, this.photo, this.pageIndex);
+      this.mobile, this.photo);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +40,7 @@ class ProfilePage extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
                 image: NetworkImage(
-                    context.read<User>().photo ??
-                        ''),
+                    context.read<User>().photo),
               ),
             ),
           ),

@@ -7,13 +7,9 @@ import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
 
 class HomePage extends StatelessWidget {
-  final logOutFunction;
-  final callExternalAPIFunction;
-  final setPageIndex;
-  final getUserProfileData;
   final username;
 
-  const HomePage(this.logOutFunction, this.callExternalAPIFunction, this.setPageIndex, this.getUserProfileData, this.username);
+  const HomePage( this.username);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +46,6 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(constants.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-               // await callExternalAPIFunction();
                 await APIClient().callExternalAPIFunction(context);
               },
               style: ElevatedButton.styleFrom(

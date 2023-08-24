@@ -5,9 +5,8 @@ import '../constants.dart' as constants;
 import '../utils/Auth.dart';
 
 class LogInPage extends StatelessWidget {
-  final loginFunction;
 
-  const LogInPage(this.loginFunction);
+  const LogInPage();
 
   @override
   Widget build(BuildContext context) {

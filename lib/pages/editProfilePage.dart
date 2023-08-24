@@ -9,14 +9,12 @@ class EditProfilePage extends StatefulWidget {
   final firstName;
   final lastName;
   final country;
-  final updateUserProfile;
-  final setPageIndex;
 
-  EditProfilePage(this.setPageIndex, this.firstName, this.lastName, this.country, this.updateUserProfile);
+  EditProfilePage( this.firstName, this.lastName, this.country);
 
   @override
   State<EditProfilePage> createState() {
-    return _EditProfilePage(this.setPageIndex, this.firstName, this.lastName, this.country, this.updateUserProfile);
+    return _EditProfilePage( this.firstName, this.lastName, this.country);
   }
 
 }
@@ -25,10 +23,9 @@ class _EditProfilePage extends State<EditProfilePage>{
   var _firstName;
   var _lastName;
   var _country;
-  final updateUserProfile;
-  final setPageIndex;
 
-   _EditProfilePage(this.setPageIndex, this._firstName, this._lastName, this._country, this.updateUserProfile);
+
+   _EditProfilePage( this._firstName, this._lastName, this._country);
   @override
   Widget build(BuildContext context) {
     final TextEditingController firstNameController = TextEditingController();
