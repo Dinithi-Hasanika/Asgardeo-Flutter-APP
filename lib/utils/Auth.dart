@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:provider/provider.dart';
@@ -60,8 +61,9 @@ loginFunction(BuildContext context) async{
       ),
     );
     if(context.mounted) {
-      context.read<CurrentPage>().setPageAndUserStatus(homePage, true);
       context.read<UserSession>().loginSuccessfulFunction(result?.accessToken, result?.idToken, result?.refreshToken);
+      // await APIClient().getUserName(context);
+      context.read<CurrentPage>().setPageAndUserStatus(homePage, true);
     }
   }catch(e, s){
     print('Error while login to the system: $e - stack: $s');
