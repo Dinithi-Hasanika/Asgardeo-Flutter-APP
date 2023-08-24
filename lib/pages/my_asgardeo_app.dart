@@ -6,8 +6,9 @@ import 'external_api_page.dart';
 import 'view_profile_page.dart';
 import 'home_page.dart';
 import 'login_page.dart';
-import '../constants.dart' as constants;
 import 'package:provider/provider.dart';
+import '../constants/app_constants.dart';
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class MyApp extends StatelessWidget {
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: Strings.appTitle,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(constants.primaryColor)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(configs.primaryColor)),
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -29,19 +30,19 @@ class MyApp extends StatelessWidget {
           leading:  Padding(
             padding: const EdgeInsets.only(left: 116, right: 2,),
             child: isUserLoggedIn ? Image.asset(
-              constants.asgardeoLogo,
+              configs.asgardeoLogo,
               scale:0.1,
             ): const Text(''),
           ),
         ),
         body: isUserLoggedIn
-            ? pageIndex == constants.homePage
+            ? pageIndex == AppConstants.homePage
             ? const HomePage()
-            : pageIndex == constants.profilePage
+            : pageIndex == AppConstants.profilePage
             ? const SingleChildScrollView(child: ProfilePage(),)
-            : pageIndex == constants.externalAPIResponsePage
+            : pageIndex == AppConstants.externalAPIResponsePage
             ? const SingleChildScrollView(child: ExternalAPIDataPage())
-            : pageIndex == constants.editProfilePage
+            : pageIndex == AppConstants.editProfilePage
             ? const SingleChildScrollView(child: EditProfilePage())
             : const LogInPage()
             : const LogInPage(),

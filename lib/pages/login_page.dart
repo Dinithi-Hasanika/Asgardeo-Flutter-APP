@@ -2,8 +2,8 @@ import 'package:asgardeo_flutter_app/constants/strings.dart';
 import 'package:asgardeo_flutter_app/pages/sign_up_page.dart';
 import 'package:asgardeo_flutter_app/pages/view_source_code.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart' as constants;
 import '../utils/auth_client.dart';
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class LogInPage extends StatelessWidget {
 
@@ -15,7 +15,7 @@ class LogInPage extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-              Image.asset(constants.flutterLogo,
+              Image.asset(configs.flutterLogo,
                 height: 100,
                 width: 100,
               ),
@@ -25,7 +25,7 @@ class LogInPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(Strings.firstPageSubTitle, style: TextStyle(fontSize: 25)),
-                Image.asset(constants.asgardeoLogo,
+                Image.asset(configs.asgardeoLogo,
                   height: 100,
                   width: 120,
                 ),
@@ -36,8 +36,8 @@ class LogInPage extends StatelessWidget {
             height: 44.0,
             width: 180.0,
             decoration: BoxDecoration(
-                color: const Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+                color: const Color(configs.primaryColor),
+                borderRadius: BorderRadius.circular(configs.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
                 await AuthClient().loginFunction(context);
@@ -61,12 +61,12 @@ class LogInPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(
                       width: 1.0,
-                      color: Color(constants.primaryColor),
+                      color: Color(configs.primaryColor),
                     ),
                     shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(constants.buttonRadius),
+                      borderRadius: BorderRadius.circular(configs.buttonRadius),
                     )),
-                child: const Text(Strings.signUpButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(constants.primaryColor))),
+                child: const Text(Strings.signUpButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(configs.primaryColor))),
               ),
             ),
             const SizedBox(height: 60),
@@ -78,7 +78,7 @@ class LogInPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(constants.gitHubLogo,
+                  Image.asset(configs.gitHubLogo,
                     height: 25,
                     width: 25,
                   ),

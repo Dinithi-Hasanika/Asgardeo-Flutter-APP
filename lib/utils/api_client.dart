@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
-import '../constants.dart';
 import '../providers/page.dart';
 import '../providers/user_session.dart';
 import 'http_client.dart';
+import '../constants/app_constants.dart';
 
 class APIClient{
 
@@ -18,13 +18,13 @@ class APIClient{
 
     final userInfo = await HTTPClient().httpGet(meEndpoint, context.read<UserSession>().accessToken);
 
-    if (userInfo.statusCode == httpSuccessCode) {
+    if (userInfo.statusCode == AppConstants.httpSuccessCode) {
       var profile = jsonDecode(userInfo.body);
       if(context.mounted) {
         context.read<User>().setUserDetails(profile);
-        context.read<CurrentPage>().setPageIndex(profilePage);
+        context.read<CurrentPage>().setPageIndex(AppConstants.profilePage);
       }
-    }else if (userInfo.statusCode == httpUnauthorizedCode) {
+    }else if (userInfo.statusCode == AppConstants.httpUnauthorizedCode) {
         if(context.mounted) {
           await AuthClient().renewAccessToken(context);
         }
@@ -40,13 +40,13 @@ class APIClient{
     Map data = Util().generateUpdateRequestBody(firstName, lastName, country);
     final updatedInfo = await HTTPClient().httpPatch(meEndpoint, context.read<UserSession>().accessToken, data);
 
-    if (updatedInfo.statusCode == httpSuccessCode) {
+    if (updatedInfo.statusCode == AppConstants.httpSuccessCode) {
       var profile = jsonDecode(updatedInfo.body);
       if(context.mounted) {
         context.read<User>().setUserDetails(profile);
-        context.read<CurrentPage>().setPageIndex(profilePage);
+        context.read<CurrentPage>().setPageIndex(AppConstants.profilePage);
       }
-    }else if (updatedInfo.statusCode == httpUnauthorizedCode) {
+    }else if (updatedInfo.statusCode == AppConstants.httpUnauthorizedCode) {
       if(context.mounted) {
         await AuthClient().renewAccessToken(context);
       }
@@ -60,11 +60,11 @@ class APIClient{
 
     final externalInfo = await HTTPClient().httpGet(externalAPIEndpoint, context.read<UserSession>().accessToken);
 
-    if (externalInfo.statusCode == httpSuccessCode) {
+    if (externalInfo.statusCode == AppConstants.httpSuccessCode) {
       if(context.mounted) {
-        context.read<CurrentPage>().setExternalAPIPage(externalAPIResponsePage, externalInfo.body);
+        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, externalInfo.body);
       }
-    }else if (externalInfo.statusCode == httpUnauthorizedCode) {
+    }else if (externalInfo.statusCode == AppConstants.httpUnauthorizedCode) {
       if(context.mounted) {
         await AuthClient().renewAccessToken(context);
       }
@@ -73,7 +73,7 @@ class APIClient{
       }
     }else{
       if(context.mounted) {
-        context.read<CurrentPage>().setExternalAPIPage(externalAPIResponsePage, "Cannot Get external API Data!! Please Check Configured external API Endpoint!");
+        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, "Cannot Get external API Data!! Please Check Configured external API Endpoint!");
       }
     }
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart' as constants;
 import '../constants/strings.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
+import '../constants/app_constants.dart';
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class ProfilePage extends StatelessWidget {
 
@@ -18,7 +19,7 @@ class ProfilePage extends StatelessWidget {
           Row(children: [
             IconButton(
               onPressed: () {
-                context.read<CurrentPage>().setPageIndex(constants.homePage);
+                context.read<CurrentPage>().setPageIndex(AppConstants.homePage);
               },
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
@@ -29,7 +30,7 @@ class ProfilePage extends StatelessWidget {
             width: 150,
             height: 150,
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(constants.primaryColor), width: 2.0),
+              border: Border.all(color: const Color(configs.primaryColor), width: 2.0),
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
@@ -121,11 +122,11 @@ class ProfilePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                color: const Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+                color: const Color(configs.primaryColor),
+                borderRadius: BorderRadius.circular(configs.buttonRadius)),
             child: ElevatedButton(
               onPressed: () {
-                context.read<CurrentPage>().setPageIndex(constants.editProfilePage);
+                context.read<CurrentPage>().setPageIndex(AppConstants.editProfilePage);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,

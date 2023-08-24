@@ -1,8 +1,8 @@
-import 'package:asgardeo_flutter_app/constants.dart';
 import 'package:flutter/foundation.dart';
+import '../constants/app_constants.dart';
 
 class CurrentPage with ChangeNotifier, DiagnosticableTreeMixin{
-  late int _pageIndex = firstPage;
+  late int _pageIndex = AppConstants.firstPage;
   late bool _isUserLoggedIn = false;
   late String _apiData = 'Can not Retrieve API Data';
 

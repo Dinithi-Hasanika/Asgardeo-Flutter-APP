@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../constants.dart' as constants;
 import 'package:provider/provider.dart';
 import '../constants/strings.dart';
+import '../constants/app_constants.dart';
 import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{
@@ -17,7 +17,7 @@ class ExternalAPIDataPage extends StatelessWidget{
             Row(children: [
               IconButton(
                 onPressed: () {
-                  context.read<CurrentPage>().setPageIndex(constants.homePage);
+                  context.read<CurrentPage>().setPageIndex(AppConstants.homePage);
                 },
                 icon: const Icon(Icons.arrow_back_ios_new),
               ),

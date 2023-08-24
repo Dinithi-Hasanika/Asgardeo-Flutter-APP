@@ -3,7 +3,7 @@ import 'package:asgardeo_flutter_app/utils/auth_client.dart';
 import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart' as constants;
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class HomePage extends StatelessWidget {
 
@@ -22,8 +22,8 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-                color: const Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+                color: const Color(configs.primaryColor),
+                borderRadius: BorderRadius.circular(configs.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
                 await APIClient().getUserProfileData(context);
@@ -39,8 +39,8 @@ class HomePage extends StatelessWidget {
             height: 44.0,
             width: 170.0,
             decoration: BoxDecoration(
-               color: const Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+               color: const Color(configs.primaryColor),
+                borderRadius: BorderRadius.circular(configs.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
                 await APIClient().callExternalAPIFunction(context);
@@ -63,12 +63,12 @@ class HomePage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   side: const BorderSide(
                     width: 1.0,
-                    color: Color(constants.primaryColor),
+                    color: Color(configs.primaryColor),
                   ),
                   shape:RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(constants.buttonRadius),
+                    borderRadius: BorderRadius.circular(configs.buttonRadius),
                   )),
-              child: const Text(Strings.logOutButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(constants.primaryColor))),
+              child: const Text(Strings.logOutButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(configs.primaryColor))),
             ),
           ),
           const SizedBox(height: 165),

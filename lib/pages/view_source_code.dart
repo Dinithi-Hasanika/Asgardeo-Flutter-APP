@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../constants.dart' as constants;
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class ViewSourceCode extends StatelessWidget{
   const ViewSourceCode({super.key});
@@ -13,7 +13,7 @@ class ViewSourceCode extends StatelessWidget{
         body: WebViewWidget(controller: WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..loadRequest(
-            Uri.parse(constants.repoURL),
+            Uri.parse(configs.repoURL),
           ))
     );
   }

@@ -1,13 +1,13 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'api_client_constants.dart' as Constants;
+import '../constants/app_constants.dart';
 
 class HTTPClient {
 
   Future<http.Response> httpGet(String url, String? accessToken) {
     final result = http.get(
       Uri.parse(url),
-      headers: {Constants.authorization: '${Constants.bearer} $accessToken'},
+      headers: {APIClientConstants.authorization: '${APIClientConstants.bearer} $accessToken'},
     );
     return result;
   }
@@ -15,8 +15,8 @@ class HTTPClient {
   Future<http.Response> httpPatch(String url, String? accessToken, data){
     final result = http.patch(
       Uri.parse(url),
-        headers: {Constants.authorization: '${Constants.bearer} $accessToken',
-          Constants.contentType: Constants.contentTypeJson},
+        headers: {APIClientConstants.authorization: '${APIClientConstants.bearer} $accessToken',
+          APIClientConstants.contentType: APIClientConstants.contentTypeJson},
         body: json.encode(data)
     );
     return result;

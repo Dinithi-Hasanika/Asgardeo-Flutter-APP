@@ -3,10 +3,9 @@ import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:provider/provider.dart';
 import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
+import '../constants/app_constants.dart';
 import '../providers/page.dart';
 import '../providers/user_session.dart';
-import 'auth_constants.dart' as Constants;
-import 'package:asgardeo_flutter_app/constants.dart';
 
 const FlutterAppAuth flutterAppAuth = FlutterAppAuth();
 
@@ -19,17 +18,17 @@ loginFunction(BuildContext context) async{
         clientId,
         redirectUrl,
         discoveryUrl: discoveryUrl,
-        promptValues: [Constants.login],
-        scopes: [Constants.openidScope, Constants.profile, Constants.address, Constants.phone, Constants.internalLoginScope],
+        promptValues: [AuthConstants.login],
+        scopes: [AuthConstants.openidScope, AuthConstants.profile, AuthConstants.address, AuthConstants.phone, AuthConstants.internalLoginScope],
       ),
     );
     if(context.mounted) {
-      context.read<CurrentPage>().setPageAndUserStatus(homePage, true);
+      context.read<CurrentPage>().setPageAndUserStatus(AppConstants.homePage, true);
       context.read<UserSession>().loginSuccessfulFunction(result?.accessToken, result?.idToken, result?.refreshToken);
     }
   }catch(e, s){
     print('Error while login to the system: $e - stack: $s');
-    context.read<CurrentPage>().setPageAndUserStatus(firstPage, false);
+    context.read<CurrentPage>().setPageAndUserStatus(AppConstants.firstPage, false);
   }
 }
 
@@ -65,7 +64,7 @@ renewAccessToken(BuildContext context) async {
     );
 
     if (context.mounted) {
-      context.read<CurrentPage>().setPageAndUserStatus(firstPage, false);
+      context.read<CurrentPage>().setPageAndUserStatus(AppConstants.firstPage, false);
       //TODO: clear user sessions
     }
   }catch(e){

@@ -1,10 +1,11 @@
 import 'package:asgardeo_flutter_app/utils/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart' as constants;
 import '../constants/strings.dart';
+import '../constants/app_constants.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
+import 'package:asgardeo_flutter_app/configs/configs.dart' as configs;
 
 class EditProfilePage extends StatelessWidget{
 
@@ -24,7 +25,7 @@ class EditProfilePage extends StatelessWidget{
           Row(children: [
             IconButton(
               onPressed: () {
-                context.read<CurrentPage>().setPageIndex(constants.profilePage);
+                context.read<CurrentPage>().setPageIndex(AppConstants.profilePage);
               },
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
@@ -92,8 +93,8 @@ class EditProfilePage extends StatelessWidget{
               height: 44.0,
               width: 150.0,
               decoration: BoxDecoration(
-                  color: const Color(constants.primaryColor),
-                  borderRadius: BorderRadius.circular(constants.buttonRadius)),
+                  color: const Color(configs.primaryColor),
+                  borderRadius: BorderRadius.circular(configs.buttonRadius)),
               child: ElevatedButton(
                 onPressed: () async {
                   await APIClient().updateUserProfile(firstNameController.text, lastNameController.text, countryController.text, context);
@@ -111,17 +112,17 @@ class EditProfilePage extends StatelessWidget{
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ElevatedButton(
                 onPressed: () async {
-                  context.read<CurrentPage>().setPageIndex(constants.profilePage);
+                  context.read<CurrentPage>().setPageIndex(AppConstants.profilePage);
                 },
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(
                       width: 1.0,
-                      color: Color(constants.primaryColor),
+                      color: Color(configs.primaryColor),
                     ),
                     shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(constants.buttonRadius),
+                      borderRadius: BorderRadius.circular(configs.buttonRadius),
                     )),
-                child: const Text(Strings.cancelButton, style: TextStyle(color: Color(constants.primaryColor)),),
+                child: const Text(Strings.cancelButton, style: TextStyle(color: Color(configs.primaryColor)),),
               ),
             ),
           ]),
