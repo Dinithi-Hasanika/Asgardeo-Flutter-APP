@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
+import '../constants/strings.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
 
@@ -21,7 +22,7 @@ class ProfilePage extends StatelessWidget {
               },
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
-            const Text(constants.viewProfileTitle, style: TextStyle(fontSize: 30))
+            const Text(Strings.viewProfileTitle, style: TextStyle(fontSize: 30))
           ]),
           const SizedBox(height: 50),
           Container(
@@ -51,15 +52,15 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(constants.firstNameLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(Strings.firstNameLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                         SizedBox(height: 10),
-                        Text(constants.lastNameLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        Text(Strings.lastNameLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
                         SizedBox(height: 10),
-                        Text(constants.dOBLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        Text(Strings.dOBLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
                         SizedBox(height: 10),
-                        Text(constants.mobileLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        Text(Strings.mobileLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
                         SizedBox(height: 10),
-                        Text(constants.countryLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(Strings.countryLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -130,13 +131,13 @@ class ProfilePage extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
               ),
-              child: const Text(constants.editProfile, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
+              child: const Text(Strings.editProfileButton, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
             ),
           ),
           const SizedBox(height: 100),
           const Align(
             alignment: Alignment.bottomCenter,
-            child: Text(constants.license),
+            child: Text(Strings.license),
           )
         ],
       ),

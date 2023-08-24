@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' as constants;
 import 'package:provider/provider.dart';
+import '../constants/strings.dart';
 import '../providers/page.dart';
 
 class ExternalAPIDataPage extends StatelessWidget{
@@ -20,7 +21,7 @@ class ExternalAPIDataPage extends StatelessWidget{
                 },
                 icon: const Icon(Icons.arrow_back_ios_new),
               ),
-              const Text(constants.externalAPIPageTitle, style: TextStyle(fontSize: 30)),
+              const Text(Strings.externalAPIPageTitle, style: TextStyle(fontSize: 30)),
             ]
             ),
             const SizedBox(height: 40),

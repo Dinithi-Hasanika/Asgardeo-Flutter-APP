@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/constants/strings.dart';
 import 'package:asgardeo_flutter_app/providers/page.dart';
 import 'package:flutter/material.dart';
 import 'edit_profile_page.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     bool isUserLoggedIn = context.watch<CurrentPage>().isUserLoggedIn;
     int pageIndex = context.watch<CurrentPage>().pageIndex;
     return MaterialApp(
-      title: constants.appTitle,
+      title: Strings.appTitle,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(constants.primaryColor)),

@@ -1,5 +1,6 @@
 import 'package:asgardeo_flutter_app/configs/configs.dart';
 import 'package:asgardeo_flutter_app/configs/end_point_urls.dart';
+import 'package:asgardeo_flutter_app/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../constants.dart' as constants;
@@ -11,7 +12,7 @@ class SignUpWebView extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: const Text(constants.newAccount),
+        title: const Text(Strings.newAccount),
     ),
     body: WebViewWidget(controller: WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
