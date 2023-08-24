@@ -1,6 +1,7 @@
 import 'package:asgardeo_flutter_app/providers/user_session.dart';
 import 'package:asgardeo_flutter_app/utils/Auth.dart';
 import 'package:asgardeo_flutter_app/utils/api_client.dart';
+import 'package:asgardeo_flutter_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart' as constants;
@@ -16,13 +17,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    APIClient().getUserName(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 100),
-          Text("${constants.welcome} ${context.watch<UserSession>().userName}!", style: const TextStyle(fontSize: 20)),
+          Text("${constants.welcome} ${Util().getUsername(context)}!", style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 100),
           Container(
             height: 44.0,

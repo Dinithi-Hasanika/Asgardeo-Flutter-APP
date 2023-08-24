@@ -23,6 +23,7 @@ class UserSession with ChangeNotifier, DiagnosticableTreeMixin{
 
   void setUserName(userName){
     _userName = userName;
+    notifyListeners();
   }
 
   @override
