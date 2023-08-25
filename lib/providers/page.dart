@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 
 import '../constants/app_constants.dart';
+import '../constants/strings.dart';
 
 class CurrentPage with ChangeNotifier, DiagnosticableTreeMixin{
   late int _pageIndex = AppConstants.firstPage;
   late bool _isUserLoggedIn = false;
-  late String _apiData = 'Can not Retrieve API Data';
+  late String _apiData = Strings.noExternalAPIData;
 
   int get pageIndex => _pageIndex;
 
@@ -33,8 +34,8 @@ class CurrentPage with ChangeNotifier, DiagnosticableTreeMixin{
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(IntProperty('pageIndex', pageIndex));
-    properties.add(FlagProperty('isUserLoggedIn', value: isUserLoggedIn));
-    properties.add(StringProperty('apiData', apiData));
+    properties.add(IntProperty(ProviderConstants.pageIndex, pageIndex));
+    properties.add(FlagProperty(ProviderConstants.isUserLoggedIn, value: isUserLoggedIn));
+    properties.add(StringProperty(ProviderConstants.apiData, apiData));
   }
 }

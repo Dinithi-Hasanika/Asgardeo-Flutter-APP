@@ -1,18 +1,17 @@
 import 'package:flutter/foundation.dart';
 
+import '../constants/app_constants.dart';
+
 class UserSession with ChangeNotifier, DiagnosticableTreeMixin{
   late String _accessToken = '';
   late String _idToken = '';
   late String _refreshToken = '';
-  late String _userName = '';
 
   String get accessToken => _accessToken;
 
   String get idToken => _idToken;
 
   String get refreshToken => _refreshToken;
-
-  String get userName => _userName;
 
   void loginSuccessfulFunction(accessToken, idToken, refreshToken){
     _accessToken = accessToken;
@@ -21,17 +20,11 @@ class UserSession with ChangeNotifier, DiagnosticableTreeMixin{
     notifyListeners();
   }
 
-  void setUserName(userName){
-    _userName = userName;
-    notifyListeners();
-  }
-
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('accessToken', accessToken));
-    properties.add(StringProperty('idToken', idToken));
-    properties.add(StringProperty('refreshToken', refreshToken));
-    properties.add(StringProperty('userName', userName));
+    properties.add(StringProperty(ProviderConstants.accessToken, accessToken));
+    properties.add(StringProperty(ProviderConstants.idToken, idToken));
+    properties.add(StringProperty(ProviderConstants.refreshToken, refreshToken));
   }
 }

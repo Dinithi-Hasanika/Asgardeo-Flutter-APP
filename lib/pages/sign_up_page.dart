@@ -18,11 +18,6 @@ class SignUpWebView extends StatelessWidget{
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
           NavigationDelegate(
-            onProgress: (int progress) {
-            },
-            onPageStarted: (String url) {},
-            onPageFinished: (String url) {},
-            onWebResourceError: (WebResourceError error) {},
             onNavigationRequest: (NavigationRequest request) {
               if(request.url.startsWith(accessURL)){
                 Navigator.pop(context);

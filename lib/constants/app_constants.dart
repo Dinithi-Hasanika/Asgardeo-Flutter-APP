@@ -46,3 +46,20 @@ class APIClientConstants {
   static const String contentType = 'Content-Type';
   static const String contentTypeJson = 'application/scim+json';
 }
+
+class ProviderConstants {
+
+  static const String pageIndex = "pageIndex";
+  static const String isUserLoggedIn = "isUserLoggedIn";
+  static const String apiData = "apiData";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String dateOfBirth = "dateOfBirth";
+  static const String country = "country";
+  static const String mobile = "mobile";
+  static const String photo = "photo";
+  static const String accessToken = "accessToken";
+  static const String idToken = "idToken";
+  static const String refreshToken = "refreshToken";
+
+}

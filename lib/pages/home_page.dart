@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 100),
-          Text("${Strings.welcome} ${Util().getUsername(context)}!", style: const TextStyle(fontSize: 20)),
+          Text("${Strings.welcome} ${Util().getUsername(context)} ${Strings.greeting}", style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 100),
           Container(
             height: 44.0,

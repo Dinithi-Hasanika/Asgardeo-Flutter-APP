@@ -1,8 +1,8 @@
-import 'package:asgardeo_flutter_app/components/text_components.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/license.dart';
+import '../components/text_components.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/app_constants.dart';
 import '../constants/strings.dart';

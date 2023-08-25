@@ -36,11 +36,11 @@ class User with ChangeNotifier, DiagnosticableTreeMixin{
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('firstName', firstName));
-    properties.add(StringProperty('lastName', lastName));
-    properties.add(StringProperty('dateOfBirth', dateOfBirth));
-    properties.add(StringProperty('country', country));
-    properties.add(StringProperty('mobile', mobile));
-    properties.add(StringProperty('photo', photo));
+    properties.add(StringProperty(ProviderConstants.firstName, firstName));
+    properties.add(StringProperty(ProviderConstants.lastName, lastName));
+    properties.add(StringProperty(ProviderConstants.dateOfBirth, dateOfBirth));
+    properties.add(StringProperty(ProviderConstants.country, country));
+    properties.add(StringProperty(ProviderConstants.mobile, mobile));
+    properties.add(StringProperty(ProviderConstants.photo, photo));
   }
 }

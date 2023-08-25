@@ -10,6 +10,7 @@ class Strings {
   static const String newAccount = 'Create New Account';
   static const String license = '© 2023 WSO2 LLC.';
   static const String viewSource = 'Explore the source code';
+  static const String greeting = '!';
 
   static const String signInButton = 'Sign In';
   static const String signUpButton = 'Create an account';

@@ -71,4 +71,3 @@ class EditText extends StatelessWidget{
   }
 
 }
-
