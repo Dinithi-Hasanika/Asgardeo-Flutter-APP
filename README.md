@@ -148,8 +148,9 @@ Steps to add a new component.
 1. Create a <new_page_name>.dart file in <project>/lib/pages.
 2. Import <new_page_name>.dart file to <project>/lib/pages/my_asgardeo_app.dart file
 3. Define page Index to new page in  <project>/lib/constants/app_constants.dart file
-  Example
+
  `static const int newPage = 7;`
+
 4. Add button widget to relevant existing page and upon clicking button set Page Index of the new page calling the `CurrentPage` provider.
 
  For more details refer `CurrentPage` provider implementation in <project>/lib/providers/page.dart
