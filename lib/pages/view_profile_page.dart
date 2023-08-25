@@ -1,3 +1,4 @@
+import 'package:asgardeo_flutter_app/components/view_profile_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,15 +55,15 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(Strings.firstNameLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        DisplayLabel(Strings.firstNameLabel),
                         SizedBox(height: 10),
-                        Text(Strings.lastNameLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        DisplayLabel(Strings.lastNameLabel),
                         SizedBox(height: 10),
-                        Text(Strings.dOBLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        DisplayLabel(Strings.dOBLabel),
                         SizedBox(height: 10),
-                        Text(Strings.mobileLabel, style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
+                        DisplayLabel(Strings.mobileLabel),
                         SizedBox(height: 10),
-                        Text(Strings.countryLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        DisplayLabel(Strings.countryLabel),
                       ],
                     ),
                   ),
@@ -76,40 +77,15 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          context.read<User>().firstName,
-                          maxLines: 2,
-                          softWrap: true,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        DisplayText(context.read<User>().firstName),
                         const SizedBox(height: 10),
-                        Text(
-                          context.read<User>().lastName,
-                          maxLines: 2,
-                          softWrap: true,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        DisplayText(context.read<User>().lastName),
                         const SizedBox(height: 10),
-                        Text(
-                          context.read<User>().dateOfBirth,
-                          maxLines: 2,
-                          softWrap: true,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        DisplayText(context.read<User>().dateOfBirth),
                         const SizedBox(height: 10),
-                        Text(
-                          context.read<User>().mobile,
-                          maxLines: 2,
-                          softWrap: true,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        DisplayText(context.read<User>().mobile),
                         const SizedBox(height: 10),
-                        Text(
-                          context.read<User>().country,
-                          maxLines: 2,
-                          softWrap: true,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                        DisplayText(context.read<User>().country),
                       ],
                     ),
                   ),
