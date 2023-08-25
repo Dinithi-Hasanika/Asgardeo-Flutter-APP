@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../configs/configs.dart';
@@ -9,6 +10,7 @@ import '../providers/page.dart';
 import '../providers/user_session.dart';
 
 const FlutterAppAuth flutterAppAuth = FlutterAppAuth();
+final logger = Logger();
 
 class AuthClient{
 
@@ -27,8 +29,8 @@ loginFunction(BuildContext context) async{
       context.read<CurrentPage>().setPageAndUserStatus(AppConstants.homePage, true);
       context.read<UserSession>().loginSuccessfulFunction(result?.accessToken, result?.idToken, result?.refreshToken);
     }
-  }catch(e, s){
-    print('Error while login to the system: $e - stack: $s');
+  }catch(e){
+    logger.e(e);
     context.read<CurrentPage>().setPageAndUserStatus(AppConstants.firstPage, false);
   }
 }
@@ -47,7 +49,7 @@ renewAccessToken(BuildContext context) async {
       context.read<UserSession>().loginSuccessfulFunction(tokenResponse?.accessToken, tokenResponse?.idToken, tokenResponse?.refreshToken);
     }
   }catch(e){
-    print(e);
+    logger.d("Issue in renewing access token. User needs to login again.");
     loginFunction(context);
   }
 }
@@ -69,7 +71,7 @@ renewAccessToken(BuildContext context) async {
       //TODO: clear user sessions
     }
   }catch(e){
-    print(e);
+    logger.w("Issue in ending user session. User session may have already expired");
     loginFunction(context);
   }
   }

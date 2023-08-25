@@ -26,4 +26,6 @@ class Strings {
   static const String countryLabel = 'Country';
   static const String dOBLabel = 'Date of Birth';
   static const String mobileLabel = 'Mobile';
+
+  static const String noExternalAPIData = "Cannot Get external API Data!!";
 }

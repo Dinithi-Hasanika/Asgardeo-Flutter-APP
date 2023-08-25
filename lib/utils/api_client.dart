@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
 import '../constants/app_constants.dart';
+import '../constants/strings.dart';
 import 'http_client.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
@@ -74,7 +75,7 @@ class APIClient{
       }
     }else{
       if(context.mounted) {
-        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, "Cannot Get external API Data!! Please Check Configured external API Endpoint!");
+        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, Strings.noExternalAPIData);
       }
     }
   }

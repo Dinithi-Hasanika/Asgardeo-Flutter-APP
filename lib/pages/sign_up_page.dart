@@ -5,7 +5,6 @@ import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
 import '../constants/strings.dart';
 
-
 class SignUpWebView extends StatelessWidget{
   const SignUpWebView({super.key});
 

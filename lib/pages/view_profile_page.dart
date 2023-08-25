@@ -7,8 +7,6 @@ import '../constants/strings.dart';
 import '../providers/page.dart';
 import '../providers/user.dart';
 
-
-
 class ProfilePage extends StatelessWidget {
 
   const ProfilePage({super.key});
