@@ -1,7 +1,8 @@
-import 'package:asgardeo_flutter_app/components/view_profile_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../components/license.dart';
+import '../components/text_components.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/app_constants.dart';
 import '../constants/strings.dart';
@@ -55,15 +56,11 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        DisplayLabel(Strings.firstNameLabel),
-                        SizedBox(height: 10),
-                        DisplayLabel(Strings.lastNameLabel),
-                        SizedBox(height: 10),
-                        DisplayLabel(Strings.dOBLabel),
-                        SizedBox(height: 10),
-                        DisplayLabel(Strings.mobileLabel),
-                        SizedBox(height: 10),
-                        DisplayLabel(Strings.countryLabel),
+                        DisplayLabel(Strings.firstNameLabel,10),
+                        DisplayLabel(Strings.lastNameLabel,10),
+                        DisplayLabel(Strings.dOBLabel,10),
+                        DisplayLabel(Strings.mobileLabel,10),
+                        DisplayLabel(Strings.countryLabel,10),
                       ],
                     ),
                   ),
@@ -77,15 +74,11 @@ class ProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        DisplayText(context.read<User>().firstName),
-                        const SizedBox(height: 10),
-                        DisplayText(context.read<User>().lastName),
-                        const SizedBox(height: 10),
-                        DisplayText(context.read<User>().dateOfBirth),
-                        const SizedBox(height: 10),
-                        DisplayText(context.read<User>().mobile),
-                        const SizedBox(height: 10),
-                        DisplayText(context.read<User>().country),
+                        DisplayText(context.read<User>().firstName,10),
+                        DisplayText(context.read<User>().lastName,10),
+                        DisplayText(context.read<User>().dateOfBirth,10),
+                        DisplayText(context.read<User>().mobile,10),
+                        DisplayText(context.read<User>().country,10),
                       ],
                     ),
                   ),
@@ -112,11 +105,7 @@ class ProfilePage extends StatelessWidget {
               child: const Text(Strings.editProfileButton, style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold)),
             ),
           ),
-          const SizedBox(height: 100),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(Strings.license),
-          )
+          const License(100),
         ],
       ),
     );

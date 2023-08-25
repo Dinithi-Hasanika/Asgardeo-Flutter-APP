@@ -1,6 +1,8 @@
+import 'package:asgardeo_flutter_app/components/text_components.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../components/license.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/app_constants.dart';
 import '../constants/strings.dart';
@@ -32,61 +34,9 @@ class EditProfilePage extends StatelessWidget{
             ),
             const Text(Strings.editProfileTitle, style: TextStyle(fontSize: 30))]),
           const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(Strings.firstNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
-                const SizedBox(height: 8),
-                TextField(
-                controller: firstNameController,
-                decoration: InputDecoration(
-                    isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    )
-                ),
-              ),
-            ]
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
-                const Text(Strings.lastNameLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
-                const SizedBox(height: 8),
-                TextField(
-                controller: lastNameController,
-                decoration: InputDecoration(
-                    isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    )
-                ),
-              ),
-              ]
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left:35, bottom: 10, right: 30, top:0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(Strings.countryLabel, textAlign: TextAlign.start, style:TextStyle(fontSize: 16) ,),
-                const SizedBox(height: 8),
-                TextField(
-                controller: countryController,
-                decoration: InputDecoration(isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    )),
-              ),
-              ]
-            ),
-          ),
+          EditText(Strings.firstNameLabel,firstNameController),
+          EditText(Strings.lastNameLabel,lastNameController),
+          EditText(Strings.countryLabel,countryController),
           const SizedBox(height: 40),
           Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
             const SizedBox(width: 35),
@@ -127,11 +77,7 @@ class EditProfilePage extends StatelessWidget{
               ),
             ),
           ]),
-          const SizedBox(height: 175),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(Strings.license),
-          )
+          const License(175),
         ]
     );
   }

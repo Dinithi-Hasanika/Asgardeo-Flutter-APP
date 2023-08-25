@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/license.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/strings.dart';
 import '../utils/api_client.dart';
@@ -72,11 +73,7 @@ class HomePage extends StatelessWidget {
               child: const Text(Strings.logOutButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(configs.primaryColor))),
             ),
           ),
-          const SizedBox(height: 165),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(Strings.license),
-          )
+          const License(170),
         ],
       ),
     );

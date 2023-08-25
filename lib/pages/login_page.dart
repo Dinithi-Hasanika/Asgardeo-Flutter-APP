@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/license.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/strings.dart';
 import '../pages/sign_up_page.dart';
@@ -88,11 +89,7 @@ class LogInPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 120),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(Strings.license),
-            )
+           const License(90),
           ]
       ),
     );
