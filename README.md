@@ -128,7 +128,7 @@ Steps to remove Edit User profile option available in this application.
 1. Remove Edit Profile button widget available in the View User Profile page. Then the app users will not have access to edit the profile.
 2. To remove source code, remove page Index condition for edit user profile page available in MyApp Class. 
 
-<project>/lib/pages/my_asgardeo_app.dart -> MyApp Class > build function > Scaffold widget > body
+`<project>/lib/pages/my_asgardeo_app.dart` -> MyApp Class -> build function -> Scaffold widget -> body
 
 Remove following condition
 
@@ -140,24 +140,24 @@ Remove following condition
 3. Remove import statements of <project>/lib/pages/edit_profile_page.dart of in <project>/lib/pages/my_asgardeo_app.dart
 `import 'edit_profile_page.dart';`
 
-4. Remove <project>/lib/pages/edit_profile_page.dart
+4. Remove `<project>/lib/pages/edit_profile_page.dart`
 
 ### Add New Components
 Steps to add a new component.
 
 1. Create a <new_page_name>.dart file in <project>/lib/pages.
-2. Import <new_page_name>.dart file to <project>/lib/pages/my_asgardeo_app.dart file
-3. Define page Index to new page in  <project>/lib/constants/app_constants.dart file
+2. Import <new_page_name>.dart file to `<project>/lib/pages/my_asgardeo_app.dart` file
+3. Define page Index to new page in  `<project>/lib/constants/app_constants.dart` file
 
  `static const int newPage = 7;`
 
 4. Add button widget to relevant existing page and upon clicking button set Page Index of the new page calling the `CurrentPage` provider.
 
- For more details refer `CurrentPage` provider implementation in <project>/lib/providers/page.dart
+ For more details refer `CurrentPage` provider implementation in `<project>/lib/providers/page.dart`
 
 5. Add page Index to the existing conditional statement to render new page in 
 
- <project>/lib/pages/my_asgardeo_app.dart > MyApp  Class > build function > Scaffold widget > body
+ `<project>/lib/pages/my_asgardeo_app.dart` -> MyApp  Class -> build function -> Scaffold widget -> body
  
 ```
 : pageIndex == AppConstants.newPage
