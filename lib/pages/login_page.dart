@@ -23,17 +23,12 @@ class LogInPage extends StatelessWidget {
               ),
             const SizedBox(height: 30),
             const Text(Strings.firstPageTitle, style: TextStyle(fontSize: 25)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(Strings.firstPageSubTitle, style: TextStyle(fontSize: 25)),
+            const Text(Strings.firstPageSubTitle, style: TextStyle(fontSize: 25)),
                 Image.asset(configs.asgardeoLogo,
-                  height: 100,
+                  height: 60,
                   width: 120,
                 ),
-              ],
-            ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 40),
             Container(
             height: 44.0,
             width: 180.0,
@@ -71,7 +66,7 @@ class LogInPage extends StatelessWidget {
                 child: const Text(Strings.signUpButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(configs.primaryColor))),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 100),
             InkWell(
               onTap: () async {
                 Navigator.push(context,
