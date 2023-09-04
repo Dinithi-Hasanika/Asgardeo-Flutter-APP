@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../configs/configs.dart';
@@ -13,6 +14,8 @@ import '../providers/user.dart';
 import '../providers/user_session.dart';
 import '../utils/auth_client.dart';
 import '../utils/util.dart';
+
+final logger = Logger();
 
 class APIClient{
 
@@ -59,25 +62,36 @@ class APIClient{
   }
 
   Future<void> callExternalAPIFunction(BuildContext context) async {
+    try {
+      final externalInfo = await HTTPClient().httpGet(
+          externalAPIEndpoint, context
+          .read<UserSession>()
+          .accessToken);
 
-    final externalInfo = await HTTPClient().httpGet(externalAPIEndpoint, context.read<UserSession>().accessToken);
-
-    if (externalInfo.statusCode == AppConstants.httpSuccessCode) {
-      if(context.mounted) {
-        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, externalInfo.body);
+      if (externalInfo.statusCode == AppConstants.httpSuccessCode) {
+        if (context.mounted) {
+          context.read<CurrentPage>().setExternalAPIPage(
+              AppConstants.externalAPIResponsePage, externalInfo.body);
+        }
+      } else if (externalInfo.statusCode == AppConstants.httpUnauthorizedCode) {
+        if (context.mounted) {
+          await AuthClient().renewAccessToken(context);
+        }
+        if (context.mounted) {
+          await callExternalAPIFunction(context);
+        }
+      } else {
+        if (context.mounted) {
+          context.read<CurrentPage>().setExternalAPIPage(
+              AppConstants.externalAPIResponsePage, Strings.noExternalAPIData);
+        }
       }
-    }else if (externalInfo.statusCode == AppConstants.httpUnauthorizedCode) {
-      if(context.mounted) {
-        await AuthClient().renewAccessToken(context);
-      }
-      if(context.mounted) {
-        await callExternalAPIFunction(context);
-      }
-    }else{
-      if(context.mounted) {
-        context.read<CurrentPage>().setExternalAPIPage(AppConstants.externalAPIResponsePage, Strings.noExternalAPIData);
+    }catch(e){
+      logger.e(e);
+      if (context.mounted) {
+        context.read<CurrentPage>().setExternalAPIPage(
+            AppConstants.externalAPIResponsePage, Strings.noExternalAPIData);
       }
     }
   }
-
 }
