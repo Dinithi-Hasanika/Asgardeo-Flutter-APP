@@ -64,3 +64,9 @@ class ProviderConstants {
   static const String userName = "userName";
 
 }
+
+class WarningMessages {
+
+  static const String refreshTokenIssue = "Issue in renewing access token. User needs to login again.";
+  static const String logOutIssue = "Issue in ending user session. User session may have already expired.";
+}

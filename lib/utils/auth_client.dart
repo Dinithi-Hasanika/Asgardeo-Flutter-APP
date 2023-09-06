@@ -50,7 +50,7 @@ renewAccessToken(BuildContext context) async {
       context.read<UserSession>().loginSuccessfulFunction(tokenResponse?.accessToken, tokenResponse?.idToken, tokenResponse?.refreshToken);
     }
   }catch(e){
-    logger.d("Issue in renewing access token. User needs to login again.");
+    logger.d(WarningMessages.refreshTokenIssue);
     loginFunction(context);
   }
 }
@@ -72,7 +72,7 @@ renewAccessToken(BuildContext context) async {
       context.read<CurrentPage>().setPageAndUserStatus(AppConstants.firstPage, false);
     }
   }catch(e){
-    logger.w("Issue in ending user session. User session may have already expired");
+    logger.w(WarningMessages.logOutIssue);
     loginFunction(context);
   }
   }
