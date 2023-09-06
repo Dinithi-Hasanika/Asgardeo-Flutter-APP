@@ -7,6 +7,7 @@ import '../configs/configs.dart';
 import '../configs/end_point_urls.dart';
 import '../constants/app_constants.dart';
 import '../providers/page.dart';
+import '../providers/user.dart';
 import '../providers/user_session.dart';
 
 const FlutterAppAuth flutterAppAuth = FlutterAppAuth();
@@ -67,8 +68,8 @@ renewAccessToken(BuildContext context) async {
     );
 
     if (context.mounted) {
+      context.read<User>().clearUserData();
       context.read<CurrentPage>().setPageAndUserStatus(AppConstants.firstPage, false);
-      //TODO: clear user sessions
     }
   }catch(e){
     logger.w("Issue in ending user session. User session may have already expired");

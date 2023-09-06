@@ -10,6 +10,7 @@ class User with ChangeNotifier, DiagnosticableTreeMixin{
   late String _country = '';
   late String _mobile = '';
   late String _photo = '';
+  late String _userName = '';
 
   String get firstName => _firstName;
 
@@ -23,6 +24,8 @@ class User with ChangeNotifier, DiagnosticableTreeMixin{
 
   String get photo => _photo;
 
+  String get userName => _userName;
+
   void setUserDetails(profile){
     _firstName = profile[AppConstants.name][AppConstants.givenName] ?? '';
     _lastName = profile[AppConstants.name][AppConstants.familyName] ?? '';
@@ -30,6 +33,16 @@ class User with ChangeNotifier, DiagnosticableTreeMixin{
     _country = profile[AppConstants.wso2Schema][AppConstants.country] ?? '';
     _mobile = profile[AppConstants.phoneNumbers][0][AppConstants.type] == AppConstants.mobile? profile[AppConstants.phoneNumbers][0][AppConstants.value]:'';
     _photo = profile[AppConstants.wso2Schema][AppConstants.photo] ?? defaultPhotoURL;
+    notifyListeners();
+  }
+
+  void setUserName(profile){
+    _userName = profile[AppConstants.userName].toString().split(AppConstants.domainSplit)[1];
+    notifyListeners();
+  }
+
+  void clearUserData(){
+    _userName = "";
     notifyListeners();
   }
 
@@ -42,5 +55,6 @@ class User with ChangeNotifier, DiagnosticableTreeMixin{
     properties.add(StringProperty(ProviderConstants.country, country));
     properties.add(StringProperty(ProviderConstants.mobile, mobile));
     properties.add(StringProperty(ProviderConstants.photo, photo));
+    properties.add(StringProperty(ProviderConstants.userName, userName));
   }
 }

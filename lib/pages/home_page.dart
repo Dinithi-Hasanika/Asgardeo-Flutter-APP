@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../components/license.dart';
 import '../configs/configs.dart' as configs;
 import '../constants/strings.dart';
+import '../providers/user.dart';
 import '../utils/api_client.dart';
 import '../utils/auth_client.dart';
 import '../utils/util.dart';
 
-class HomePage extends StatelessWidget {
-
+class HomePage extends StatefulWidget{
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      APIClient().getUserName(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +33,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 100),
-          Text("${Strings.welcome} ${Util().getUsername(context)} ${Strings.greeting}", style: const TextStyle(fontSize: 20)),
+          Text("${Strings.welcome} ${context.watch<User>().userName} ${Strings.greeting}", style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 100),
           Container(
             height: 44.0,

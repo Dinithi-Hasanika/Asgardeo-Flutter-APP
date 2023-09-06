@@ -94,4 +94,23 @@ class APIClient{
       }
     }
   }
+
+  Future<void> getUserName(BuildContext context) async {
+    final userInfo = await HTTPClient().httpGet(meEndpoint, context.read<UserSession>().accessToken);
+
+    if (userInfo.statusCode == AppConstants.httpSuccessCode) {
+      var profile = jsonDecode(userInfo.body);
+      if(context.mounted) {
+        context.read<User>().setUserName(profile);
+      }
+    }else if (userInfo.statusCode == AppConstants.httpUnauthorizedCode) {
+      if(context.mounted) {
+        await AuthClient().renewAccessToken(context);
+      }
+      if(context.mounted) {
+        await getUserName(context);
+      }
+    }
+  }
+
 }
