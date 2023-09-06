@@ -7,7 +7,6 @@ import '../constants/strings.dart';
 import '../providers/user.dart';
 import '../utils/api_client.dart';
 import '../utils/auth_client.dart';
-import '../utils/util.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
