@@ -1,12 +1,15 @@
-import 'package:asgardeo_flutter_app/pages/signUpPage.dart';
-import 'package:asgardeo_flutter_app/pages/viewSourceCode.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart' as constants;
+
+import '../components/license.dart';
+import '../configs/configs.dart' as configs;
+import '../constants/strings.dart';
+import '../pages/sign_up_page.dart';
+import '../pages/view_source_code.dart';
+import '../utils/auth_client.dart';
 
 class LogInPage extends StatelessWidget {
-  final loginFunction;
 
-  const LogInPage(this.loginFunction);
+  const LogInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,37 +17,32 @@ class LogInPage extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-              Image.asset(constants.flutterLogo,
+              Image.asset(configs.flutterLogo,
                 height: 100,
                 width: 100,
               ),
             const SizedBox(height: 30),
-            const Text(constants.startPack, style: TextStyle(fontSize: 25)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('IAM experience with ', style: TextStyle(fontSize: 25)),
-                Image.asset(constants.asgardeoLogo,
-                  height: 100,
+            const Text(Strings.firstPageTitle, style: TextStyle(fontSize: 25)),
+            const Text(Strings.firstPageSubTitle, style: TextStyle(fontSize: 25)),
+                Image.asset(configs.asgardeoLogo,
+                  height: 60,
                   width: 120,
                 ),
-              ],
-            ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 40),
             Container(
             height: 44.0,
             width: 180.0,
             decoration: BoxDecoration(
-                color: const Color(constants.primaryColor),
-                borderRadius: BorderRadius.circular(constants.buttonRadius)),
+                color: const Color(configs.primaryColor),
+                borderRadius: BorderRadius.circular(configs.buttonRadius)),
             child: ElevatedButton(
               onPressed: () async {
-                await loginFunction();
+                await AuthClient().loginFunction(context);
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent),
-              child: const Text(constants.signIn, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+              child: const Text(Strings.signInButton, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           ),
             const SizedBox(height: 20),
@@ -55,42 +53,38 @@ class LogInPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => signUpWebView()));
+                      MaterialPageRoute(builder: (context) => const SignUpWebView()));
                 },
                 style: ElevatedButton.styleFrom(
                     side: const BorderSide(
                       width: 1.0,
-                      color: Color(constants.primaryColor),
+                      color: Color(configs.primaryColor),
                     ),
                     shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(constants.buttonRadius),
+                      borderRadius: BorderRadius.circular(configs.buttonRadius),
                     )),
-                child: const Text(constants.signUp, style: TextStyle(fontWeight: FontWeight.bold, color: Color(constants.primaryColor))),
+                child: const Text(Strings.signUpButton, style: TextStyle(fontWeight: FontWeight.bold, color: Color(configs.primaryColor))),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 100),
             InkWell(
               onTap: () async {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => viewSourceCode()));
+                    MaterialPageRoute(builder: (context) => const ViewSourceCode()));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(constants.gitHubLogo,
+                  Image.asset(configs.gitHubLogo,
                     height: 25,
                     width: 25,
                   ),
                   const SizedBox(width: 5),
-                  const Text(constants.viewSource, style: TextStyle( fontWeight: FontWeight.w400)),
+                  const Text(Strings.viewSource, style: TextStyle( fontWeight: FontWeight.w400)),
                 ],
               ),
             ),
-            const SizedBox(height: 120),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(constants.license),
-            )
+           const License(90),
           ]
       ),
     );
